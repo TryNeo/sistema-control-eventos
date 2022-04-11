@@ -132,13 +132,13 @@
     function array_max_return($value,$key){$max = ($value >= 9) ? $value : ''; return $max;}
     function resPar($value){ return $value-9;}
 
-    function getHeader($data=""){
-        $view_header = "./views/template/header.php";
+    function getHeaderDashboard($data=""){
+        $view_header = "./views/template/header_dashboard.php";
         return require_once($view_header);
     }
 
-    function getScripts($data=""){
-        $view_scripts = "./views/template/scripts.php";
+    function getScriptsDashboard($data=""){
+        $view_scripts = "./views/template/scripts_dashboard.php";
         return require_once($view_scripts);
     }
 
