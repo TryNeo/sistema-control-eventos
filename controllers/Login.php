@@ -40,7 +40,11 @@
                                 $str_password = strclean($_POST['password']);
                                 $request_user = $this->model->login_user($str_usuario);
                                 if (empty($request_user)) {
-                                    $data = array('status' => false,'msg' => 'El usuario o la contraseña es incorrecto');
+                                    $data = array('status' => false,'msg' => 'El usuario o la contraseña es incorrecto',
+                                        'formErrors'=> array(
+                                            'username' => 'nombre de usuario incorrecto',
+                                            'password' => 'contraseña ingresada incorrecta'
+                                    ));
                                 }else{
                                     $data = $request_user;
                                     if ($data['estado'] == 1) {
@@ -50,7 +54,7 @@
                                             $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
                                             $_SESSION['user_data'] = $arrResponse;
                                             $_SESSION['token'] = '';
-                                            $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente');
+                                            $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url+'dashboard');
                                         }else{
                                             $data = array('status' => false,'msg' => 'La contraseña es incorrecto');
                                         }

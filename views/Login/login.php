@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; Stisla</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Login &mdash; Stisla</title>
+    <link rel="icon" type="image/png" href="http://xenturionit.com/wp-content/uploads/2020/08/cropped-Icono-web2-01-32x32.png" sizes="16x16" />
 
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-  <!-- CSS Libraries -->
-  <link rel="stylesheet" href="../node_modules/bootstrap-social/bootstrap-social.css">
 
-  <!-- Template CSS -->
     <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/style.css">
     <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
 </head>
@@ -24,7 +22,7 @@
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="login-brand">
-              <img src=".<?php echo server_url; ?>/assets/libs/stisla/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+                <img src="http://xenturionit.com/wp-content/uploads/2020/11/Iso-250x10px.png" alt="logo" width="300" class="shadow-light">
             </div>
 
             <div class="card card-primary">
@@ -33,7 +31,8 @@
                     <h4 class="text-center">Iniciar Sesión</h4>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="#" class="needs-validation" novalidate="">
+                    <form id="fntLogin" name="fntLogin" method="POST" action="<?php echo server_url; ?>login/loginUser" class="needs-validation" novalidate="">
+                        <input id="csrf" name="csrf" type="hidden" value="<?php echo $data["csrf"]; ?>">
                         <div class="form-group">
                             <label for="email">Usuario</label>
                             <div class="input-group">
@@ -42,7 +41,7 @@
                                         <i class="fas fa-user"></i>
                                     </div>
                                 </div>
-                                <input id="teUs" type="text" class="form-control" name="emaissl">
+                                <input id="username" name="username" type="text" class="form-control">
                                 <div class="invalid-feedback">
                                     Porfavor ingrese su usuario
                                 </div>
@@ -97,6 +96,7 @@
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
-
+    <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
+    <script src="<?php echo server_url; ?>/assets/js/functions_login.js"></script>
 </body>
 </html>

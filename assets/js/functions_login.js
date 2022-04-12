@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector("#formLogin")) {
         let formLogin = document.querySelector("#formLogin");
@@ -38,3 +39,67 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 },false)
+*/
+
+$(function(){
+    const fieldsToValidate = ['username','password']
+
+    let validatorServerSide = $('form.needs-validation').jbvalidator({
+        errorMessage: true,
+        successClass: true,
+    });
+    validatorServerSide.validator.custom = function(el, event){
+
+        if($(el).is('[name=username]')){
+            let value= $(el).val()
+            if (!validateUser(value)){
+                return 'El usuario ingresado no es valido';
+            }
+            
+        }
+
+        if($(el).is('[name=password]')){
+            let value= $(el).val()
+
+            if (!validateUser(value)){
+                return 'La contraseña ingresada no es valido';
+            }
+            
+        }
+    }
+
+    sendingDataServerSideLogin('#fntLogin',validatorServerSide,fieldsToValidate);
+});
+
+
+function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate){
+    let url = $(idForm).attr("action");
+    $(idForm).on('submit',function (e) {
+        e.preventDefault();
+        let formData = $(this).serializeArray();
+        $.ajax({
+            url: url,
+            type: $(idForm).attr("method"),
+            data: formData,
+            dataType: 'json'
+        }).done(function (data) {
+            if(data.status){
+                mensaje('success','Exitoso',data.msg);
+                setTimeout(function(){window.location.href =  data.url;},2000)
+            }else{
+                mensaje("error","Error",data.msg);
+                if (data.formErrors.length > 0){
+                    
+                }
+                fieldsToValidate.forEach((value,index) => {
+                    if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
+                        validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
+                    }
+                });
+            }
+        }).fail(function (error) {
+            console.log(error)
+        
+        })
+    })
+}

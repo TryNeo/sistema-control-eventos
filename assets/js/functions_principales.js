@@ -1,7 +1,3 @@
-document.addEventListener('DOMContentLoaded',function(){
-    fntRestaurarPassword();
-})
-
 /**
  * @const {string} base_url - contiene una la url definida , usada como el corazon para consultas y/o redireciones.
  * @const {string} base_url_image - contiene un url que direciona a un path /assets/images,usada para mostrar ciertas imaenes ya predefinidas.
@@ -38,76 +34,6 @@ function mensaje(icon,title,text){
     })
 }
 
-/**
- * Funcion validateEmptyFields  - permite validar,que los campos no se encuentre vacios.
- * @param  {Array} listFields - acepta una lista con cierta cantidad de datos o un string/number.
- * @return {boolean} - retornara true o false , si algo esta correcto o incorrecto.
- **/
-function validateEmptyFields(listFields){
-    if (typeof(listFields) === 'object'){
-        let errorFields= new Array();
-        let validFields = new Array();
-        listFields.forEach(function(elements, index){
-            let fields = (listFields[index] === "") ? errorFields.push(listFields[index]) : validFields.push(listFields[index]);
-        });
-    
-        if (errorFields.length > 0){
-            mensaje("error","Campos vacios","Todos los campos son requeridos");
-            return false;
-        }else{
-            return true;
-        }
-    }else{
-        if(listFields === ''){
-            mensaje("error","Campo vacio","El campo es requerido");
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-}
-
-/**
- * Funcion validateInnput - valida que los campos sea validos con las expreciones regulares.
- * @param  {Array} listFields - acepta una lista con cierta cantidad de datos sea string/number.
- * @param  {regex} regex_string - acepta una expresion regular definida por el usuario 
- * @param  {regex} regex_numbers ='' - acepta una expresion regular tipo number, por defecto estara vacio
- * @return {boolean} - retornara true o false , si algo esta correcto o incorrecto . 
- **/
-function validateInnput(listFields,regex_string,regex_numbers = ''){
-    let errorFields= new Array();
-    let validFields = new Array();
-    if(typeof(listFields) === 'object'){
-        if(regex_numbers === ''){
-            listFields.forEach((value, index) => {
-                let valid_string = (
-                        String(listFields[index]
-                            ).match(regex_string) === null) ? errorFields.push(listFields[index]) : validFields.push(listFields[index]) 
-            })
-        }else{
-            listFields.forEach((value, index) => {
-                if (typeof(listFields[index]) === 'number'){
-                    let valid_number = (
-                        String(listFields[index]
-                            ).match(regex_numbers) === null) ? errorFields.push(listFields[index]) : validFields.push(listFields[index]) 
-                }else{
-                    let valid_string =  (
-                        String(listFields[index]
-                            ).match(regex_string) === null) ? errorFields.push(listFields[index]) : validFields.push(listFields[index])
-                }
-            })
-        }
-        if (errorFields.length > 0){
-            mensaje("error","Sintaxis Error","Los campos "+errorFields+" estan mal escritos,introduzca un texto valido");
-            return false;
-        }else{
-            return true;
-        }
-    }else{
-        return false;
-    }
-}
 
 /**
  * Funcion validateCedula - valida que la cedula ingresa sea valida.
@@ -464,3 +390,11 @@ function abrir_modal_reporte(idModal){
     $('#'+idModal).modal(options);
 }
 
+
+
+function validateUser(value){
+    if(value.match(regex_username_password) === null){
+        return false;
+    }
+    return true;
+}
