@@ -7,7 +7,7 @@
         </form>
         <ul class="navbar-nav navbar-right">
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="#" class="rounded-circle mr-1">
+            <img alt="image" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hola</div></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-divider"></div>
@@ -21,10 +21,10 @@
     <div class="main-sidebar">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="index.html">PANEL CONTROL EVENTOS</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">PCE</a>
           </div>
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
