@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>Login &mdash; Stisla</title>
+    <title><?php echo $data['page_title']; ?></title>
     <link rel="icon" type="image/png" href="http://xenturionit.com/wp-content/uploads/2020/08/cropped-Icono-web2-01-32x32.png" sizes="16x16" />
 
     
@@ -92,11 +92,13 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_login.js"></script>
+    
 </body>
 </html>
