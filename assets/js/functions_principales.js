@@ -12,6 +12,22 @@ const regex_numbers = '^[0-9]+$';
 const regex_fechas = '^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$';
 const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
+
+
+
+function abrir_modal(listCamps){
+    var options = {
+        "backdrop" : "static",
+        "keyboard": false,
+        "show":true
+    }
+    listCamps.forEach(element => {
+        document.querySelector(element).value = '';
+    });
+    $('#modalRol').modal(options);
+}
+
+
 /**
  * Funcion cerrar_modal - cierra el modal con un selector definido,
  * @param {selector} nameSelector - acepta un selector de tipo id o class.

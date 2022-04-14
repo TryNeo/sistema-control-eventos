@@ -1,5 +1,7 @@
 <?php getHeaderDashboard($data); 
-?>
+    getModal('modals_roles',$data);
+?>    
+
 <section class="section">
     <div class="section-header">
         <h1>Roles</h1>
@@ -9,9 +11,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <button type="button" 
-                                class="btn btn-primary mb-3 btn-lg mb-3"
-                        >Agregar <i class="fa fa-plus"></i>
+                        <button id="openModal" type="button"  class="btn btn-primary mb-3 btn-lg mb-3">Agregar <i class="fa fa-plus"></i>
                         </button>
                         <div class="col-12">
                             <table  class="table tableRol table-striped first display responsive" cellspacing="0"  style="width:100%">
