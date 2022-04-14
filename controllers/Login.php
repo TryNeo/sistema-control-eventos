@@ -74,8 +74,8 @@
                     }
                 }else{
                     $data = array('status' => false,'formErrors'=> array(
-                        'username' => 'el usuario esta mal escrito',
-                        'password' => 'la contraseña esta mal escrito',
+                        'username' => 'El campo usuario es obligatorio',
+                        'password' => 'El campo contraseña es obligatorio',
                     ));
                 }
                 echo json_encode($data,JSON_UNESCAPED_UNICODE);

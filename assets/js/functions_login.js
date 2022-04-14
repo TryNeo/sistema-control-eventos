@@ -10,7 +10,7 @@ $(function(){
         if($(el).is('[name=username]')){
             let value= $(el).val()
             if (!validateUser(value)){
-                return 'El usuario ingresado no es valido';
+                return 'El campo usuario es obligatorio';
             }
             
         }
@@ -19,7 +19,7 @@ $(function(){
             let value= $(el).val()
 
             if (!validateUser(value)){
-                return 'La contraseña ingresada no es valido';
+                return 'El campo contraseña es obligatorio';
             }
             
         }
