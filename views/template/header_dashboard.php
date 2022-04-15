@@ -13,6 +13,7 @@
     
     <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/style.css">
     <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/css/custom.css">
     
 
 </head>

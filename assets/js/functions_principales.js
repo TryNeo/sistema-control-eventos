@@ -51,6 +51,30 @@ function mensaje(icon,title,text){
 }
 
 
+function configDataTables(nameSelector,urlAjax,ColumnData){
+    let tableData =  $(nameSelector).DataTable({
+        "sDom": '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',
+        "aProcessing":true,
+        "aServerSide":true,
+        responsive:true,
+        "language":{
+            "url" : "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+        },
+        "ajax":{
+            "url" : urlAjax,
+            "dataSrc":""
+        },
+        "columns":ColumnData,
+        "order":[[0,"desc"]]
+    });
+    
+    $('div.dataTables_length select').addClass("form-control form-control-sm");
+    $('div.dataTables_filter input').addClass("form-control form-control-sm");
+
+    return tableData;
+}
+
+
 /**
  * Funcion validateCedula - valida que la cedula ingresa sea valida.
  * @param  {string} cedula -recibe  un string con una cantidad de numeros de 10 digitos
@@ -414,3 +438,18 @@ function validateUser(value){
     }
     return true;
 }
+
+function validString(value){
+    if (value.match(regex_string) === null){
+        return false;
+    }
+    return true;
+}
+
+function validateStringLength(value,MaxStringlength){
+    if(value.length >= MaxStringlength){
+        return true;
+    }
+    return false;
+}
+

@@ -54,7 +54,7 @@
                                             $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
                                             $_SESSION['user_data'] = $arrResponse;
                                             $_SESSION['token'] = '';
-                                            $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => 'http://localhost/sistema-control-eventos/dashboard');
+                                            $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url.'dashboard');
                                         }else{
                                             $data = array('status' => false,'formErrors'=> array(
                                                 'password' => 'la contraseña es incorrecta'

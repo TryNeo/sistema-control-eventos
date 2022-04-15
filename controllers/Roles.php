@@ -33,14 +33,12 @@
                     $btnEliminarRol='';
     
                    if ($data[$i]['estado'] == 1){
-                       $data[$i]['estado']= '<span  class="btn btn-success btn-icon-split btn-sm"><i class="icon fas fa-check-circle "></i><span class="label text-padding text-white-50">&nbsp;&nbsp;Activo</span></span>';
+                       $data[$i]['estado']= '<span  class="btn btn-success btn-icon-split btn-custom-sm"><i class="icon fas fa-check-circle "></i><span class="label text-padding text-white-50">&nbsp;&nbsp;Activo</span></span>';
                    }else{
-                        $data[$i]['estado']='<span  class="btn btn-danger btn-icon-split btn-sm"><i class="icon fas fa-ban "></i><span class="label text-padding text-white-50">Inactivo</span></span>';
+                        $data[$i]['estado']='<span  class="btn btn-danger btn-icon-split btn-custom-sm"><i class="icon fas fa-ban "></i><span class="label text-padding text-white-50">Inactivo</span></span>';
                    }
                    
-                    if ($_SESSION['permisos_modulo']['r']) {
-                        $btnPermisoRol = '<button type="button" class="btn btn-secondary btn-circle btnPermiso" title="permiso" rl="'.$data[$i]['id_rol'].'"><i class="fa fa-key"></i></button>';
-                    }
+          
     
                     if ($_SESSION['permisos_modulo']['u']) {
                         $btnEditarRol = '<button  class="btn btn-primary btn-circle btnEditarRol" title="editar" rl="'.$data[$i]['id_rol'].'"><i class="fa fa-edit"></i></button>';
@@ -50,7 +48,7 @@
                         $btnEliminarRol = '<button  class="btn btn-danger btn-circle btnEliminarRol" title="eliminar" rl="'.$data[$i]['id_rol'].'"><i class="far fa-thumbs-down"></i></button>';
                     }
     
-                    $data[$i]['opciones'] = '<div class="text-center">'.$btnPermisoRol.' '.$btnEditarRol.' '.$btnEliminarRol.'</div>';
+                    $data[$i]['opciones'] = '<div class="text-center">'.$btnEditarRol.' '.$btnEliminarRol.'</div>';
                 }
             }
             echo json_encode($data,JSON_UNESCAPED_UNICODE);

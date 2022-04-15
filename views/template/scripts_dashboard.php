@@ -10,6 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+    
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
@@ -22,7 +26,7 @@
     <?php } ?>
 
     <script src="<?php echo server_url; ?>/assets/libs/datatables/datatables.min.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/datatables/DataTables-1.10.16/js/dataTables.boostrap4.min.js"></script>
+    <!--<script src="/assets/libs/datatables/DataTables-1.10.16/js/dataTables.boostrap4.min.js"></script>-->
 
 </body>
 </html>
