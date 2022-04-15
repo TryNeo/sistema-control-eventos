@@ -20,9 +20,9 @@
         <?php } ?>
     <?php }else {?>
     <?php } ?>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.js"></script>
-    <script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+    <script src="<?php echo server_url; ?>/assets/libs/datatables/datatables.min.js"></script>
+    <script src="<?php echo server_url; ?>/assets/libs/datatables/DataTables-1.10.16/js/dataTables.boostrap4.min.js"></script>
 
 </body>
 </html>
