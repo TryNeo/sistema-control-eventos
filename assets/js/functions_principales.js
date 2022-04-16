@@ -5,8 +5,8 @@
  * @const {regex} regex_numbers - contiene una exprecion regular que acepta numeros solamente.
  * @const {regex} regex_username_password - contiene una exprecion regular que acepta letras y numeros y caracteres especiales.
  */
-const base_url = "http://localhost/sistema-control-nominas/";
-const base_url_image = "http://localhost/sistema-control-nominas/assets/images/";
+const base_url = "http://localhost/sistema-control-eventos/";
+const base_url_image = "http://localhost/sistema-control-eventos/assets/images/";
 const regex_string = '^[a-zA-ZáéíóñÁÉÍÓÚÑ ]+$';
 const regex_numbers = '^[0-9]+$';
 const regex_fechas = '^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$';
@@ -453,3 +453,10 @@ function validateStringLength(value,MaxStringlength){
     return false;
 }
 
+
+function validateEmptyField(value){
+    if(value === ""){
+        return false;
+    }
+    return true;
+}

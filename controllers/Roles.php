@@ -55,5 +55,31 @@
             die();
         }
 
+
+        
+        public function setRol(){
+            if ($_POST) {
+                $id_rol = Intval(strclean($_POST['id_rol']));
+                $nombre_rol = ucwords(strtolower(strclean($_POST["nombre_rol"])));
+                $descripcion_rol = ucwords(strtolower(strclean($_POST["descripcion"])));
+                $validate_data = [$nombre_rol,$descripcion_rol];
+
+                if(validateEmptyFields($validate_data)){
+                    if(empty(preg_matchall($validate_data,regex_string))){
+                        $data = array('status' => true,'msg' => 'a');
+                    }else{
+                        $data = array('status' => false,'msg' => 'Los campos estan mal escrito , verifique y vuelva a ingresarlos');
+                    }
+                }else{
+                    $data = array('status' => false,'msg' => 'Los campos se encuentra vacios, verifique y vuelva a ingresarlos');
+                }
+            }else{
+                header('location:'.server_url.'Errors');
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+        
     }
 ?>

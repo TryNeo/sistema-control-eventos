@@ -9,22 +9,30 @@ $(function(){
 
         if($(el).is('[name=username]')){
             let value= $(el).val()
-            if (!validateUser(value)){
+
+                        
+            if (!validateEmptyField(value)){
                 return 'El campo usuario es obligatorio';
             }
-            
+
+
+            if (!validateUser(value)){
+                return 'El usuario '+value +' ingresado no es apto';
+            }
         }
 
         if($(el).is('[name=password]')){
             let value= $(el).val()
 
-            if (!validateUser(value)){
+            if (!validateEmptyField(value)){
                 return 'El campo contraseña es obligatorio';
             }
-            
+
+            if (!validateUser(value)){
+                return 'La contraseña ingresada no es apto';
+            }
         }
     }
-
     sendingDataServerSideLogin('#fntLogin',validatorServerSide,fieldsToValidate);
 });
 
@@ -33,39 +41,43 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     let url = $(idForm).attr("action");
     $(idForm).on('submit',function (e) {
         e.preventDefault();
-        let formData = $(this).serializeArray();
-        $.ajax({
-            url: url,
-            type: $(idForm).attr("method"),
-            data: formData,
-            dataType: 'json'
-        }).done(function (data) {
-            if(data.status){
-                mensaje('success','Exitoso',data.msg);
-                
-                setTimeout(function(){
-                    $.LoadingOverlay("show");
-                }, 1500);
-                
-                setTimeout(function(){
-                    $.LoadingOverlay("hide");
-                    window.location = data.url;
-                }, 4000);
-            }else{
-                if (!jQuery.isEmptyObject(data.formErrors)){
-                    console.log(data.formErrors)
-                    fieldsToValidate.forEach((value,index) => {
-                        if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
-                            validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
-                        }
-                    });
+        if(validatorServerSide.checkAll('.needs-validation') === 0){
+            let formData = $(this).serializeArray();
+            $.ajax({
+                url: url,
+                type: $(idForm).attr("method"),
+                data: formData,
+                dataType: 'json'
+            }).done(function (data) {
+                if(data.status){
+                    mensaje('success','Exitoso',data.msg);
+                    
+                    setTimeout(function(){
+                        $.LoadingOverlay("show");
+                    }, 1500);
+                    
+                    setTimeout(function(){
+                        $.LoadingOverlay("hide");
+                        window.location = data.url;
+                    }, 4000);
                 }else{
-                    mensaje("error","Error",data.msg);
+                    if (!jQuery.isEmptyObject(data.formErrors)){
+                        console.log(data.formErrors)
+                        fieldsToValidate.forEach((value,index) => {
+                            if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
+                                validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
+                            }
+                        });
+                    }else{
+                        mensaje("error","Error",data.msg);
+                    }
+    
                 }
-
-            }
-        }).fail(function (error) {
-            mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
-        })
+            }).fail(function (error) {
+                mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
+            })
+        }else{
+            console.log("error")
+        }
     })
 }

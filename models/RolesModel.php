@@ -35,17 +35,16 @@
 
         }
 
-        public function insertRol(string $rolInput,string $descriInput, int $estadoInput)
+        public function insertRol(string $rolInput,string $descriInput)
         {   
             $return = "";
             $this->strRol = $rolInput;
             $this->strDescrip = $descriInput;
-            $this->intEstado = $estadoInput;
             $sql = "SELECT * FROM roles WHERE nombre_rol = '{$this->strRol}'";
             $request = $this->select_sql_all($sql);
             if (empty($request)){
-                $sql_insert = "INSERT INTO roles(nombre_rol,descripcion,estado,fecha_crea) values (?,?,?,now())";
-                $data = array($this->strRol,$this->strDescrip,$this->intEstado);
+                $sql_insert = "INSERT INTO roles(nombre_rol,descripcion,estado,fecha_crea) values (?,?,1,now())";
+                $data = array($this->strRol,$this->strDescrip);
                 $request_insert = $this->insert_sql($sql_insert,$data);
                 $return = $request_insert;
             }else{
