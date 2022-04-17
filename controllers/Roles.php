@@ -27,6 +27,7 @@
                 $data = array("status" => false, "msg" => "Error no tiene permisos");
             }else{
                 $data = $this->model->selectRoles();
+                $changeTextEdit = "Actualizacion | Rol";
                 for ($i=0; $i < count($data); $i++) { 
                     $btnPermisoRol = '';
                     $btnEditarRol = '';
@@ -41,20 +42,48 @@
           
     
                     if ($_SESSION['permisos_modulo']['u']) {
-                        $btnEditarRol = '<button  class="btn btn-primary btn-circle btnEditarRol" title="editar" rl="'.$data[$i]['id_rol'].'"><i class="fa fa-edit"></i></button>';
+                        $btnEditarRol = '<button class="btn btn-primary btnEditarRol btn-circle " title="editar" 
+                        onClick="return clickModalEditing('."'getRol/".$data[$i]['id_rol']."'".','."'Actualizacion | Rol'".','."'id_rol'".','."['nombre_rol','descripcion']".');">
+                        <i class="fa fa-edit"></i></button>';
                     }
     
                     if ($_SESSION['permisos_modulo']['d']) {
                         $btnEliminarRol = '<button  class="btn btn-danger btn-circle btnEliminarRol" title="eliminar" rl="'.$data[$i]['id_rol'].'"><i class="far fa-thumbs-down"></i></button>';
                     }
     
-                    $data[$i]['opciones'] = '<div class="text-center">'.$btnEditarRol.' '.$btnEliminarRol.'</div>';
+                    $data[$i]['opciones'] = $btnEditarRol.' '.$btnEliminarRol;
                 }
             }
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
 
+        public function getRol(int $id_rol){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data_response = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $id_rol  = Intval(strclean($id_rol));
+                if(validateEmptyFields([$id_rol])){
+                    if(empty(preg_matchall([$id_rol],regex_numbers))){
+                        if ($id_rol > 0){
+                            $data = $this->model->selectRol($id_rol);
+                            if (empty($data)){
+                                $data_response = array('status' => false,'msg'=> 'Datos no encontrados');
+                            }else{
+                                $data_response = array('status' => true,'msg'=> $data);
+                            }
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
+                    }
+                }else {
+                    $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                }
+            }
+            echo json_encode($data_response,JSON_UNESCAPED_UNICODE);
+            die();
+        }
 
         
         public function setRol(){

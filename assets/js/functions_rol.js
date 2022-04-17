@@ -1,5 +1,4 @@
 $(function(){
-
     const columnData = [
         {"data":"id_rol"},
         {"data":"nombre_rol"},
@@ -7,10 +6,11 @@ $(function(){
         {"data":"estado"},
         {"data":"opciones"}]
 
-    let tableRoles =  configDataTables('.tableRol',base_url+"roles/getRoles",columnData)
+    const tableRoles =  configDataTables('.tableRol',base_url+"roles/getRoles",columnData)
 
     const listCamps =  ["#id_rol","#nombre_rol","#descripcion"];
-    clickModal("#modalRol",listCamps);
+    
+    clickModal("#modalRol","Crear | Rol",listCamps);
     
     const fieldsToValidate = ['nombre_rol','descripcion']
     const configValid = configToValidate()
@@ -64,3 +64,4 @@ function configToValidate(){
 
     return validatorServerSide
 }
+

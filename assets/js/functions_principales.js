@@ -14,18 +14,45 @@ const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
 
 
-function clickModal(nameSelector,listCamps){
+function clickModal(nameSelector,modalName,listCamps){
     $('#openModal').on('click',function (e) {
         var options = {
             "backdrop" : "static",
             "keyboard": false,
             "show":true
         }
+        
+        document.querySelector('#modalTitle').innerHTML = modalName;
+        document.querySelector('.changeText').innerHTML = "Crear ";
+
         listCamps.forEach(element => {
             document.querySelector(element).value = '';
         });
         $(nameSelector).modal(options);
     });
+}
+
+function clickModalEditing(urlData,modalName,nameSelectorId,listCamps){
+    $("#modalRol").modal("show");
+    document.querySelector('#modalTitle').innerHTML = modalName;
+    document.querySelector('.changeText').innerHTML = " Actualizar registro ";
+    (async () => {
+        try {
+            let options = { method: "GET"}
+            let response = await fetch(urlData,options);
+            if (response.ok) {
+                let data = await response.json();
+                document.querySelector('#'+nameSelectorId).value = data.msg[nameSelectorId];
+                listCamps.forEach(function(element,index){
+                    document.querySelector('#'+element).value = data.msg[element];
+                })
+            }else {
+                mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    })();
 }
 
 
@@ -37,7 +64,7 @@ function closeModal(nameSelector,listCamps){
 }
 
 
-function configDataTables(nameSelector,urlAjax,ColumnData){
+function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = []){
     let tableData =  $(nameSelector).DataTable({
         "sDom": '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',
         "aProcessing":true,
@@ -51,6 +78,7 @@ function configDataTables(nameSelector,urlAjax,ColumnData){
             "dataSrc":""
         },
         "columns":ColumnData,
+        "columnDefs":columnDefs,
         "order":[[0,"desc"]]
     });
     

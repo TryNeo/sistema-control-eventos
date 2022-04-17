@@ -23,7 +23,7 @@
             <div class="form-group">
                 <textarea name="descripcion" cols="40" rows="2" maxlength="250" class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 100px;" placeholder="ingrese la descripcion" id="descripcion"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid">Crear <i class="fa fa-plus"></i></button>
+            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid"><span class="changeText">Crear </span><i class="fa fa-plus"></i></button>
         </form>
       </div>
     </div>

@@ -36,5 +36,8 @@
         </div>
     </div>
 </section>
+<script type="text/javascript">
+
+</script>
 <?php 
 getScriptsDashboard($data);

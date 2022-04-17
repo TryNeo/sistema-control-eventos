@@ -18,6 +18,7 @@
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
+    
     <?php if(isset($data['page'])) {?>
         <?php if ($data['page'] == 'roles') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_rol.js"></script>
@@ -27,6 +28,6 @@
 
     <script src="<?php echo server_url; ?>/assets/libs/datatables/datatables.min.js"></script>
     <!--<script src="/assets/libs/datatables/DataTables-1.10.16/js/dataTables.boostrap4.min.js"></script>-->
-
+    
 </body>
 </html>
