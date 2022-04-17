@@ -54,19 +54,18 @@
         }
         
 
-        public function updateRol(int $intRol,string $rolInput,string $descriInput, int $estadoInput)
+        public function updateRol(int $intRol,string $rolInput,string $descriInput)
         {   
             $this->intRol = $intRol;
             $this->strRol = $rolInput;
             $this->strDescrip = $descriInput;
-            $this->intEstado = $estadoInput;
             
             $sql = "SELECT * FROM roles WHERE nombre_rol = '$this->strRol' and  id_rol =  $this->intRol and estado !=0";
             $request_update= $this->select_sql_all($sql);   
 
             if (empty($request_update)){
-                $sql_udpate = "UPDATE roles SET nombre_rol = ?, descripcion = ?, estado = ?,fecha_modifica = now()  WHERE id_rol = $this->intRol";
-                $data = array($this->strRol,$this->strDescrip,$this->intEstado);
+                $sql_udpate = "UPDATE roles SET nombre_rol = ?, descripcion = ?,fecha_modifica = now()  WHERE id_rol = $this->intRol";
+                $data = array($this->strRol,$this->strDescrip);
                 $request_update = $this->update_sql($sql_udpate,$data);
             }else{
                 $request_update= "exist";
