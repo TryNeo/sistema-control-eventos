@@ -32,8 +32,8 @@ function clickModal(nameSelector,modalName,listCamps){
     });
 }
 
-function clickModalEditing(urlData,modalName,nameSelectorId,listCamps){
-    $("#modalRol").modal("show");
+function clickModalEditing(urlData,modalName,nameSelectorId,listCamps,nameSelectorModal){
+    $(nameSelectorModal).modal("show");
     document.querySelector('#modalTitle').innerHTML = modalName;
     document.querySelector('.changeText').innerHTML = " Actualizar registro ";
     (async () => {

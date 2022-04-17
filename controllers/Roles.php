@@ -42,7 +42,7 @@
     
                     if ($_SESSION['permisos_modulo']['u']) {
                         $btnEditarRol = '<button class="btn btn-primary btnEditarRol btn-circle " title="editar" 
-                        onClick="return clickModalEditing('."'getRol/".$data[$i]['id_rol']."'".','."'Actualizacion | Rol'".','."'id_rol'".','."['nombre_rol','descripcion']".');">
+                        onClick="return clickModalEditing('."'getRol/".$data[$i]['id_rol']."'".','."'Actualizacion | Rol'".','."'id_rol'".','."['nombre_rol','descripcion']".','."'#modalRol'".');">
                         <i class="fa fa-edit"></i></button>';
                     }
     
