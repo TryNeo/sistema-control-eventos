@@ -66,12 +66,53 @@
 
                 if(validateEmptyFields($validate_data)){
                     if(empty(preg_matchall($validate_data,regex_string))){
-                        $data = array('status' => true,'msg' => 'a');
+                        if ($id_rol == 0){
+                            $response_rol = $this->model->insertRol($nombre_rol,$descripcion_rol);
+                            $option = 1;
+                        }else{
+                            $response_rol = $this->model->updateRol($id_rol,$nombre_rol,$descripcion_rol);
+                            $option = 2;
+                        }
+
+                        if ($response_rol > 0){ 
+                            if (empty($_SESSION['permisos_modulo']['w'])){
+                                header('location:'.server_url.'Errors');
+                                $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            }else{
+                                if ($option == 1){
+                                    $data = array('status' => true, 'msg' => 'datos guardados correctamente');
+                                }
+                            }
+
+                            if (empty($_SESSION['permisos_modulo']['u'])) {
+                                header('location:'.server_url.'Errors');
+                                $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            }else{
+                                if ($option == 2){
+                                    $data = array('status' => true, 'msg' => 'datos actualizados correctamente');
+                                }
+                            }
+                        
+                        }else if ($response_rol == 'exist'){
+                            $data = array('status' => false,'msg' => 'Error el rol ya existe');
+                        
+                        }else{
+                            $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
+                        }
+
+
                     }else{
-                        $data = array('status' => false,'msg' => 'Los campos estan mal escrito , verifique y vuelva a ingresarlos');
+                        $data = array('status' => false,'formErrors'=> array(
+                            'nombre_rol' => "El nombre contiene numero o caracteres especiales",
+                            'descripcion' => "La descripcion contiene numero o caracteres especiales",
+                        ));
+
                     }
                 }else{
-                    $data = array('status' => false,'msg' => 'Los campos se encuentra vacios, verifique y vuelva a ingresarlos');
+                    $data = array('status' => false,'formErrors' => array(
+                        'nombre_rol' => "El campo usuario se encuentra vacio",
+                        'descripcion' => "La descripcion se encuentra vacio",
+                    ));
                 }
             }else{
                 header('location:'.server_url.'Errors');
