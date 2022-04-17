@@ -12,7 +12,7 @@
         }
 
         public function selectRoles(){
-            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles";
+            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles ORDER BY id_rol DESC";
             $request = $this->select_sql_all($sql);
             return $request;
         }
@@ -60,7 +60,7 @@
             $this->strRol = $rolInput;
             $this->strDescrip = $descriInput;
             
-            $sql = "SELECT * FROM roles WHERE nombre_rol = '$this->strRol' and  id_rol =  $this->intRol and estado !=0";
+            $sql = "SELECT * FROM roles WHERE  id_rol =  $this->intRol and estado !=0";
             $request_update= $this->select_sql_all($sql);   
 
             if (empty($request_update)){

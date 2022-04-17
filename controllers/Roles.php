@@ -27,7 +27,6 @@
                 $data = array("status" => false, "msg" => "Error no tiene permisos");
             }else{
                 $data = $this->model->selectRoles();
-                $changeTextEdit = "Actualizacion | Rol";
                 for ($i=0; $i < count($data); $i++) { 
                     $btnPermisoRol = '';
                     $btnEditarRol = '';
@@ -109,7 +108,7 @@
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
                             }else{
                                 if ($option == 1){
-                                    $data = array('status' => true, 'msg' => 'datos guardados correctamente');
+                                    $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
                                 }
                             }
 
@@ -118,12 +117,14 @@
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
                             }else{
                                 if ($option == 2){
-                                    $data = array('status' => true, 'msg' => 'datos actualizados correctamente');
+                                    $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
                                 }
                             }
                         
                         }else if ($response_rol == 'exist'){
-                            $data = array('status' => false,'msg' => 'Error el rol ya existe');
+                            $data = array('status' => false,'formErrors'=> array(
+                                'nombre_rol' => "El rol ".$nombre_rol." ya existe, ingrese uno nuevo",
+                            ));
                         
                         }else{
                             $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');

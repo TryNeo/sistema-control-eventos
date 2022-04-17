@@ -10,12 +10,12 @@ $(function(){
 
     const listCamps =  ["#id_rol","#nombre_rol","#descripcion"];
     
-    clickModal("#modalRol","Crear | Rol",listCamps);
     
     const fieldsToValidate = ['nombre_rol','descripcion']
     const configValid = configToValidate()
 
-    sendingDataServerSide('#fntRol',configValid,fieldsToValidate,listCamps,tableRoles,"roles/setRol");
+    clickModal("#modalRol","Crear | Rol",listCamps);
+    sendingDataServerSide('#fntRol',configValid,fieldsToValidate,listCamps,tableRoles,"roles/setRol","#modalRol");
 })
 
 

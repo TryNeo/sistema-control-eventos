@@ -24,9 +24,9 @@ function clickModal(nameSelector,modalName,listCamps){
         
         document.querySelector('#modalTitle').innerHTML = modalName;
         document.querySelector('.changeText').innerHTML = "Crear ";
-
         listCamps.forEach(element => {
             document.querySelector(element).value = '';
+            $(element).addClass('is-invalid');
         });
         $(nameSelector).modal(options);
     });
@@ -45,6 +45,8 @@ function clickModalEditing(urlData,modalName,nameSelectorId,listCamps){
                 document.querySelector('#'+nameSelectorId).value = data.msg[nameSelectorId];
                 listCamps.forEach(function(element,index){
                     document.querySelector('#'+element).value = data.msg[element];
+                    $('#'+element).removeClass('is-invalid');
+                    $('#'+element).addClass('is-valid');
                 })
             }else {
                 mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
@@ -79,7 +81,6 @@ function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = []){
         },
         "columns":ColumnData,
         "columnDefs":columnDefs,
-        "order":[[0,"desc"]]
     });
     
     $('div.dataTables_length select').addClass("form-control form-control-sm");
@@ -171,7 +172,7 @@ function validateEmptyField(value){
 }
 
 
-function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod){
+function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod,modalNameSelector){
     $(idForm).on('submit',function (e) {
         e.preventDefault();
         if(validatorServerSide.checkAll('.needs-validation') === 0){
@@ -183,7 +184,7 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
                 dataType: 'json'
             }).done(function (data) {
                 if(data.status){
-                    closeModal("#modalRol",listCamps)
+                    closeModal(modalNameSelector,listCamps)
                     mensaje('success','Exitoso',data.msg);
                     configTable.ajax.reload();
                 }else{
