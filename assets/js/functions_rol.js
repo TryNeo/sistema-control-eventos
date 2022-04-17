@@ -8,16 +8,15 @@ $(function(){
         {"data":"opciones"}]
 
     let tableRoles =  configDataTables('.tableRol',base_url+"roles/getRoles",columnData)
-    
 
-
-    clickModal();
+    const listCamps =  ["#id_rol","#nombre_rol","#descripcion"];
+    clickModal("#modalRol",listCamps);
     
     const fieldsToValidate = ['nombre_rol','descripcion']
     const configValid = configToValidate()
 
-    sendingDataServerSide('#fntRol',configValid,fieldsToValidate);
-});
+    sendingDataServerSide('#fntRol',configValid,fieldsToValidate,listCamps,tableRoles,"roles/setRol");
+})
 
 
 
@@ -64,38 +63,4 @@ function configToValidate(){
     }
 
     return validatorServerSide
-}
-
-
-function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate){
-    $(idForm).on('submit',function (e) {
-        e.preventDefault();
-        if(validatorServerSide.checkAll('.needs-validation') === 0){
-            let formData = $(this).serializeArray();
-            $.ajax({
-                url: base_url+'roles/setRol',
-                type: $(idForm).attr("method"),
-                data: formData,
-                dataType: 'json'
-            }).done(function (data) {
-                if(data.status){
-                    mensaje('success','Exitoso',data.msg);
-                    
-                }else{
-                    mensaje("error","Error",data.msg);
-                }
-            }).fail(function (error) {
-                mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
-            })
-        }else{
-            console.log("error")
-        }
-    })
-}
-
-
-function clickModal(){
-    $('#openModal').on('click',function (e) {
-        abrir_modal(["#id_rol","#nombre_rol","#descripcion"]);
-    })
 }

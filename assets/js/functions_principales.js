@@ -14,40 +14,26 @@ const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
 
 
+function clickModal(nameSelector,listCamps){
+    $('#openModal').on('click',function (e) {
+        var options = {
+            "backdrop" : "static",
+            "keyboard": false,
+            "show":true
+        }
+        listCamps.forEach(element => {
+            document.querySelector(element).value = '';
+        });
+        $(nameSelector).modal(options);
+    });
+}
 
-function abrir_modal(listCamps){
-    var options = {
-        "backdrop" : "static",
-        "keyboard": false,
-        "show":true
-    }
+
+function closeModal(nameSelector,listCamps){
+    $(nameSelector).modal("hide");
     listCamps.forEach(element => {
         document.querySelector(element).value = '';
     });
-    $('#modalRol').modal(options);
-}
-
-
-/**
- * Funcion cerrar_modal - cierra el modal con un selector definido,
- * @param {selector} nameSelector - acepta un selector de tipo id o class.
- * */
-function cerrar_modal(nameSelector){
-    $(nameSelector).modal("hide");
-}
-
-/**
- * Funcion mensaje - permite mostrar una alerta con la libreria swealert 
- * @param  {string} icon - recibe el tipo de icono /error/success/info/warning
- * @param  {string} title - recibe el tipo de titulo a mostrar en la alertar
- * @param  {string} text - recibe el mensaje de error a mostrar
- */
-function mensaje(icon,title,text){
-    Swal.fire({
-        icon: icon,
-        title: title,
-        text: text,
-    })
 }
 
 
@@ -73,6 +59,16 @@ function configDataTables(nameSelector,urlAjax,ColumnData){
 
     return tableData;
 }
+
+
+function mensaje(icon,title,text){
+    Swal.fire({
+        icon: icon,
+        title: title,
+        text: text,
+    })
+}
+
 
 
 /**
@@ -114,6 +110,75 @@ function validateCedula(cedula){
     
         }
 }
+
+
+
+function validateUser(value){
+    if(value.match(regex_username_password) === null){
+        return false;
+    }
+    return true;
+}
+
+function validString(value){
+    if (value.match(regex_string) === null){
+        return false;
+    }
+    return true;
+}
+
+function validateStringLength(value,MaxStringlength){
+    if(value.length >= MaxStringlength){
+        return true;
+    }
+    return false;
+}
+
+
+function validateEmptyField(value){
+    if(value === ""){
+        return false;
+    }
+    return true;
+}
+
+
+function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod){
+    $(idForm).on('submit',function (e) {
+        e.preventDefault();
+        if(validatorServerSide.checkAll('.needs-validation') === 0){
+            let formData = $(this).serializeArray();
+            $.ajax({
+                url: base_url+urlMethod,
+                type: $(idForm).attr("method"),
+                data: formData,
+                dataType: 'json'
+            }).done(function (data) {
+                if(data.status){
+                    closeModal("#modalRol",listCamps)
+                    mensaje('success','Exitoso',data.msg);
+                    configTable.ajax.reload();
+                }else{
+                    if (!jQuery.isEmptyObject(data.formErrors)){
+                        console.log(data.formErrors)
+                        fieldsToValidate.forEach((value,index) => {
+                            if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
+                                validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
+                            }
+                        });
+                    }else{
+                        mensaje("error","Error",data.msg);
+                    }
+    
+                }
+            }).fail(function (error) {
+                mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
+            })
+        }
+    })
+}
+
+
 
 
 
@@ -431,32 +496,3 @@ function abrir_modal_reporte(idModal){
 }
 
 
-
-function validateUser(value){
-    if(value.match(regex_username_password) === null){
-        return false;
-    }
-    return true;
-}
-
-function validString(value){
-    if (value.match(regex_string) === null){
-        return false;
-    }
-    return true;
-}
-
-function validateStringLength(value,MaxStringlength){
-    if(value.length >= MaxStringlength){
-        return true;
-    }
-    return false;
-}
-
-
-function validateEmptyField(value){
-    if(value === ""){
-        return false;
-    }
-    return true;
-}
