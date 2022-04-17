@@ -12,7 +12,7 @@
         }
 
         public function selectRoles(){
-            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles ORDER BY id_rol DESC";
+            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles where estado=1 ORDER BY id_rol DESC";
             $request = $this->select_sql_all($sql);
             return $request;
         }
@@ -22,7 +22,7 @@
             if($_SESSION['id_usuario'] != 1){
                 $where_admin = " and id_rol !=1";
             }
-            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado!=0 ".$where_admin;
+            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado!=1 ".$where_admin;
             $request = $this->select_sql_all($sql);
             return $request;
         }

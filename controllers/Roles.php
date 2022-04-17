@@ -46,8 +46,10 @@
                         <i class="fa fa-edit"></i></button>';
                     }
     
+                    
                     if ($_SESSION['permisos_modulo']['d']) {
-                        $btnEliminarRol = '<button  class="btn btn-danger btn-circle btnEliminarRol" title="eliminar" rl="'.$data[$i]['id_rol'].'"><i class="far fa-thumbs-down"></i></button>';
+                        $btnEliminarRol = '<button  class="btn btn-danger btn-circle btnEliminarRol" 
+                        title="eliminar" onClick="return deleteServerSide('."'delRol/'".','.$data[$i]['id_rol'].','."'¿Desea eliminar el Rol ".$data[$i]['nombre_rol']."?'".');"><i class="far fa-thumbs-down"></i></button>';
                     }
     
                     $data[$i]['opciones'] = $btnEditarRol.' '.$btnEliminarRol;
@@ -151,6 +153,35 @@
             die();
         }
 
-        
+        public function delRol(){
+            if (empty($_SESSION['permisos_modulo']['d']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                if ($_POST){
+                    $id_rol = intval(strclean($_POST["id"]));
+                    if(validateEmptyFields([$id_rol])){
+                        if(empty(preg_matchall([$id_rol],regex_numbers))){
+                            $response_del = $this->model->deleteRol($id_rol);
+                            if($response_del == "ok"){
+                                $data = array("status" => true, "msg" => "Se ha eliminado el rol");
+                            }else if ($response_del == "exist"){
+                                $data = array("status" => false, "msg" => "No es posisible eliminar rol asociado a usuarios");
+                            }else{
+                                $data = array("status" => false, "msg" => "Error al eliminar rol");
+                            }
+                        }else{
+                            $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                    }
+                }else{
+                    $data = array("status" => false, "msg" => "Error Hubo problemas");
+                }
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
     }
 ?>

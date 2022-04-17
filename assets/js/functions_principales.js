@@ -66,6 +66,10 @@ function closeModal(nameSelector,listCamps){
 }
 
 
+
+
+
+
 function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = []){
     let tableData =  $(nameSelector).DataTable({
         "sDom": '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',
@@ -208,6 +212,42 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
 }
 
 
+function deleteServerSide(url,id,text){
+    Swal.fire({
+            title: "Eliminar Registro",
+            text: text,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar',
+            cancelButtonText : 'No, cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            (async () => {
+                try {
+                    let data = new FormData();data.append("id",id);
+                    let options = { method: "POST", body :data}
+                    let response = await fetch(url,options);
+                    console.log("a")
+                    if (response.ok) {
+                        let data = await response.json();
+                        if(data.status){
+                            mensaje("success","Exitoso",data.msg);
+                        }else{
+                            mensaje("error","Error",data.msg);
+                        }
+                    }else {
+                        mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
+                    }
+                } catch (err) {
+                    console.log(err)
+                    mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
+                }
+            })();
+        }
+    });
+}
 
 
 
