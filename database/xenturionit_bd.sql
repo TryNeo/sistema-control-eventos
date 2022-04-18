@@ -59,10 +59,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Dashboard','m
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Usuarios','modulo de usuarios',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Roles','modulo de roles',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Respaldo','modulo de respaldo',1,now());
-INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Empleados','modulo de empleados',1,now());
-INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Contractos','modulo de contractos',1,now());
-INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Puestos','modulo de puestos',1,now());
-INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Nominas','modulo de nominas',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Permisos','modulo de permisos',1,now());
 
 INSERT INTO roles (nombre_rol,descripcion,estado,fecha_crea) values ("Administrador","permisos de acceso a todo el sistema",1,now());
 
@@ -71,9 +68,6 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (2,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (3,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (4,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (5,1,1,1,1,1);
-INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (6,1,1,1,1,1);
-INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
-INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (8,1,1,1,1,1);
 
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now())
