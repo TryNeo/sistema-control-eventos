@@ -49,7 +49,7 @@
                     
                     if ($_SESSION['permisos_modulo']['d']) {
                         $btnEliminarRol = '<button  class="btn btn-danger btn-circle btnEliminarRol" 
-                        title="eliminar" onClick="return deleteServerSide('."'delRol/'".','.$data[$i]['id_rol'].','."'¿Desea eliminar el Rol ".$data[$i]['nombre_rol']."?'".');"><i class="far fa-thumbs-down"></i></button>';
+                        title="eliminar" onClick="return deleteServerSide('."'delRol/'".','.$data[$i]['id_rol'].','."'¿Desea eliminar el Rol ".$data[$i]['nombre_rol']."?'".','."'.tableRol'".');"><i class="far fa-thumbs-down"></i></button>';
                     }
     
                     $data[$i]['opciones'] = $btnEditarRol.' '.$btnEliminarRol;

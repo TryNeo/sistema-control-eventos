@@ -193,7 +193,6 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
                     configTable.ajax.reload();
                 }else{
                     if (!jQuery.isEmptyObject(data.formErrors)){
-                        console.log(data.formErrors)
                         fieldsToValidate.forEach((value,index) => {
                             if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
                                 validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
@@ -212,7 +211,7 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
 }
 
 
-function deleteServerSide(url,id,text){
+function deleteServerSide(url,id,text,nameSelectortable){
     Swal.fire({
             title: "Eliminar Registro",
             text: text,
@@ -229,11 +228,13 @@ function deleteServerSide(url,id,text){
                     let data = new FormData();data.append("id",id);
                     let options = { method: "POST", body :data}
                     let response = await fetch(url,options);
-                    console.log("a")
                     if (response.ok) {
                         let data = await response.json();
                         if(data.status){
                             mensaje("success","Exitoso",data.msg);
+                            setTimeout(function(){
+                                $(nameSelectortable).DataTable().ajax.reload();
+                            },500)
                         }else{
                             mensaje("error","Error",data.msg);
                         }
@@ -241,7 +242,6 @@ function deleteServerSide(url,id,text){
                         mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
                     }
                 } catch (err) {
-                    console.log(err)
                     mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
                 }
             })();

@@ -21,6 +21,7 @@ $(function(){
 
 
 
+
 function configToValidate(){
 
     const validatorServerSide = $('form.needs-validation').jbvalidator({
