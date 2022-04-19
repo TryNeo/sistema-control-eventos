@@ -63,7 +63,7 @@
         return $token;
     }
 
-    function validateCedula(string $cedula,$regex){
+    /*function validateCedula(string $cedula,$regex){
         if(empty(preg_matchall(array($cedula),$regex))){
             $cedula_array = array();
             for ($i=0; $i < strlen($cedula); $i++) { 
@@ -94,7 +94,7 @@
         }else{
             echo var_dump(preg_matchall(array($cedula),$regex));
         }
-    }
+    }*/
 
     function validateEmptyFields(array $arrayFields){
         if(empty($arrayFields)){

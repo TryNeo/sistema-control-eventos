@@ -39,12 +39,23 @@
                   </li>               
                 <?php } ?>
               </li>
+              <li class="menu-header">Administración</li>
+              <li class="dropdown">
+                  <a href="#" class="has-dropdown"><i class="fas fa-building"></i><span>Administración</span></a>
+                  <ul class="dropdown-menu" style="display: block;">
+                      <?php if($data['page_id'] == 6 ){ ?>
+                          <li class="active"><a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a></li>
+                      <?php }else{ ?>
+                          <li><a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a></li>
+                      <?php } ?>
+                  </ul>
+              </li>
               <li class="menu-header">Seguridad</li>
               <li class="dropdown">
                 <a href="#" class="has-dropdown"><i class="fas fa-lock"></i><span>Configuracion</span></a>
                 <ul class="dropdown-menu" style="display: block;">
                   <?php if($data['page_id'] == 3 ){ ?>
-                    <li class="active"><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>                
+                    <li class="active"><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>
                   <?php }else{ ?>
                     <li><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>                
                   <?php } ?>
