@@ -19,6 +19,9 @@
                                     <thead class="text-uppercase">
                                         <tr>
                                             <th scope="col">ID</th>
+                                            <th scope="col">NOMBRE</th>
+                                            <th scope="col">MODULOS</th>
+                                            <th scope="col">OPCIONES</th>
                                         </tr>
                                     </thead>
                                     <tbody>

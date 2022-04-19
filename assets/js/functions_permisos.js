@@ -1,6 +1,16 @@
 $(function(){
+    const columnData = [
+        {"data":"id_rol"},
+        {"data":"nombre_rol"},
+        {"data":"modulos"},
+        {"data":"opciones"},
 
-    const listCamps =  ["#id_permiso","#id_rol","#id_modulo"];
+    ]
+    
+    const tablePermisos =  configDataTables('.tablePermisos',base_url+"permisos/getPermisos",columnData)
+
+
+    const listCamps =  ["#id_permiso","#id_rol"];
     
     const configValid = configToValidate()
 

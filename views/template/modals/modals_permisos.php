@@ -21,9 +21,19 @@
                     </select>
                 </div>
             </div>
+            <!--_---
             <div class="form-group">
-                <select id="id_modulo" class="form-control select2" required></select>
+                <select id="id_modulo" class="form-control select2"></select>
             </div>
+            <table  class="table tableModulo table-striped table-bordered dt-responsive nowrap" cellspacing="0"  style="width:100%">
+              <thead class="text-uppercase">
+                <tr>
+                  <th scope="col">ID</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>-->
             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid"><span class="changeText">Crear </span><i class="fa fa-plus"></i></button>
         </form>
       </div>

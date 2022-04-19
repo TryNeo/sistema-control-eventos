@@ -31,6 +31,19 @@
         }
 
 
+        public function selectPruebas(){
+            $sql = "SELECT  perm.id_rol,rl.nombre_rol,GROUP_CONCAT(md.nombre) as modulos  FROM
+            permisos as perm 
+                INNER JOIN modulos as md
+                ON md.id_modulo = perm.id_modulo
+                INNER JOIN roles as rl
+                ON rl.id_rol = perm.id_rol
+                GROUP BY perm.id_rol";
+            $request = $this->select_sql_all($sql);
+            return $request;
+        }
+
+
         
         public function selectPermisoRol(int $idRol){
             $this->intIdRol = $idRol;

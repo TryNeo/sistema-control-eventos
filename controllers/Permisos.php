@@ -21,6 +21,29 @@
 
         }
 
+        public function getPermisos(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data_response = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $request_data = $this->model->selectPruebas();
+                for ($i=0; $i < count($request_data); $i++) { 
+                    $btnEditarPermiso = '';
+                    $btnEliminarPermiso ='';
+                    $request_data[$i]['modulos'] = "<b>".str_replace(",", "<br>", $request_data[$i]['modulos'])."</b>";
+
+                    if ($_SESSION['permisos_modulo']['u']) {
+                        $btnEditarRol = '<button class="btn btn-primary btnEditarRol btn-circle " title="editar">
+                        <i class="fa fa-edit"></i></button>';
+                    }
+
+                    $request_data[$i]['opciones'] = $btnEditarRol;
+                }
+            }
+            echo json_encode($request_data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
         public function getSelectModulos()
         {   
             if (empty($_SESSION['permisos_modulo']['r']) ) {
@@ -65,5 +88,6 @@
             echo json_encode($data_response,JSON_UNESCAPED_UNICODE);
             die();
         }
+
     
 }
