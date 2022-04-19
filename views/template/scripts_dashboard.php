@@ -31,6 +31,9 @@
         <?php if ($data['page'] == 'permisos') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_permisos.js"></script>
         <?php } ?>
+        <?php if ($data['page'] == 'categorias') { ?>
+            <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_categoria.js"></script>
+        <?php } ?>
     <?php }else {?>
     <?php } ?>
 

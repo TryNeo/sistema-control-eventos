@@ -71,3 +71,21 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (5,1,1,1,1,1);
 
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now())
+
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Categorias','modulo de categorias de eventos',1,now());
+INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (9,1,1,1,1,1);
+/*Table structure for table categoria_evento */
+DROP TABLE IF EXISTS categoria_evento;
+CREATE TABLE categoria_evento(id_categoria tinyint(10) NOT NULL AUTO_INCREMENT,
+                              nombre_categoria varchar(50) DEFAULT NULL,
+                              descripcion varchar(50) DEFAULT NULL,
+                              icono varchar(15) DEFAULT NULL,
+                              estado tinyint(1) DEFAULT NULL,
+                              fecha_crea datetime DEFAULT NULL,
+                              fecha_modifica datetime DEFAULT NULL,
+                              PRIMARY KEY (id_categoria),
+                              KEY id_categoria (id_categoria)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+INSERT INTO categoria_evento (id_categoria,nombre_categoria,descripcion,icono,estado,fecha_crea,fecha_modifica) VALUES (1,'Seminarios','Seminarios','fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fa-code',1,NULL,'2022-04-18 23:38:01');
+
