@@ -13,15 +13,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
-    
+
     <?php if(isset($data['page'])) {?>
         <?php if ($data['page'] == 'roles') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_rol.js"></script>
+        <?php } ?>
+        <?php if ($data['page'] == 'permisos') { ?>
+            <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_permisos.js"></script>
         <?php } ?>
     <?php }else {?>
     <?php } ?>

@@ -19,10 +19,10 @@
 
         public function selectRolesNoInactivos(){
             $where_admin = "";
-            if($_SESSION['id_usuario'] != 1){
+            if($_SESSION['id_usuario'] = 1){
                 $where_admin = " and id_rol !=1";
             }
-            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado!=1 ".$where_admin;
+            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado =1 ".$where_admin;
             $request = $this->select_sql_all($sql);
             return $request;
         }
@@ -60,7 +60,7 @@
             $this->strRol = $rolInput;
             $this->strDescrip = $descriInput;
             
-            $sql = "SELECT * FROM roles WHERE  id_rol =  $this->intRol and estado !=0";
+            $sql = "SELECT * FROM roles WHERE nombre_rol = '$this->strRol' and  id_rol =  $this->intRol and estado !=0";
             $request_update= $this->select_sql_all($sql);   
 
             if (empty($request_update)){

@@ -4,6 +4,7 @@
         public $intIdpermiso;
         public $intIdRol;
         public $intModulo;
+        public $str_search_modulo;
         public $r;
         public $w;
         public $u;
@@ -13,11 +14,23 @@
             parent::__construct();
         }
 
-        public function selectModulos(){
-            $sql = "SELECT * FROM modulos WHERE estado != 0";
+        public function selectModulos(string $str_search_modulo){
+            $this->str_search_modulo = $str_search_modulo;
+            $sql = "SELECT id_modulo,nombre,descripcion FROM modulos 
+            WHERE estado = 1 and nombre like '%".$this->str_search_modulo."%' ";
             $request = $this->select_sql_all($sql);
             return $request;
         }
+
+        public function selectSearchModulo(int $intModulo){
+            $this->int_id_modulo = $intModulo;
+            $sql = "SELECT id_modulo,nombre,descripcion FROM modulos 
+            WHERE estado = 1 and id_modulo = $this->int_id_modulo";
+            $request = $this->select_sql($sql);
+            return $request;
+        }
+
+
         
         public function selectPermisoRol(int $idRol){
             $this->intIdRol = $idRol;
@@ -25,6 +38,7 @@
             $request = $this->select_sql_all($sql);
             return $request;
         }
+
 
         public function deletePermisos(int $intIdRol){
             $this->intIdRol = $intIdRol;

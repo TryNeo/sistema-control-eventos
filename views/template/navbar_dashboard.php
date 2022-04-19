@@ -48,6 +48,12 @@
                   <?php }else{ ?>
                     <li><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>                
                   <?php } ?>
+                  
+                  <?php if($data['page_id'] == 5 ){ ?>
+                    <li class="active"><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
+                  <?php }else{ ?>
+                    <li><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
+                  <?php } ?>
                 </ul>
               </li>
             </ul>

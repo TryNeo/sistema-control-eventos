@@ -1,4 +1,5 @@
-<?php getHeaderDashboard($data); 
+<?php getHeaderDashboard($data);
+    getModal('modals_permisos',$data);
 ?>    
 
 <section class="section">

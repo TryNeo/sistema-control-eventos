@@ -183,4 +183,24 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        public function getSelectRoles()
+        {   
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $html_options = "";
+                $data = $this->model->selectRolesNoInactivos();
+                if (count($data) > 0) {
+                    for ($i=0; $i < count($data) ; $i++) { 
+                        $html_options .='<option value="'.$data[$i]['id_rol'].'">'.$data[$i]['nombre_rol'].'</option>';
+                    }
+                }
+                echo $html_options;                
+                die();
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
     }
