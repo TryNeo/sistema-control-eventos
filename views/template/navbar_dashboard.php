@@ -39,7 +39,7 @@
                   </li>               
                 <?php } ?>
               </li>
-              <li class="menu-header">Seguridad</li>
+              <li class="menu-header">Administración</li>
               <li class="dropdown">
                   <a href="#" class="has-dropdown"><i class="fas fa-building"></i><span>Administración</span></a>
                   <ul class="dropdown-menu" style="display: block;">
