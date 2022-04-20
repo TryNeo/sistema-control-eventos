@@ -14,9 +14,14 @@ const regex_fechas = '^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$';
 const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
 
-
-function clickModal(nameSelector,modalName,listCamps){
+function clickModal(nameSelector,modalName,listCamps,hiddenClass=false){
     $('#openModal').on('click',function (e) {
+        if(hiddenClass){
+            $('#form4').addClass('hidden-data');
+            $("#fntCrearPerm").removeClass("hidden-data");
+            $("option:selected").removeAttr("selected");
+            $('#id_rol').removeAttr('disabled');
+        }
         var options = {
             "backdrop" : "static",
             "keyboard": false,

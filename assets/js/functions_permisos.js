@@ -15,7 +15,12 @@ $(function(){
     
     const configValid = configToValidate()
 
-    clickModal("#modalPermiso","Crear | Permisos",listCamps);
+    const columnData2 = [
+        {"data":"id_permiso"},
+        {"data":"nombre_modulo"},
+    ]
+
+    clickModal("#modalPermiso","Crear | Permisos",listCamps,true);
     fetchSelect(base_url+"roles/getSelectRoles","#id_rol","Selecciona un rol")
     fntSearchEmpleado()
 
@@ -111,16 +116,18 @@ function configToValidate(){
 
 
 function clickModalEditingPermisos(id){
+    $("option:selected").removeAttr("selected");
+    $("#id_rol").attr('disabled', 'disabled');
+    $("#id_rol option[value='"+id+"']").attr('selected', 'selected');
     $("#modalPermiso").modal("show");
     document.querySelector('#modalTitle').innerHTML = "Actualizar Permiso";
-    document.querySelector('.changeText').innerHTML = " Actualizar registro ";
     const columnData2 = [
         {"data":"id_permiso"},
         {"data":"nombre_modulo"},
     ]
     $('.tableModulo').DataTable().clear();
-    $('.tableModulo').DataTable().destroy()
+    $('.tableModulo').DataTable().destroy();
     const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2)
-    $("#id_rol").val(id);
-
+    $("#fntCrearPerm").addClass("hidden-data");
+    $('#form4').removeClass('hidden-data');
 }

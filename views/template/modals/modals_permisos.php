@@ -21,20 +21,22 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group">
-                <select id="id_modulo" class="form-control select2"></select>
+            <div id="form4" class="hidden-data">
+                <div class="form-group">
+                    <select id="id_modulo" class="form-control select2"></select>
+                </div>
+                <table  class="table tableModulo table-striped table-bordered dt-responsive nowrap" cellspacing="0"  style="width:100%">
+                  <thead class="text-uppercase">
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">MODULO</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
             </div>
-            <table  class="table tableModulo table-striped table-bordered dt-responsive nowrap" cellspacing="0"  style="width:100%">
-              <thead class="text-uppercase">
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">MODULO</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-            <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid"><span class="changeText">Crear </span><i class="fa fa-plus"></i></button>
+            <button id="fntCrearPerm" type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid"><span class="changeText">Crear </span><i class="fa fa-plus"></i></button>
         </form>
       </div>
     </div>
