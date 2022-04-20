@@ -12,16 +12,14 @@ $(function(){
 
 
     const listCamps =  ["#id_permiso","#id_rol"];
-    
+
+
+    const fieldsToValidate = ['id_rol']
     const configValid = configToValidate()
 
-    const columnData2 = [
-        {"data":"id_permiso"},
-        {"data":"nombre_modulo"},
-    ]
-
-    clickModal("#modalPermiso","Crear | Permisos",listCamps,true);
+    clickModalLogin("#modalPermiso","Crear | Permisos",listCamps,true);
     fetchSelect(base_url+"roles/getSelectRoles","#id_rol","Selecciona un rol")
+    sendingDataServerSide('#fntPermiso',configValid,fieldsToValidate,listCamps,tablePermisos,"permisos/setPermiso","#modalPermiso");
     fntSearchEmpleado()
 
 })
@@ -84,10 +82,29 @@ function fntSearchEmpleado(){
         }).then(function (data) {
             let objdata = JSON.parse(data); 
             if(objdata.status){
-                $('#id_modulo').val('');
-                $('#id_mdoulo').trigger('change.select2');
+                let request_two =  (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+                let ajaxUrl_two = base_url+"permisos/setPermisoModulo";
+                let formData = new FormData();
+                $('#id_modulo').val('')
+                $('#id_modulo').trigger('change.select2');
+                formData.append("id_modulo",objdata.msg['id_modulo']);
+                formData.append("id_rol",document.getElementById("id_rol").value);
+                request_two.open("POST",ajaxUrl_two,true);
+                request_two.send(formData);
+                request_two.onreadystatechange = function(){
+                    if(request_two.readyState==4 && request_two.status == 200){
+                        let objdatatwo = JSON.parse(request_two.responseText);
+                        if(objdatatwo.status){
+                            $('.tableModulo').DataTable().ajax.reload()
+                        }else{
+                            mensaje("error","Error",objdatatwo.msg);
+                        }
+                    }
+                }
             }
         });
+
+
     });
 }
 
@@ -115,10 +132,35 @@ function configToValidate(){
 }
 
 
+
+function clickModalLogin(nameSelector,modalName,listCamps){
+    $('#openModal').on('click',function (e) {
+        $('#form4').addClass('hidden-data');
+        $("#fntCrearPerm").removeClass("hidden-data");
+        $("option:selected").removeAttr("selected");
+        $('#id_rol').removeAttr('disabled');
+        var options = {
+            "backdrop" : "static",
+            "keyboard": false,
+            "show":true
+        }
+        
+        document.querySelector('#modalTitle').innerHTML = modalName;
+        document.querySelector('.changeText').innerHTML = "Crear ";
+        listCamps.forEach(element => {
+            document.querySelector(element).value = '';
+            $(element).addClass('is-invalid');
+        });
+        $(nameSelector).modal(options);
+    });
+}
+
 function clickModalEditingPermisos(id){
     $("option:selected").removeAttr("selected");
     $("#id_rol").attr('disabled', 'disabled');
     $("#id_rol option[value='"+id+"']").attr('selected', 'selected');
+    $('#id_rol').removeClass('is-invalid');
+    $('#id_rol').addClass('is-valid');
     $("#modalPermiso").modal("show");
     document.querySelector('#modalTitle').innerHTML = "Actualizar Permiso";
     const columnData2 = [
@@ -127,7 +169,7 @@ function clickModalEditingPermisos(id){
     ]
     $('.tableModulo').DataTable().clear();
     $('.tableModulo').DataTable().destroy();
-    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2)
+    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2,'<"row" <"col-sm-12 col-md-6"> <"col-sm-12 col-md-6"> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >')
     $("#fntCrearPerm").addClass("hidden-data");
     $('#form4').removeClass('hidden-data');
 }

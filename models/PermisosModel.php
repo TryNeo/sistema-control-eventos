@@ -69,6 +69,21 @@
             return $request;
         }
 
+        public function insertPermiso(int $idRol){
+            $this->intIdRol = $idRol;
+            $sql = "SELECT * FROM permisos WHERE id_rol = $this->intIdRol";
+            $request = $this->select_sql_all($sql);
+            if (empty($request)){
+                $queryInsert = "INSERT INTO permisos(id_modulo,id_rol,r,w,u,d) VALUES(?,?,?,?,?,?)";
+                $data = array(1,$this->intIdRol,1,1,1,1);
+                $request_insert = $this->insert_sql($queryInsert,$data);
+                $return = $request_insert;
+            }else{
+                $return = "exist";
+            }
+            return $return;
+        }
+
 
         public function insertPermisos(int $idRol,int $idModulo,int $r,int $w,int $u,int $d){
             $this->intIdRol = $idRol;
@@ -81,6 +96,22 @@
             $data = array($this->intModulo,$this->intIdRol,$this->r,$this->w,$this->u,$this->d);
             $request_insert = $this->insert_sql($queryInsert,$data);
             return $request_insert;
+        }
+
+        public function insertPermisoModulo(int $idModulo,int $idRol){
+            $this->intModulo = $idModulo;
+            $this->intIdRol = $idRol;
+            $sql = "SELECT * FROM permisos WHERE id_modulo = $this->intModulo and id_rol= $this->intIdRol";
+            $request = $this->select_sql_all($sql);
+            if (empty($request)) {
+                $sql_insert = "INSERT INTO permisos(id_modulo,id_rol) VALUES (?,?)";
+                $data = array($this->intModulo,$this->intIdRol);
+                $request_insert = $this->insert_sql($sql_insert,$data);
+                $return = $request_insert;
+            }else{
+                $return = "exist";
+            }
+            return $return;
         }
 
 

@@ -76,9 +76,9 @@ function closeModal(nameSelector,listCamps){
 
 
 
-function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = []){
+function configDataTables(nameSelector,urlAjax,ColumnData,sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',columnDefs = []){
     let tableData =  $(nameSelector).DataTable({
-        "sDom": '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',
+        "sDom": sDom,
         "aProcessing":true,
         "aServerSide":true,
         responsive:true,

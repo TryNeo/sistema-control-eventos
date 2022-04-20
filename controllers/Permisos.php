@@ -134,5 +134,60 @@
             die();
         }
 
-    
+        public function setPermisoModulo(){
+            if ($_POST) {
+                $intModulo = Intval(strclean($_POST['id_modulo']));
+                $intRol = Intval(strclean($_POST['id_rol']));
+                $request_insert_permiso = $this->model->insertPermisoModulo($intModulo,$intRol);
+                if ($request_insert_permiso > 0){ 
+                    if (empty($_SESSION['permisos_modulo']['w'])){
+                        header('location:'.server_url.'Errors');
+                        $data= array("status" => false, "msg" => "Error no tiene permisos");
+                    }else{
+                        $data = array('status' => true);
+                    }
+                }else if ($request_insert_permiso == 'exist'){
+                    $data = array('status' => false,'msg' => 'Error el modulo ya esta agregado');
+                }else{
+                    $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
+                }
+            }else{
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error Hubo problemas");
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+
+        public function setPermiso(){
+            if ($_POST) {
+                $id_rol = Intval(strclean($_POST['id_rol']));
+                $validate_data = [$id_rol];
+                if(validateEmptyFields($validate_data)){
+                    $response_permiso = $this->model->insertPermiso($id_rol);
+                    if ($response_permiso > 0){ 
+                        if (empty($_SESSION['permisos_modulo']['w'])){
+                            header('location:'.server_url.'Errors');
+                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        }else{
+                            $data = array('status' => true, 'msg' => 'Permiso creado correctamente');
+                        }
+                    }else if ($response_permiso == 'exist'){
+                        $data = array('status' => false,'msg' => 'Este permiso con rol , ya ha sido creado, escoga uno diferente');
+                    }else{
+                        $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
+                    }                
+                
+                }else{
+                    $data = array('status' => false,'formErrors' => array(
+                        'id_rol' => "El campo usuario se encuentra vacio",
+                    ));
+                }
+            }else{
+                header('location:'.server_url.'Errors');
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
 }
