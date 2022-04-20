@@ -17,7 +17,7 @@ $(function(){
     const fieldsToValidate = ['id_rol']
     const configValid = configToValidate()
 
-    clickModalLogin("#modalPermiso","Crear | Permisos",listCamps,true);
+    clickModalPermiso("#modalPermiso","Crear | Permisos",listCamps,true);
     fetchSelect(base_url+"roles/getSelectRoles","#id_rol","Selecciona un rol")
     sendingDataServerSide('#fntPermiso',configValid,fieldsToValidate,listCamps,tablePermisos,"permisos/setPermiso","#modalPermiso");
     fntSearchEmpleado()
@@ -133,7 +133,7 @@ function configToValidate(){
 
 
 
-function clickModalLogin(nameSelector,modalName,listCamps){
+function clickModalPermiso(nameSelector,modalName,listCamps){
     $('#openModal').on('click',function (e) {
         $('#form4').addClass('hidden-data');
         $("#fntCrearPerm").removeClass("hidden-data");
