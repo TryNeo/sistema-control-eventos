@@ -29,42 +29,50 @@
           <ul class="sidebar-menu">
               <li class="menu-header">Dashboard</li>
               <li class="nav-item">
-                <?php if($data['page_id'] == 1 ){ ?>
-                  <li class="active">
-                    <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                  </li>
-                <?php }else{ ?>
-                  <li>
-                    <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
-                  </li>               
+                <?php if (!empty($_SESSION['permisos'][1]['r'])) {?>
+                  <?php if($data['page_id'] == 1 ){ ?>
+                    <li class="active">
+                      <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    </li>
+                  <?php }else{ ?>
+                    <li>
+                      <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                    </li>               
+                  <?php } ?>
                 <?php } ?>
-              </li>
-              <li class="menu-header">Administración</li>
-              <li class="dropdown">
-                  <a href="#" class="has-dropdown"><i class="fas fa-building"></i><span>Administración</span></a>
-                  <ul class="dropdown-menu" style="display: block;">
-                      <?php if($data['page_id'] == 6 ){ ?>
-                          <li class="active"><a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a></li>
+                <?php if (!empty($_SESSION['permisos'][6]['r'])) {?>
+                  <?php if($data['page_id'] == 6 ){ ?>
+                      <li class="active">
+                        <a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i><span>Categorias</span></a>
+                      </li>
                       <?php }else{ ?>
-                          <li><a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a></li>
-                      <?php } ?>
-                  </ul>
+                      <li>
+                        <a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a>
+                      </li>
+                  <?php } ?>
+                <?php } ?>
+
               </li>
               <li class="menu-header">Seguridad</li>
               <li class="dropdown">
                 <a href="#" class="has-dropdown"><i class="fas fa-lock"></i><span>Configuracion</span></a>
                 <ul class="dropdown-menu" style="display: block;">
-                  <?php if($data['page_id'] == 3 ){ ?>
-                    <li class="active"><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>
-                  <?php }else{ ?>
-                    <li><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>                
+                  <?php if (!empty($_SESSION['permisos'][3]['r'])) {?>
+                    <?php if($data['page_id'] == 3 ){ ?>
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>
+                    <?php }else{ ?>
+                      <li><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>                
+                    <?php } ?>
                   <?php } ?>
-                  
-                  <?php if($data['page_id'] == 5 ){ ?>
-                    <li class="active"><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
-                  <?php }else{ ?>
-                    <li><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
+
+                  <?php if (!empty($_SESSION['permisos'][5]['r'])) {?>
+                    <?php if($data['page_id'] == 5 ){ ?>
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
+                    <?php }else{ ?>
+                      <li><a class="nav-link" href="<?php echo server_url; ?>permisos/"><i class="fas fa-shield-alt"></i>Permisos</a></li>                
+                    <?php } ?>
                   <?php } ?>
+
                 </ul>
               </li>
             </ul>

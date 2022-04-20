@@ -7,6 +7,7 @@ $(function(){
 
     ]
     
+ 
     const tablePermisos =  configDataTables('.tablePermisos',base_url+"permisos/getPermisos",columnData)
 
 
@@ -106,4 +107,20 @@ function configToValidate(){
     }
 
     return validatorServerSide
+}
+
+
+function clickModalEditingPermisos(id){
+    $("#modalPermiso").modal("show");
+    document.querySelector('#modalTitle').innerHTML = "Actualizar Permiso";
+    document.querySelector('.changeText').innerHTML = " Actualizar registro ";
+    const columnData2 = [
+        {"data":"id_permiso"},
+        {"data":"nombre_modulo"},
+    ]
+    $('.tableModulo').DataTable().clear();
+    $('.tableModulo').DataTable().destroy()
+    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2)
+    $("#id_rol").val(id);
+
 }

@@ -21,7 +21,6 @@
                     </select>
                 </div>
             </div>
-            <!--_---
             <div class="form-group">
                 <select id="id_modulo" class="form-control select2"></select>
             </div>
@@ -29,11 +28,12 @@
               <thead class="text-uppercase">
                 <tr>
                   <th scope="col">ID</th>
+                  <th scope="col">MODULO</th>
                 </tr>
               </thead>
               <tbody>
               </tbody>
-            </table>-->
+            </table>
             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4 is-valid"><span class="changeText">Crear </span><i class="fa fa-plus"></i></button>
         </form>
       </div>

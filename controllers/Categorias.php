@@ -8,7 +8,7 @@
             if (empty($_SESSION['login'])) {
                 header('location:'.server_url.'login');
             }
-            getPermisos(9);
+            getPermisos(6);
         }
 
         public function categorias(){
@@ -28,7 +28,6 @@
             }else{
                 $data = $this->model->selectCategorias();
                 for ($i=0; $i < count($data); $i++) {
-                    $btnPermisoRol = '';
                     $btnEditarCategoria = '';
                     $btnEliminarCategoria='';
 
@@ -139,7 +138,7 @@
                     }
                 }else{
                     $data = array('status' => false,'formErrors' => array(
-                        'nombre_categoria' => "El campo usuario se encuentra vacio",
+                        'nombre_categoria' => "El campo nombre se encuentra vacio",
                         'descripcion' => "La descripcion se encuentra vacio",
                     ));
                 }
@@ -176,24 +175,4 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
-
-        public function getSelectCategorias()
-        {
-            if (empty($_SESSION['permisos_modulo']['r']) ) {
-                header('location:'.server_url.'Errors');
-                $data = array("status" => false, "msg" => "Error no tiene permisos");
-            }else{
-                $html_options = "";
-                $data = $this->model->selectCategoriasNoInactivos();
-                if (count($data) > 0) {
-                    for ($i=0; $i < count($data) ; $i++) {
-                        $html_options .='<option value="'.$data[$i]['id_categoria'].'">'.$data[$i]['nombre_categoria'].'</option>';
-                    }
-                }
-                echo $html_options;
-                die();
-            }
-            echo json_encode($data,JSON_UNESCAPED_UNICODE);
-        }
-
     }

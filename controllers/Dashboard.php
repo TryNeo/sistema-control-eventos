@@ -8,9 +8,13 @@
             if (empty($_SESSION['login'])) {
                 header('location:'.server_url.'login');
             }
+            getPermisos(1);
         }
 
-        public function dashboard(){
+        public function dashboard(){  
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+            }
             $data["page_id"] = 1;
             $data["tag_pag"] = "Dashboard";
             $data["page_title"] = "Dashboard | Inicio";

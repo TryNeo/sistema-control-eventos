@@ -194,7 +194,16 @@
                 $data = $this->model->selectRolesNoInactivos();
                 if (count($data) > 0) {
                     for ($i=0; $i < count($data) ; $i++) { 
-                        $html_options .='<option value="'.$data[$i]['id_rol'].'">'.$data[$i]['nombre_rol'].'</option>';
+                        if($data[$i]['nombre_rol'] == "Administrador" and $_SESSION['user_data']['id_rol'] == 1) {
+                            echo "a";
+                            $html_options .='<option value="'.$data[$i]['id_rol'].'">'.$data[$i]['nombre_rol'].'</option>';
+                        }else{
+                            if($data[$i]['nombre_rol'] == "Administrador"){
+
+                            }else{
+                                $html_options .='<option value="'.$data[$i]['id_rol'].'">'.$data[$i]['nombre_rol'].'</option>';
+                            }
+                        }
                     }
                 }
                 echo $html_options;                
