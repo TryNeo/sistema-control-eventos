@@ -6,6 +6,8 @@ getModal('modals_invitados', $data);
             <h1>Invitados</h1>
         </div>
         <div class="section-body">
+            <h2 class="section-title">Invitados</h2>
+            <p class="section-lead">Aqui podra subir las fotos de los invitados y obtener la respectiva url <a href="https://imgur.com/upload" target="_blank">Imgur</a></p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -21,6 +23,7 @@ getModal('modals_invitados', $data);
                                             <th scope="col">NOMBREs</th>
                                             <th scope="col">APELLIDOS</th>
                                             <th scope="col">DESCRIPCION</th>
+                                            <th scope="col">IMAGEN</th>
                                             <th scope="col">ESTADO</th>
                                             <th scope="col">OPCIONES</th>
                                         </tr>

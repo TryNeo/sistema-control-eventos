@@ -13,6 +13,7 @@ const regex_numbers = '^[0-9]+$';
 const regex_fechas = '^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$';
 const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
+const regex_image = '[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$';
 
 function clickModal(nameSelector,modalName,listCamps){
     $('#openModal').on('click',function (e) {
@@ -25,7 +26,8 @@ function clickModal(nameSelector,modalName,listCamps){
         document.querySelector('#modalTitle').innerHTML = modalName;
         document.querySelector('.changeText').innerHTML = "Crear ";
         listCamps.forEach(element => {
-            document.querySelector(element).value = '';
+            document.querySelector(element).value = '';          
+            $(element).removeClass('is-valid');
             $(element).addClass('is-invalid');
         });
         $(nameSelector).modal(options);
@@ -175,6 +177,12 @@ function validateEmptyField(value){
     return true;
 }
 
+function validateImage(value){
+    if (value.match(regex_image) === null){
+        return false;
+    }
+    return true;
+}
 
 function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod,modalNameSelector){
     $(idForm).on('submit',function (e) {

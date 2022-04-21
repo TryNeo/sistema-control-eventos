@@ -4,15 +4,26 @@ $(function(){
         {"data":"nombre_invitado"},
         {"data":"apellido_invitado"},
         {"data":"descripcion"},
+        {"data":"url_imagen"},
         {"data":"estado"},
         {"data":"opciones"}]
 
-    const tableInvitados =  configDataTables('.tableInvitado',base_url+"invitados/getInvitados",columnData)
+    const columnDefs = [
+        {
+            targets:[4],
+            orderable:false,
+            render:function(data,type,row){
+                return '<img src="'+row.url_imagen+'" alt="avatar" width="40" class="mr-3 rounded-circle">'
+            }
+        }
+    ];
 
-    const listCamps =  ["#id_invitado","#nombre_invitado","#apellido_invitado","#descripcion_invitado"];
+    const tableInvitados =  configDataTables('.tableInvitado',base_url+"invitados/getInvitados",columnData,columnDefs)
+
+    const listCamps =  ["#id_invitado","#nombre_invitado","#apellido_invitado","#url_imagen","#descripcion"];
     
     
-    const fieldsToValidate = ['nombre_invitado','apellido_invitado','descripcion']
+    const fieldsToValidate = ['nombre_invitado','apellido_invitado','url_imagen','descripcion']
     const configValid = configToValidate()
 
     clickModal("#modalInvitado","Crear | Invitado",listCamps);
@@ -30,10 +41,23 @@ function configToValidate(){
     const validatorServerSide = $('form.needs-validation').jbvalidator({
         errorMessage: true,
         successClass: true,
+        language: base_url_assets+"js/jbvalidatorLangEs.json",
     });
     validatorServerSide.validator.custom = function(el, event){
 
         if($(el).is('[name=nombre_invitado]')){
+            let value= $(el).val()
+            if (!validateEmptyField(value)){
+                return 'Este campo es obligatorio';
+            }
+
+            if (!validString(value)){
+                return 'El nombre '+value+' contiene numeros o caracteres especiales';
+            }
+            
+        }
+
+        if($(el).is('[name=apellido_invitado]')){
             let value= $(el).val()
             if (!validateEmptyField(value)){
                 return 'Este campo es obligatorio';
@@ -60,6 +84,21 @@ function configToValidate(){
             
             if (!validString(value)){
                 return 'La descripcion '+value+' contiene numeros o caracteres especiales';
+            }
+            
+        }
+
+
+        if($(el).is('[name=url_imagen]')){
+            let value= $(el).val()
+
+            if (!validateEmptyField(value)){
+                return 'Este campo es obligatorio';
+            }
+
+
+            if (!validateImage(value)){
+                return 'La url '+value+' ingresada no es una imagen';
             }
             
         }

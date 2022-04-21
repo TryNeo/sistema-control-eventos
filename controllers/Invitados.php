@@ -39,7 +39,7 @@
 
                     if ($_SESSION['permisos_modulo']['u']) {
                         $btnEditarInvitados = '<button class="btn btn-primary btnEditarInvitado btn-circle " title="editar" 
-                        onClick="return clickModalEditing('."'getInvitado/".$data[$i]['id_invitado']."'".','."'Actualizacion | Invitado'".','."'getInvitado'".','."['nombre_invitado','apellido_invitado','descripcion', 'url_imagen']".','."'#modalInvitado'".');">
+                        onClick="return clickModalEditing('."'getInvitado/".$data[$i]['id_invitado']."'".','."'Actualizacion | Invitado'".','."'id_invitado'".','."['nombre_invitado','apellido_invitado','descripcion', 'url_imagen']".','."'#modalInvitado'".');">
                         <i class="fa fa-edit"></i></button>';
                     }
 
@@ -56,14 +56,100 @@
             die();
         }
 
+
+        public function getInvitado(int $id_invitado){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data_response = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $id_invitado  = Intval(strclean($id_invitado));
+                if(validateEmptyFields([$id_invitado])){
+                    if(empty(preg_matchall([$id_invitado],regex_numbers))){
+                        if ($id_invitado > 0){
+                            $data = $this->model->selectInvitado($id_invitado);
+                            if (empty($data)){
+                                $data_response = array('status' => false,'msg'=> 'Datos no encontrados');
+                            }else{
+                                $data_response = array('status' => true,'msg'=> $data);
+                            }
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
+                    }
+                }else {
+                    $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                }
+            }
+            echo json_encode($data_response,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+        
         public function setInvitado(){
             if ($_POST) {
                 $id_invitado = Intval(strclean($_POST['id_invitado']));
                 $nombre_invitado = ucwords(strtolower(strclean($_POST["nombre_invitado"])));
                 $apellido_invitado = ucwords(strtolower(strclean($_POST["apellido_invitado"])));
-                $descripcion_invitado = ucwords(strtolower(strclean($_POST["descripcion_invitado"])));
-                $validate_data = [$nombre_invitado,$apellido_invitado,$descripcion_invitado];
-                $data = "";
+                $descripcion_invitado = ucwords(strtolower(strclean($_POST["descripcion"])));
+                $url_imagen = strtolower(strclean($_POST["url_imagen"]));
+                $validate_data = [$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen];
+                $validate_data_string = [$nombre_invitado,$apellido_invitado,$descripcion_invitado];
+                if(validateEmptyFields($validate_data)){
+                    if(!empty(preg_matchall($validate_data_string,regex_string))){
+                        $data = array('status' => false,'formErrors' => array(
+                            'nombre_invitado' => "El campo contiene numero o caracteres especiales",
+                            'descripcion_invitado' =>  "El campo contiene numero o caracteres especiales",
+                        ));
+                    }
+
+                    if(!empty(preg_matchall(array($url_imagen),regex_imagen))){
+                        $data = array('status' => false,'formErrors' => array(
+                            'url_imagen' => 'La url '.$url_imagen.' ingresada no es una imagen',
+                        ));
+                    }
+
+                    if ($id_invitado == 0){
+                        $response_invitado = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                        $option = 1;
+                    }else{
+                        $response_invitado = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                        $option = 2;
+                    }
+
+                    if ($response_invitado > 0){ 
+                        if (empty($_SESSION['permisos_modulo']['w'])){
+                            header('location:'.server_url.'Errors');
+                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        }else{
+                            if ($option == 1){
+                                $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
+                            }
+                        }
+
+                        if (empty($_SESSION['permisos_modulo']['u'])) {
+                            header('location:'.server_url.'Errors');
+                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        }else{
+                            if ($option == 2){
+                                $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
+                            }
+                        }
+                    
+                    }else if ($response_invitado == 'exist'){
+                        $data = array('status' => false,'formErrors'=> array(
+                            'nombre_invitado' => "El invitado ".$nombre_invitado." ya existe, ingrese uno nuevo",
+                        ));
+                    
+                    }else{
+                        $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
+                    }
+                }else{
+                    $data = array('status' => false,'formErrors' => array(
+                        'nombre_invitado' => "El campo es obligatorio",
+                        'descripcion_invitado' => "El campo es obligatorio",
+                        'url_imagen' => "El campo es obligatorio",
+                    ));
+                }
+                
             }else{
                 header('location:'.server_url.'Errors');
             }

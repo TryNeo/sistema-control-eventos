@@ -8,6 +8,7 @@
     const regex_password = '/^[a-zA-Z0-9_-]{4,18}$/';
     const regex_fechas = '/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/';
     const regex_cedula =  '/^[0-9]{0,10}$/';
+    const regex_imagen = '/^[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/';
     
     const libs = "libraries/";
     const views = "views/";
