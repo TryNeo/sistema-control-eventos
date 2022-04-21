@@ -40,17 +40,29 @@
                     </li>               
                   <?php } ?>
                 <?php } ?>
-                <?php if (!empty($_SESSION['permisos'][6]['r'])) {?>
+              <?php if (!empty($_SESSION['permisos'][6]['r'])) {?>
                   <?php if($data['page_id'] == 6 ){ ?>
                       <li class="active">
-                        <a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i><span>Categorias</span></a>
+                          <a href="<?php echo server_url; ?>categorias/" class="nav-link"><i class="fas fa-stream"  aria-hidden="true"></i><span>Categorias</span></a>
                       </li>
-                      <?php }else{ ?>
+                  <?php }else{ ?>
                       <li>
-                        <a class="nav-link" href="<?php echo server_url; ?>categorias/"><i class="fas fa-stream" aria-hidden="true"></i>Categorias</a>
+                          <a href="<?php echo server_url; ?>categorias/" class="nav-link"><i class="fas fa-stream"  aria-hidden="true"></i><span>Categorias</span></a>
                       </li>
                   <?php } ?>
-                <?php } ?>
+              <?php } ?>
+
+              <?php if (!empty($_SESSION['permisos'][7]['r'])) {?>
+                  <?php if($data['page_id'] == 7 ){ ?>
+                      <li class="active">
+                          <a href="<?php echo server_url; ?>invitados/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Invitados</span></a>
+                      </li>
+                  <?php }else{ ?>
+                      <li>
+                          <a href="<?php echo server_url; ?>invitados/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Invitados</span></a>
+                      </li>
+                  <?php } ?>
+              <?php } ?>
 
               </li>
               <li class="menu-header">Seguridad</li>

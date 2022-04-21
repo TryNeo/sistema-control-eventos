@@ -61,6 +61,18 @@ CREATE TABLE categoria_evento(id_categoria tinyint(10) NOT NULL AUTO_INCREMENT,
                               KEY id_categoria (id_categoria)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
+DROP TABLE IF EXISTS `invitados`;
+CREATE TABLE `invitados` (   `id_invitado` tinyint(4) NOT NULL AUTO_INCREMENT,
+                             `nombre_invitado` varchar(50) DEFAULT NULL,
+                             `apellido_invitado` varchar(50) DEFAULT NULL,
+                             `descripcion` varchar(150) DEFAULT NULL,
+                             `url_imagen` varchar(50) DEFAULT NULL,
+                             `estado` tinyint(1) DEFAULT NULL,
+                             `fecha_crea` datetime DEFAULT NULL,
+                             `fecha_modifica` datetime DEFAULT NULL,
+                             PRIMARY KEY (`id_invitado`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
 ALTER TABLE permisos ADD CONSTRAINT fk_modulo FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo);
 ALTER TABLE permisos ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol) REFERENCES roles(id_rol);
@@ -71,6 +83,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Roles','modul
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Respaldo','modulo de respaldo',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Permisos','modulo de permisos',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Categoria','modulo de categoria',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Invitados','modulo de invitados',1,now());
 
 INSERT INTO roles (nombre_rol,descripcion,estado,fecha_crea) values ("Administrador","permisos de acceso a todo el sistema",1,now());
 
@@ -80,9 +93,10 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (3,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (4,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (5,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (6,1,1,1,1,1);
+INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
 
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now())
-
-
+INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fa-code',1,NULL,'2022-04-18 23:38:01')
+insert  into `invitados`(`id_invitado`,`nombre_invitado`,`apellido_invitado`,`descripcion`,`url_imagen`,`estado`,`fecha_crea`,`fecha_modifica`) values (1,'Rafael','Bautista','Bautista','',1,'2022-04-20 22:50:54','2022-04-20 22:50:56');
 
