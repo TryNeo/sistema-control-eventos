@@ -18,6 +18,15 @@
                         </span>
                     </div>
                     <input type="text" name="nombre_invitado" class="form-control" id="nombre_invitado"  placeholder="ingrese el nombre del invitado">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fas fa-address-book"></i>
+                        </span>
+                    </div>
                     <input type="text" name="apellido_invitado" class="form-control" id="apellido_invitado"  placeholder="ingrese el apellido del invitado">
                 </div>
             </div>

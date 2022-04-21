@@ -56,33 +56,6 @@
             die();
         }
 
-        public function getInvitado(int $id_invitado){
-            if (empty($_SESSION['permisos_modulo']['r']) ) {
-                header('location:'.server_url.'Errors');
-                $data_response = array("status" => false, "msg" => "Error no tiene permisos");
-            }else{
-                $id_inv  = Intval(strclean($id_invitado));
-                if(validateEmptyFields([$id_inv])){
-                    if(empty(preg_matchall([$id_cat],regex_numbers))){
-                        if ($id_inv > 0){
-                            $data = $this->model->selectInvitado($id_inv);
-                            if (empty($data)){
-                                $data_response = array('status' => false,'msg'=> 'Datos no encontrados');
-                            }else{
-                                $data_response = array('status' => true,'msg'=> $data);
-                            }
-                        }
-                    }else{
-                        $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
-                    }
-                }else {
-                    $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
-                }
-            }
-            echo json_encode($data_response,JSON_UNESCAPED_UNICODE);
-            die();
-        }
-
         public function setInvitado(){
             if ($_POST) {
                 $id_invitado = Intval(strclean($_POST['id_invitado']));
@@ -90,72 +63,7 @@
                 $apellido_invitado = ucwords(strtolower(strclean($_POST["apellido_invitado"])));
                 $descripcion_invitado = ucwords(strtolower(strclean($_POST["descripcion_invitado"])));
                 $validate_data = [$nombre_invitado,$apellido_invitado,$descripcion_invitado];
-
-                if(validateEmptyFields($validate_data)){
-                    if(empty(preg_matchall($validate_data,regex_string))){
-                        $tipo = $_FILES['foto']['type'];
-                        $tamagno = $_FILES['foto']['size'];
-                        if (!((strpos($tipo, "gif") || strpos($tipo, "jpeg") || strpos($tipo, "jpg") || strpos($tipo, "png")) && ($tamagno < 2000000))) {
-                            $data = array("status" => false, "msg" => ">Error. La extensión o el tamaño de los archivos no es correcta.
-                                - Se permiten archivos .gif, .jpg, .png. y de 200 kb como máximo.");
-                        }
-                        $route_imagen = (isset($_FILES['foto']['name'])) ?$_FILES['foto']['name']:"";
-                        $fecha = new DateTime();
-                        $str_imagen = ($route_imagen!="")?$fecha->getTimestamp()."_".$_FILES['foto']['name']:"user-default.png";
-                        $tmp_foto = $_FILES['foto']['tmp_name'];
-                        if ($tmp_foto!=""){
-                            move_uploaded_file($tmp_foto,"./assets/images/".$str_imagen);
-                        }
-
-                        if ($id_invitado == 0){
-                            $response_rol = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$str_imagen);
-                            $option = 1;
-                        }else{
-                            $response_rol = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$str_imagen);
-                            $option = 2;
-                        }
-                        if ($response_rol > 0){
-                            if (empty($_SESSION['permisos_modulo']['w'])){
-                                header('location:'.server_url.'Errors');
-                                $data= array("status" => false, "msg" => "Error no tiene permisos");
-                            }else{
-                                if ($option == 1){
-                                    $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
-                                }
-                            }
-
-                            if (empty($_SESSION['permisos_modulo']['u'])) {
-                                header('location:'.server_url.'Errors');
-                                $data= array("status" => false, "msg" => "Error no tiene permisos");
-                            }else{
-                                if ($option == 2){
-                                    $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
-                                }
-                            }
-
-                        }else if ($response_rol == 'exist'){
-                            $data = array('status' => false,'formErrors'=> array(
-                                'nombre_invitado' => "La categoria ".$nombre_invitado." ya existe, ingrese uno nuevo",
-                            ));
-
-                        }else{
-                            $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
-                        }
-
-
-                    }else{
-                        $data = array('status' => false,'formErrors'=> array(
-                            'nombre_invitado' => "El nombre contiene numero o caracteres especiales",
-                            'descripcion_invitado' => "La descripcion contiene numero o caracteres especiales",
-                        ));
-
-                    }
-                }else{
-                    $data = array('status' => false,'formErrors' => array(
-                        'nombre_invitado' => "El campo nombre se encuentra vacio",
-                        'descripcion_invitado' => "La descripcion se encuentra vacio",
-                    ));
-                }
+                $data = "";
             }else{
                 header('location:'.server_url.'Errors');
             }

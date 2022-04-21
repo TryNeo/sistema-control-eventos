@@ -21,7 +21,6 @@ getModal('modals_invitados', $data);
                                             <th scope="col">NOMBREs</th>
                                             <th scope="col">APELLIDOS</th>
                                             <th scope="col">DESCRIPCION</th>
-                                            <th scope="col">IMAGEN</th>
                                             <th scope="col">ESTADO</th>
                                             <th scope="col">OPCIONES</th>
                                         </tr>

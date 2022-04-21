@@ -18,7 +18,7 @@ class InvitadosModel extends Mysql
 
     public function selectInvitados()
     {
-        $sql = "SELECT id_invitado,nombre_invitado,apellido_invitado,descripcion,url_imagen,estado FROM invitados where estado=1 ORDER BY id_invitado DESC";
+        $sql = "SELECT id_invitado,nombre_invitado,apellido_invitado,descripcion,estado FROM invitados where estado=1 ORDER BY id_invitado DESC";
         $request = $this->select_sql_all($sql);
         return $request;
     }
