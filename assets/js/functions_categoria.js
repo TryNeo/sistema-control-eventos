@@ -3,19 +3,29 @@ $(function(){
         {"data":"id_categoria"},
         {"data":"nombre_categoria"},
         {"data":"descripcion"},
+        {"data":"icono"},
         {"data":"estado"},
         {"data":"opciones"}]
 
-    const tableRoles =  configDataTables('.tableCategoria',base_url+"categorias/getCategorias",columnData)
+    const columnDefs = [
+        {
+            targets:[3],
+            orderable:false,
+            render:function(data,type,row){
+                return '<i class="'+row.icono+'"></i>'
+            }
+        }
+    ]
+    const tableCategoria =  configDataTables('.tableCategoria',base_url+"categorias/getCategorias",columnData,columnDefs)
 
-    const listCamps =  ["#id_categoria","#nombre_categoria","#descripcion"];
+    const listCamps =  ["#id_categoria","#nombre_categoria","#descripcion","#icono"];
     
     
-    const fieldsToValidate = ['nombre_categoria','descripcion']
+    const fieldsToValidate = ['nombre_categoria','descripcion',"icono"]
     const configValid = configToValidate()
 
     clickModal("#modalCategoria","Crear | Categoria",listCamps);
-    sendingDataServerSide('#fntCategoria',configValid,fieldsToValidate,listCamps,tableRoles,"categorias/setCategoria","#modalCategoria");
+    sendingDataServerSide('#fntCategoria',configValid,fieldsToValidate,listCamps,tableCategoria,"categorias/setCategoria","#modalCategoria");
 })
 
 
@@ -61,6 +71,14 @@ function configToValidate(){
             
         }
         
+        if($(el).is('[name=icono]')){
+            let value= $(el).val()
+            if (!validateStringLength(value,5)){
+                return 'El nombre del icono '+value+' debe ser mas largo';
+            }
+            
+        }
+
     }
 
     return validatorServerSide

@@ -17,7 +17,17 @@
                             <i class="fas fa-address-book"></i>
                         </span>
                     </div>
-                    <input type="text" name="nombre_categoria" class="form-control" id="nombre_categoria"  placeholder="ingrese el nombre de la categoria">
+                    <input type="text" name="nombre_categoria" class="form-control" id="nombre_categoria"  placeholder="ingrese la categoria">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-append">
+                        <span class="input-group-text">
+                          <i class="fas fa-icons"></i>
+                        </span>
+                    </div>
+                    <input type="text" name="icono" class="form-control" id="icono"  placeholder="ingrese el icono">
                 </div>
             </div>
             <div class="form-group">

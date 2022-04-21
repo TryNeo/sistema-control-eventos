@@ -88,15 +88,16 @@
                 $id_categoria = Intval(strclean($_POST['id_categoria']));
                 $nombre_categoria = ucwords(strtolower(strclean($_POST["nombre_categoria"])));
                 $descripcion_categoria = ucwords(strtolower(strclean($_POST["descripcion"])));
+                $icono = strtolower(strclean($_POST["icono"]));
                 $validate_data = [$nombre_categoria,$descripcion_categoria];
 
                 if(validateEmptyFields($validate_data)){
                     if(empty(preg_matchall($validate_data,regex_string))){
                         if ($id_categoria == 0){
-                            $response_rol = $this->model->insertCategoria($nombre_categoria,$descripcion_categoria);
+                            $response_rol = $this->model->insertCategoria($nombre_categoria,$descripcion_categoria,$icono);
                             $option = 1;
                         }else{
-                            $response_rol = $this->model->updateCategoria($id_categoria,$nombre_categoria,$descripcion_categoria);
+                            $response_rol = $this->model->updateCategoria($id_categoria,$nombre_categoria,$descripcion_categoria,$icono);
                             $option = 2;
                         }
 
@@ -140,6 +141,7 @@
                     $data = array('status' => false,'formErrors' => array(
                         'nombre_categoria' => "El campo nombre se encuentra vacio",
                         'descripcion' => "La descripcion se encuentra vacio",
+                        'icono' => "el campo icono se encuentra vacio",
                     ));
                 }
             }else{
