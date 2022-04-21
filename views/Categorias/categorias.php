@@ -3,9 +3,11 @@ getModal('modals_categorias', $data);
 ?>
     <section class="section">
         <div class="section-header">
-            <h1>Categorias</h1>
+            <h1>Categorias </h1>
         </div>
         <div class="section-body">
+            <h2 class="section-title">Categorias</h2>
+            <p class="section-lead">Aqui encontrara una variedad de iconos con la biblioteca <a href="https://fontawesome.com/v5/search" target="_blank">FontAwesome v5 all</a></p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -20,6 +22,7 @@ getModal('modals_categorias', $data);
                                             <th scope="col">ID</th>
                                             <th scope="col">NOMBRE CATEGORIA</th>
                                             <th scope="col">DESCRIPCION</th>
+                                            <th scope="col">ICONO</th>
                                             <th scope="col">ESTADO</th>
                                             <th scope="col">OPCIONES</th>
                                         </tr>

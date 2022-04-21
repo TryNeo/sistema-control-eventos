@@ -169,7 +169,7 @@ function clickModalEditingPermisos(id){
     ]
     $('.tableModulo').DataTable().clear();
     $('.tableModulo').DataTable().destroy();
-    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2,'<"row" <"col-sm-12 col-md-6"> <"col-sm-12 col-md-6"> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >')
+    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2,columnDefs=[],'<"row" <"col-sm-12 col-md-6"> <"col-sm-12 col-md-6"> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >')
     $("#fntCrearPerm").addClass("hidden-data");
     $('#form4').removeClass('hidden-data');
 }

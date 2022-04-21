@@ -70,7 +70,7 @@ function closeModal(nameSelector,listCamps){
 
 
 
-function configDataTables(nameSelector,urlAjax,ColumnData,sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',columnDefs = []){
+function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = [],sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >'){
     let tableData =  $(nameSelector).DataTable({
         "sDom": sDom,
         "aProcessing":true,
