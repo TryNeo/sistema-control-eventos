@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS categoria_evento;
 CREATE TABLE categoria_evento(id_categoria tinyint(10) NOT NULL AUTO_INCREMENT,
                               nombre_categoria varchar(50) DEFAULT NULL,
                               descripcion varchar(50) DEFAULT NULL,
-                              icono varchar(15) DEFAULT NULL,
+                              icono varchar(40) DEFAULT NULL,
                               estado tinyint(1) DEFAULT NULL,
                               fecha_crea datetime DEFAULT NULL,
                               fecha_modifica datetime DEFAULT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE `invitados` (   `id_invitado` tinyint(4) NOT NULL AUTO_INCREMENT,
                              `nombre_invitado` varchar(50) DEFAULT NULL,
                              `apellido_invitado` varchar(50) DEFAULT NULL,
                              `descripcion` varchar(150) DEFAULT NULL,
-                             `url_imagen` varchar(50) DEFAULT NULL,
+                             `url_imagen` varchar(250) DEFAULT NULL,
                              `estado` tinyint(1) DEFAULT NULL,
                              `fecha_crea` datetime DEFAULT NULL,
                              `fecha_modifica` datetime DEFAULT NULL,
@@ -98,7 +98,7 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
 
-INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fa-code',1,NULL,'2022-04-18 23:38:01');
+INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fas fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fas fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fas fa-code',1,NULL,'2022-04-18 23:38:01');
 
 INSERT  into `invitados`(`id_invitado`,`nombre_invitado`,`apellido_invitado`,`descripcion`,`url_imagen`,`estado`,`fecha_crea`,`fecha_modifica`) values (1,'Rafael','Bautista','Bautista','',1,'2022-04-20 22:50:54','2022-04-20 22:50:56');
 
