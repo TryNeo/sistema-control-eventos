@@ -7,7 +7,7 @@ getModal('modals_invitados', $data);
         </div>
         <div class="section-body">
             <h2 class="section-title">Invitados</h2>
-            <p class="section-lead">Aqui podra subir las fotos de los invitados y obtener la respectiva url <a href="https://imgur.com/upload" target="_blank">Imgur</a></p>
+            <p class="section-lead">Aqui en esta pagina web, podra subir las fotos de los invitados y obtener la respectiva url <a href="https://imgur.com/upload" target="_blank">Imgur</a></p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
