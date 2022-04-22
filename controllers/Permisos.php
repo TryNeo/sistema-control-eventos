@@ -207,11 +207,46 @@
 
 
         public function setPermisoCheckBox(){
-            if ($_POST) {
-                dep($_POST);
-            }else{
+            if (empty($_SESSION['permisos_modulo']['u']) ) {
                 header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                if ($_POST) {
+                    $id_permiso = intval(strclean($_POST['id_permiso']));
+                    $id_rol = intval(strclean($_POST['id_rol']));
+                    $checkbox = intval(strclean($_POST['cbox']));
+                    $typePerm = strtolower(strclean($_POST["typePerm"]));
+                    $validate_data = [$id_permiso,$id_rol,$checkbox];
+                    if(validateEmptyFields($validate_data)){
+                        if(empty(preg_matchall($validate_data,regex_numbers))){
+                            if ($typePerm == "read"){
+                                $response_update = $this->model->updatePermisoModulo($id_permiso,$id_rol,$checkbox,$typePerm);
+                            }
+
+                            if ($typePerm == "write"){
+                                $response_update = $this->model->updatePermisoModulo($id_permiso,$id_rol,$checkbox,$typePerm);
+                            }
+
+                            if ($typePerm == "update"){
+                                $response_update = $this->model->updatePermisoModulo($id_permiso,$id_rol,$checkbox,$typePerm);
+                            }
+
+                            if ($typePerm == "delete"){
+                                $response_update = $this->model->updatePermisoModulo($id_permiso,$id_rol,$checkbox,$typePerm);
+                            }
+
+                            dep($response_update);
+                        }else{
+                            $data = array('status' => false,'msg' => 'Los campos estan mal escritos, verifique y vuelva a ingresarlo');
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'Los campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                    }
+                }else{
+                    $data = array("status" => false, "msg" => "Error Hubo problemas");
+                }
             }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
     

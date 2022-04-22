@@ -5,6 +5,7 @@
         public $intIdRol;
         public $intModulo;
         public $str_search_modulo;
+        public $typePerm;
         public $r;
         public $w;
         public $u;
@@ -126,6 +127,48 @@
                 $arrPermisos[$request[$i]['id_modulo']] = $request[$i];
             }
             return $arrPermisos;
+        }
+
+
+        public function updatePermisoModulo(int $id_permiso, int $id_rol, int $checkbox, string $typePerm){
+            $this->typePerm = $typePerm;
+            if ($this->typePerm == "read"){
+                $this->intIdpermiso = $id_permiso;
+                $this->intIdRol = $id_rol;
+                $this->r = $checkbox;
+                $sql_udpate = "UPDATE permisos SET r = ?  WHERE id_permiso = $this->intIdpermiso and id_rol = $this->intIdRol";
+                $data = array($this->r);
+                $request_update = $this->update_sql($sql_udpate,$data);
+            }
+
+            if ($this->typePerm == "write"){
+                $this->intIdpermiso = $id_permiso;
+                $this->intIdRol = $id_rol;
+                $this->w = $checkbox;
+                $sql_udpate = "UPDATE permisos SET w = ?  WHERE id_permiso = $this->intIdpermiso and id_rol = $this->intIdRol";
+                $data = array($this->w);
+                $request_update = $this->update_sql($sql_udpate,$data);
+            }
+
+            if ($this->typePerm == "update"){
+                $this->intIdpermiso = $id_permiso;
+                $this->intIdRol = $id_rol;
+                $this->u = $checkbox;
+                $sql_udpate = "UPDATE permisos SET u = ?  WHERE id_permiso = $this->intIdpermiso and id_rol = $this->intIdRol";
+                $data = array($this->u);
+                $request_update = $this->update_sql($sql_udpate,$data);
+            }
+
+            if ($this->typePerm == "delete"){
+                $this->intIdpermiso = $id_permiso;
+                $this->intIdRol = $id_rol;
+                $this->d = $checkbox;
+                $sql_udpate = "UPDATE permisos SET d = ?  WHERE id_permiso = $this->intIdpermiso and id_rol = $this->intIdRol";
+                $data = array($this->d);
+                $request_update = $this->update_sql($sql_udpate,$data);
+            }
+
+            return $request_update;
         }
 
         public function deletePermisoModulo(int $id_permiso, int $id_rol){

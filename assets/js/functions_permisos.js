@@ -190,9 +190,9 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.w === "1"){
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'"  onclick="Function()" value="'+row.w+'" checked>'
+                    return '<input type="checkbox" name="cboxw'+row.permiso_mod+'" class="form-check-input" id="cboxw'+row.permiso_mod+'"  onclick="Function()" value="'+row.w+'" checked>'
                 }else{
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'" onclick="Function()" value="'+row.w+'">'
+                    return '<input type="checkbox" name="cboxw'+row.permiso_mod+'" class="form-check-input" id="cboxw'+row.permiso_mod+'" onclick="Function()" value="'+row.w+'">'
                 }
             }
         },
@@ -201,9 +201,9 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.u === "1"){
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'"  onclick="Function()" value="'+row.u+'" checked>'
+                    return '<input type="checkbox" name="cboxu'+row.permiso_mod+'" class="form-check-input" id="cboxu'+row.permiso_mod+'"  onclick="Function()" value="'+row.u+'" checked>'
                 }else{
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'" onclick="Function()" value="'+row.u+'">'
+                    return '<input type="checkbox" name="cboxu'+row.permiso_mod+'" class="form-check-input" id="cboxu'+row.permiso_mod+'" onclick="Function()" value="'+row.u+'">'
                 }
             }
         },
@@ -212,24 +212,21 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.w === "1"){
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'"  onclick="Function()" value="'+row.d+'" checked>'
+                    return '<input type="checkbox" name="cboxd'+row.permiso_mod+'" class="form-check-input" id="cboxd'+row.permiso_mod+'"  onclick="Function()" value="'+row.d+'" checked>'
                 }else{
-                    return '<input type="checkbox" name="cbox'+row.permiso_mod+'" class="form-check-input" id="cbox'+row.permiso_mod+'" onclick="Function()" value="'+row.d+'">'
+                    return '<input type="checkbox" name="cboxd'+row.permiso_mod+'" class="form-check-input" id="cboxd'+row.permiso_mod+'" onclick="Function()" value="'+row.d+'">'
                 }
             }
         }
     ]
 
     const rowCallback = function(row,data,dislayNum,displayIndex,dataIndex){
-            $(row).find('input[name="cboxr'+data.permiso_mod+'"]').on('click',function (e) {
-                let checkBox = document.getElementById("cbox"+data.permiso_mod);
-                if (checkBox.checked == true){
-                    sendingDataServerSideCheckbox(data.permiso_mod,document.getElementById("id_rol").value,true)
-                } else {
-                    sendingDataServerSideCheckbox(data.permiso_mod,document.getElementById("id_rol").value,false)
-                }
-            })
-        }
+        let id_rol  = document.getElementById("id_rol").value
+        checkInputPermisos(row,"cboxr"+data.permiso_mod,data,id_rol,"read");
+        checkInputPermisos(row,"cboxw"+data.permiso_mod,data,id_rol,"write");
+        checkInputPermisos(row,"cboxu"+data.permiso_mod,data,id_rol,"update");
+        checkInputPermisos(row,"cboxd"+data.permiso_mod,data,id_rol,"delete");
+    }
         
 
     $('.tableModulo').DataTable().clear();
@@ -265,13 +262,14 @@ function deleteServerSidePermisoModulo(idPerm){
     }
 }
 
-function sendingDataServerSideCheckbox(id_permiso,id_rol,cbox){
+function sendingDataServerSideCheckbox(id_permiso,id_rol,cbox,typePerm){
     let request_two =  (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
     let ajaxUrl = base_url+"permisos/setPermisoCheckBox";
     let formData = new FormData();
     formData.append("id_permiso",id_permiso);
     formData.append("id_rol",id_rol);
     formData.append("cbox",cbox);
+    formData.append("typePerm",typePerm);
     request_two.open("POST",ajaxUrl,true);
     request_two.send(formData);
     request_two.onreadystatechange = function(){
@@ -279,4 +277,15 @@ function sendingDataServerSideCheckbox(id_permiso,id_rol,cbox){
             console.log(request_two.responseText);
         }
     }
+}
+
+function checkInputPermisos(row,cboxtype,data,id_rol,typePerm){
+    $(row).find('input[name="'+cboxtype+'"]').on('click',function (e) {
+        let checkBox = document.getElementById(cboxtype);
+        if (checkBox.checked == true){
+            sendingDataServerSideCheckbox(data.permiso_mod,id_rol,1,typePerm);
+        } else {
+            sendingDataServerSideCheckbox(data.permiso_mod,id_rol,0,typePerm);
+        }
+    })
 }
