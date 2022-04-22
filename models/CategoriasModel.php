@@ -22,6 +22,15 @@ class CategoriasModel extends Mysql
         return $request;
     }
 
+
+    public function selectCategoriasNoInactivos(){
+        $sql = "SELECT id_categoria,nombre_categoria FROM categoria_evento WHERE estado =1 ";
+        $request = $this->select_sql_all($sql);
+        return $request;
+    }
+
+
+
     public function selectCategoria(int $id_categoria){
         $this->intCat = $id_categoria;
         $sql = "SELECT id_categoria,nombre_categoria,descripcion,icono,estado FROM categoria_evento where id_categoria =$this->intCat";

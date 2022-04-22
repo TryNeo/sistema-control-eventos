@@ -12,6 +12,9 @@
         }
 
         public function invitados(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+            }
             $data["page_id"] = 7;
             $data["tag_pag"] = "Invitados";
             $data["page_title"] = "Invitados | Inicio";
@@ -155,6 +158,25 @@
             }
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
+        }
+
+        public function getSelectInvitados()
+        {   
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $html_options = "";
+                $data = $this->model->selectInvitadosNoInactivos();
+                if (count($data) > 0) {
+                    for ($i=0; $i < count($data) ; $i++) { 
+                        $html_options .='<option value="'.$data[$i]['id_invitado'].'">'.$data[$i]['nombre_invitado'].' '.$data[$i]['apellido_invitado'].'</option>';
+                    }
+                }
+                echo $html_options;                
+                die();
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
         }
 
 

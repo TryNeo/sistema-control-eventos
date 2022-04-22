@@ -63,7 +63,25 @@
                       </li>
                   <?php } ?>
               <?php } ?>
+              <li class="menu-header">Eventos</li>
+              <li class="dropdown">
+                <a href="#" class="has-dropdown"><i class="fas fa-calendar-day"></i><span>Configuracion</span></a>
+                <ul class="dropdown-menu" style="display: block;">
+                    <?php if (!empty($_SESSION['permisos'][8]['r'])) {?>
+                      <?php if($data['page_id'] == 8 ){ ?>
+                          <li class="active">
+                              <a href="<?php echo server_url; ?>eventos/" class="nav-link"><i class="fas fa-calendar-check"></i><span>Eventos</span></a>
+                          </li>
+                      <?php }else{ ?>
+                          <li>
+                              <a href="<?php echo server_url; ?>eventos/" class="nav-link"><i class="fas fa-calendar-check"></i><span>Eventos</span></a>
+                          </li>
+                      <?php } ?>
+                  <?php } ?>
+                </ul>
+              </li>
 
+            
               </li>
               <li class="menu-header">Seguridad</li>
               <li class="dropdown">

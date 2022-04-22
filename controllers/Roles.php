@@ -12,6 +12,9 @@
         }
 
         public function roles(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+            }
             $data["page_id"] = 3;
             $data["tag_pag"] = "Roles";
             $data["page_title"] = "Roles | Inicio";

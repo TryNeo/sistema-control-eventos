@@ -23,6 +23,13 @@ class InvitadosModel extends Mysql
         return $request;
     }
 
+    public function selectInvitadosNoInactivos(){
+        $sql = "SELECT id_invitado,nombre_invitado,apellido_invitado FROM invitados WHERE estado =1 ";
+        $request = $this->select_sql_all($sql);
+        return $request;
+    }
+
+
     public function selectInvitado(int $id_invitado){
         $this->intInv = $id_invitado;
         $sql = "SELECT id_invitado,nombre_invitado,apellido_invitado,descripcion,url_imagen,estado FROM invitados where id_invitado =$this->intInv";

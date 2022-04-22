@@ -178,9 +178,11 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.r === "1"){
-                    return '<input type="checkbox" name="cboxr'+row.permiso_mod+'" class="form-check-input" id="cboxr'+row.permiso_mod+'"  onclick="Function()" value="'+row.r+'" checked>'
+                    return  '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxr'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxr'+row.permiso_mod+'"  value="'+row.r+'" checked><label class="custom-control-label" for="cboxr'+row.permiso_mod+'"></label></div>'
                 }else{
-                    return '<input type="checkbox" name="cboxr'+row.permiso_mod+'" class="form-check-input" id="cboxr'+row.permiso_mod+'" onclick="Function()" value="'+row.r+'">'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxr'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxr'+row.permiso_mod+'"  value="'+row.r+'" ><label class="custom-control-label" for="cboxr'+row.permiso_mod+'"></label></div>'
                 }
             }
         }
@@ -190,9 +192,11 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.w === "1"){
-                    return '<input type="checkbox" name="cboxw'+row.permiso_mod+'" class="form-check-input" id="cboxw'+row.permiso_mod+'"  onclick="Function()" value="'+row.w+'" checked>'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxw'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxw'+row.permiso_mod+'"  value="'+row.w+'" checked><label class="custom-control-label" for="cboxw'+row.permiso_mod+'"></label></div>'
                 }else{
-                    return '<input type="checkbox" name="cboxw'+row.permiso_mod+'" class="form-check-input" id="cboxw'+row.permiso_mod+'" onclick="Function()" value="'+row.w+'">'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxw'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxw'+row.permiso_mod+'"  value="'+row.w+'" ><label class="custom-control-label" for="cboxw'+row.permiso_mod+'"></label></div>'
                 }
             }
         },
@@ -201,9 +205,11 @@ function clickModalEditingPermisos(id){
             orderable:false,
             render:function(data,type,row){
                 if(row.u === "1"){
-                    return '<input type="checkbox" name="cboxu'+row.permiso_mod+'" class="form-check-input" id="cboxu'+row.permiso_mod+'"  onclick="Function()" value="'+row.u+'" checked>'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxu'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxu'+row.permiso_mod+'"  value="'+row.u+'" checked><label class="custom-control-label" for="cboxu'+row.permiso_mod+'"></label></div>'
                 }else{
-                    return '<input type="checkbox" name="cboxu'+row.permiso_mod+'" class="form-check-input" id="cboxu'+row.permiso_mod+'" onclick="Function()" value="'+row.u+'">'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxu'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxu'+row.permiso_mod+'"  value="'+row.u+'"><label class="custom-control-label" for="cboxu'+row.permiso_mod+'"></label></div>'
                 }
             }
         },
@@ -211,10 +217,12 @@ function clickModalEditingPermisos(id){
             targets:[5],
             orderable:false,
             render:function(data,type,row){
-                if(row.w === "1"){
-                    return '<input type="checkbox" name="cboxd'+row.permiso_mod+'" class="form-check-input" id="cboxd'+row.permiso_mod+'"  onclick="Function()" value="'+row.d+'" checked>'
+                if(row.d === "1"){
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxd'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxd'+row.permiso_mod+'"  value="'+row.d+'" checked><label class="custom-control-label" for="cboxd'+row.permiso_mod+'"></label></div>'
                 }else{
-                    return '<input type="checkbox" name="cboxd'+row.permiso_mod+'" class="form-check-input" id="cboxd'+row.permiso_mod+'" onclick="Function()" value="'+row.d+'">'
+                    return '<div class="custom-control custom-checkbox"><input type="checkbox"  name="cboxd'+row.permiso_mod+'"'+
+                                'class="custom-control-input"  onclick="Function()" id="cboxd'+row.permiso_mod+'"  value="'+row.d+'" ><label class="custom-control-label" for="cboxd'+row.permiso_mod+'"></label></div>'
                 }
             }
         }

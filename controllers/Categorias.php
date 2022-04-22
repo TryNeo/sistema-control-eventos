@@ -12,6 +12,9 @@
         }
 
         public function categorias(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+            }
             $data["page_id"] = 6;
             $data["tag_pag"] = "Categorias";
             $data["page_title"] = "Categorias | Inicio";
@@ -150,6 +153,27 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
+
+        public function getSelectCategorias()
+        {   
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $html_options = "";
+                $data = $this->model->selectCategoriasNoInactivos();
+                if (count($data) > 0) {
+                    for ($i=0; $i < count($data) ; $i++) { 
+                        $html_options .='<option value="'.$data[$i]['id_categoria'].'">'.$data[$i]['nombre_categoria'].'</option>';
+                    }
+                }
+                echo $html_options;                
+                die();
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+        }
+
+
 
         public function delCategoria(){
             if (empty($_SESSION['permisos_modulo']['d']) ) {
