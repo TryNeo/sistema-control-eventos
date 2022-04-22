@@ -25,11 +25,15 @@
                 <div class="form-group">
                     <select id="id_modulo" class="form-control select2"></select>
                 </div>
-                <table  class="table tableModulo table-striped table-bordered dt-responsive nowrap" cellspacing="0"  style="width:100%">
+                <table  class="table tableModulo table-striped table-bordered dt-responsive nowrap text-center" cellspacing="0"  style="width:100%">
                   <thead class="text-uppercase">
                     <tr>
-                      <th scope="col">ID</th>
+                      <th scope="col">#</th>
                       <th scope="col">MODULO</th>
+                      <th scope="col">LEER</th>
+                      <th scope="col">ESCRIBIR</th>
+                      <th scope="col">ACTUALIZAR</th>
+                      <th scope="col">ELIMINAR</th>
                     </tr>
                   </thead>
                   <tbody>

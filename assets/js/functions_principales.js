@@ -72,11 +72,13 @@ function closeModal(nameSelector,listCamps){
 
 
 
-function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = [],sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >'){
+function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = [],
+        sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',pageLength=10){
     let tableData =  $(nameSelector).DataTable({
         "sDom": sDom,
         "aProcessing":true,
         "aServerSide":true,
+        "pageLength": pageLength,
         responsive:true,
         "language":{
             "url" : "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
@@ -207,12 +209,15 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
                             }
                         });
                     }else{
-                        mensaje("error","Error",data.msg);
+                        if(data.msg == "error"){
+                        }else{
+                            mensaje("error","Error",data.msg);
+                        }
                     }
     
                 }
             }).fail(function (error) {
-                console.log(error)
+                console.log(error.responseText)
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }

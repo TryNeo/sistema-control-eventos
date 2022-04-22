@@ -166,10 +166,55 @@ function clickModalEditingPermisos(id){
     const columnData2 = [
         {"data":"id_permiso"},
         {"data":"nombre_modulo"},
+        {"data":"r"},
+        {"data":"w"},
+        {"data":"u"},
+        {"data":"d"},
     ]
+
+    const columnDefs2 = [
+        {
+            targets:[2],
+            orderable:false,
+            render:function(data,type,row){
+                if(row.r === "1"){
+                    return '<input type="checkbox" class="form-check-input" id="cbox'+row.permiso_mod+'" value="'+row.r+'" checked>'
+                }else{
+                    return '<input type="checkbox" class="form-check-input" id="cbox'+row.permiso_mod+'" value="'+row.r+'">'
+                }
+            }
+        }
+    ]
+
     $('.tableModulo').DataTable().clear();
     $('.tableModulo').DataTable().destroy();
-    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2,columnDefs=[],'<"row" <"col-sm-12 col-md-6"> <"col-sm-12 col-md-6"> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >')
+    const tablePermisosModulo =  configDataTables('.tableModulo',base_url+"permisos/getPermiso/"+id,columnData2,columnDefs2,
+    '<"row" <"col-sm-12 col-md-6"> <"col-sm-12 col-md-6"> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',pageLength = 4)
     $("#fntCrearPerm").addClass("hidden-data");
     $('#form4').removeClass('hidden-data');
+}
+
+function deleteServerSidePermisoModulo(idPerm){
+    if(idPerm == '' && document.getElementById("id_rol").value == ''){
+        mensaje("error","Error",'verifique que los campos esten correctos')
+    }else{
+        let request_two =  (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+        let ajaxUrl = base_url+"permisos/delPermisoModulo";
+        let formData = new FormData();
+        formData.append("id_permiso",idPerm);
+        formData.append("id_rol",document.getElementById("id_rol").value);
+        request_two.open("POST",ajaxUrl,true);
+        request_two.send(formData);
+        request_two.onreadystatechange = function(){
+            if(request_two.readyState==4 && request_two.status == 200){
+                let objdatatwo = JSON.parse(request_two.responseText);
+                if(objdatatwo.status){
+                    $('.tableModulo').DataTable().ajax.reload()
+                    $('.tablePermisos').DataTable().ajax.reload()
+                }else{
+                    mensaje("error","Error",objdatatwo.msg);
+                }
+            }
+        }
+    }
 }

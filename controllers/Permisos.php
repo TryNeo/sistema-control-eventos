@@ -74,6 +74,16 @@
                             if (empty($data)){
                                 $data_response = array();
                             }else{
+                                for ($i=0; $i < count($data); $i++) { 
+                                    $btnEliminarPermisoModulo ='';
+
+                                    if ($_SESSION['permisos_modulo']['d']) {
+                                        $btnEliminarPermisoModulo = '<button  class="btn btn-danger btn-circle btnEliminarPermisoModulo" 
+                                        title="eliminar" onClick="return deleteServerSidePermisoModulo('.$data[$i]['id_permiso'].')"><i class="far fa-trash-alt"></i></button>';
+                                    }
+
+                                    $data[$i]['id_permiso'] = $btnEliminarPermisoModulo;
+                                }
                                 $data_response =  $data;
                             }
                         }
@@ -162,27 +172,31 @@
 
         public function setPermiso(){
             if ($_POST) {
-                $id_rol = Intval(strclean($_POST['id_rol']));
-                $validate_data = [$id_rol];
-                if(validateEmptyFields($validate_data)){
-                    $response_permiso = $this->model->insertPermiso($id_rol);
-                    if ($response_permiso > 0){ 
-                        if (empty($_SESSION['permisos_modulo']['w'])){
-                            header('location:'.server_url.'Errors');
-                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                if(isset($_POST['id_rol'])){
+                    $id_rol = Intval(strclean($_POST['id_rol']));
+                    $validate_data = [$id_rol];
+                    if(validateEmptyFields($validate_data)){
+                        $response_permiso = $this->model->insertPermiso($id_rol);
+                        if ($response_permiso > 0){ 
+                            if (empty($_SESSION['permisos_modulo']['w'])){
+                                header('location:'.server_url.'Errors');
+                                $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            }else{
+                                $data = array('status' => true, 'msg' => 'Permiso creado correctamente');
+                            }
+                        }else if ($response_permiso == 'exist'){
+                            $data = array('status' => false,'msg' => 'Este permiso con rol , ya ha sido creado, escoga uno diferente');
                         }else{
-                            $data = array('status' => true, 'msg' => 'Permiso creado correctamente');
-                        }
-                    }else if ($response_permiso == 'exist'){
-                        $data = array('status' => false,'msg' => 'Este permiso con rol , ya ha sido creado, escoga uno diferente');
+                            $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
+                        }                
+                    
                     }else{
-                        $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
-                    }                
-                
+                        $data = array('status' => false,'formErrors' => array(
+                            'id_rol' => "El campo usuario se encuentra vacio",
+                        ));
+                    }
                 }else{
-                    $data = array('status' => false,'formErrors' => array(
-                        'id_rol' => "El campo usuario se encuentra vacio",
-                    ));
+                    $data = array('status' => false,'msg' => 'error');
                 }
             }else{
                 header('location:'.server_url.'Errors');
@@ -190,4 +204,35 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
+    
+    
+        public function delPermisoModulo(){
+            if (empty($_SESSION['permisos_modulo']['d']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                if ($_POST){
+                    $id_permiso = intval(strclean($_POST["id_permiso"]));
+                    $id_rol = intval(strclean($_POST["id_rol"]));
+                    if(validateEmptyFields([$id_permiso,$id_rol])){
+                        if(empty(preg_matchall([$id_permiso,$id_rol],regex_numbers))){
+                            $response_del = $this->model->deletePermisoModulo($id_permiso,$id_rol);
+                            if ($response_del == "ok"){
+                                $data = array("status" => true, "msg" => "permiso eliminado correctamente");
+                            }else{
+                                $data = array("status" => false, "msg" => "Error hubo problemas al eliminar el permiso");
+                            }
+                        }else{
+                            $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                    }
+                }else{
+                    $data = array("status" => false, "msg" => "Error Hubo problemas");
+                }
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+    }
 }

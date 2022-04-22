@@ -37,7 +37,7 @@
                 INNER JOIN modulos as md
                 ON md.id_modulo = perm.id_modulo
                 INNER JOIN roles as rl
-                ON rl.id_rol = perm.id_rol 
+                ON rl.id_rol = perm.id_rol WHERE perm.id_rol != 1 and rl.id_rol !=1
                 GROUP BY perm.id_rol";
             $request = $this->select_sql_all($sql);
             return $request;
@@ -45,7 +45,7 @@
 
         public function selectPermiso(int $id_rol){
             $this->intRol = $id_rol;
-            $sql = "SELECT perm.id_permiso,md.nombre as nombre_modulo FROM permisos as perm 
+            $sql = "SELECT perm.id_permiso,md.nombre as nombre_modulo,perm.id_permiso as permiso_mod,perm.r,perm.w,perm.u,perm.d  FROM permisos as perm 
             INNER JOIN roles as rl ON perm.id_rol = rl.id_rol
             INNER JOIN modulos as md ON perm.id_modulo = md.id_modulo
             WHERE rl.id_rol =$this->intRol";
@@ -126,6 +126,21 @@
                 $arrPermisos[$request[$i]['id_modulo']] = $request[$i];
             }
             return $arrPermisos;
+        }
+
+        public function deletePermisoModulo(int $id_permiso, int $id_rol){
+            $this->intIdpermiso = $id_permiso;
+            $this->intIdRol = $id_rol;
+            
+            $sql_delete = "DELETE FROM permisos WHERE id_permiso = $this->intIdpermiso and id_rol = $this->intIdRol";
+
+            $request_delete = $this->delete_sql($sql_delete);
+            if ($request_delete){
+                $request_delete = 'ok';
+            }else{
+                $request_delete = 'error';
+            }
+            return $request_delete;
         }
     }
 
