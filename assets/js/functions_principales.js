@@ -73,7 +73,7 @@ function closeModal(nameSelector,listCamps){
 
 
 function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = [],
-        sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',pageLength=10){
+        sDom = '<"row" <"col-sm-12 col-md-6"l> <"col-sm-12 col-md-6"f> >rt<"row" <"col-sm-12 col-md-5"i> <"col-sm-12 col-md-7"p> >',pageLength=10,rowCallback=""){
     let tableData =  $(nameSelector).DataTable({
         "sDom": sDom,
         "aProcessing":true,
@@ -89,6 +89,7 @@ function configDataTables(nameSelector,urlAjax,ColumnData,columnDefs = [],
         },
         "columns":ColumnData,
         "columnDefs":columnDefs,
+        "rowCallback":rowCallback,
     });
     
     $('div.dataTables_length select').addClass("form-control form-control-sm");

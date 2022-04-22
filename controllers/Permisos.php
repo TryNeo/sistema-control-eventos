@@ -204,6 +204,16 @@
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
+
+
+        public function setPermisoCheckBox(){
+            if ($_POST) {
+                dep($_POST);
+            }else{
+                header('location:'.server_url.'Errors');
+            }
+            die();
+        }
     
     
         public function delPermisoModulo(){
