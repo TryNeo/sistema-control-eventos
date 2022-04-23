@@ -10,10 +10,11 @@ const base_url_assets = "http://localhost/sistema-control-eventos/assets/";
 const base_url_image = "http://localhost/sistema-control-eventos/assets/images/";
 const regex_string = '^[a-zA-ZáéíóñÁÉÍÓÚÑ ]+$';
 const regex_numbers = '^[0-9]+$';
-const regex_fechas = '^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$';
+const regex_fechas = new RegExp("([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})");
 const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
 const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
 const regex_image = '[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$';
+const regex_hora = /^(0?[1-9]|1[0-2]):([0-5]\d)\s?((?:A|P)\.?M\.?)$/i;
 
 function clickModal(nameSelector,modalName,listCamps){
     $('#openModal').on('click',function (e) {
@@ -186,6 +187,21 @@ function validateImage(value){
     }
     return true;
 }
+
+function validateFecha(value){
+    if (value.match(regex_fechas) === null){
+        return false;
+    }
+    return true;
+}
+
+function validateHora(value){
+    if (value.match(regex_hora) === null){
+        return false;
+    }
+    return true;
+}
+
 
 function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod,modalNameSelector){
     $(idForm).on('submit',function (e) {

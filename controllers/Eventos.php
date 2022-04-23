@@ -24,4 +24,27 @@
 
         }
 
+
+        public function getEventos(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $data = $this->model->selectEventos();
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
+
+        public function setEvento(){
+            if ($_POST) {
+                dep($_POST);
+            }else{
+                header('location:'.server_url.'Errors');
+            }
+            die();
+        }
+
+
     }

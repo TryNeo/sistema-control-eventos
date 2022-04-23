@@ -53,7 +53,6 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label class="control-label">Fecha inicio</label>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -66,7 +65,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="control-label">Hora inicio</label>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -80,7 +78,6 @@
                 </div>
                 
                 <div class="col-md-6">
-                    <label class="control-label">Fecha fin</label>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-append">
@@ -93,7 +90,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <label class="control-label">Hora fin</label>
                     <div class="form-group">
                         <div class="input-group">
                             <div class="input-group-append">
