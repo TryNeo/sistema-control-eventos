@@ -6,10 +6,11 @@
     const regex_numbers = '/^[0-9]+$/';
     const regex_username = '/^[a-z0-9_-]{3,16}$/';
     const regex_password = '/^[a-zA-Z0-9_-]{4,18}$/';
-    const regex_fechas = '/^([0-2][0-9]|3[0-1])(\/|-)(0[1-9]|1[0-2])\2(\d{4})$/';
+    const regex_fechas = '/^([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})$/';
     const regex_cedula =  '/^[0-9]{0,10}$/';
     const regex_imagen = '/^[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/';
-    
+    const regex_hora = '/^(0?[1-9]|1[0-2]):([0-5]\d)\s?((?:A|P)\.?M\.?)$/i';
+
     const libs = "libraries/";
     const views = "views/";
     const company = "Sistema Control Eventos";

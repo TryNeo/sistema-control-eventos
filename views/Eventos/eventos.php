@@ -9,8 +9,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
+                        <?php  if ($_SESSION['permisos_modulo']['w']) {?>
                             <button id="openModal" type="button" class="btn btn-primary mb-3 btn-lg mb-3">Agregar <i class="fa fa-plus"></i></button>
-                            <div class="row">
+                        <?php } ?>
+                        <div class="row">
                                 <div class="col-md-12">
                                     <table class="table tableEvento table-striped table-bordered dt-responsive nowrap"
                                            cellspacing="0" style="width:100%">

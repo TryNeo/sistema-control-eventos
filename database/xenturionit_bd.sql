@@ -50,7 +50,7 @@ CREATE TABLE permisos(
 );
 
 DROP TABLE IF EXISTS categoria_evento;
-CREATE TABLE categoria_evento(id_categoria tinyint(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE categoria_evento(id_categoria int(11) NOT NULL AUTO_INCREMENT,
                               nombre_categoria varchar(50) DEFAULT NULL,
                               descripcion varchar(50) DEFAULT NULL,
                               icono varchar(40) DEFAULT NULL,
@@ -59,10 +59,10 @@ CREATE TABLE categoria_evento(id_categoria tinyint(10) NOT NULL AUTO_INCREMENT,
                               fecha_modifica datetime DEFAULT NULL,
                               PRIMARY KEY (id_categoria),
                               KEY id_categoria (id_categoria)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+);
 
 DROP TABLE IF EXISTS `invitados`;
-CREATE TABLE `invitados` (   `id_invitado` tinyint(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `invitados` (   `id_invitado` int(11) NOT NULL AUTO_INCREMENT,
                              `nombre_invitado` varchar(50) DEFAULT NULL,
                              `apellido_invitado` varchar(50) DEFAULT NULL,
                              `descripcion` varchar(150) DEFAULT NULL,
@@ -71,21 +71,21 @@ CREATE TABLE `invitados` (   `id_invitado` tinyint(4) NOT NULL AUTO_INCREMENT,
                              `fecha_crea` datetime DEFAULT NULL,
                              `fecha_modifica` datetime DEFAULT NULL,
                              PRIMARY KEY (`id_invitado`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
+);
 
 
 DROP TABLE IF EXISTS `eventos`;
 CREATE TABLE `eventos` (
-  `id_evento` tinyint(10) NOT NULL AUTO_INCREMENT,
+  `id_evento` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_evento` varchar(60) DEFAULT NULL,
+  `cupo` int(11) DEFAULT NULL,
   `fecha_evento_inicio` date DEFAULT NULL,
-  `hora_evento_inicio` time DEFAULT NULL,
+  `hora_evento_inicio`  varchar(20) DEFAULT NULL,
   `fecha_evento_fin` date DEFAULT NULL,
-  `hora_evento_fin` time DEFAULT NULL,
-  `id_cat_evento` tinyint(10) NOT NULL,
-  `id_inv` tinyint(10) NOT NULL,
-  `clave_evento` varchar(10) DEFAULT NULL,
+  `hora_evento_fin` varchar(20)  DEFAULT NULL,
+  `id_cat_evento` int(11) NOT NULL,
+  `id_inv` int(11) NOT NULL,
+  `clave_evento` varchar(50) DEFAULT NULL,
   `estado` tinyint(1) DEFAULT NULL,
   `fecha_crea` datetime DEFAULT NULL,
   `fecha_modifica` datetime DEFAULT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `eventos` (
   KEY `id_inv` (`id_inv`),
   CONSTRAINT `rel_evento_categoria` FOREIGN KEY (`id_cat_evento`) REFERENCES `categoria_evento` (`id_categoria`),
   CONSTRAINT `rel_invitado_ev` FOREIGN KEY (`id_inv`) REFERENCES `invitados` (`id_invitado`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+);
 
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);

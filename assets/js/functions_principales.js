@@ -202,7 +202,6 @@ function validateHora(value){
     return true;
 }
 
-
 function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod,modalNameSelector){
     $(idForm).on('submit',function (e) {
         e.preventDefault();

@@ -8,9 +8,9 @@ $(function(){
 
     const tableInvitados =  configDataTables('.tableEvento',base_url+"eventos/getEventos",columnData)
 
-    const listCamps =  ['#id_evento',"#nombre_evento","#id_categoria","#id_invitado",
+    const listCamps =  ['#id_evento',"#nombre_evento","#cupo","#id_categoria","#id_invitado",
                             "#fecha_evento_inicio","#hora_evento_inicio","#fecha_evento_fin","#hora_evento_fin"];
-    const fieldsToValidate = ['id_evento',"nombre_evento","id_categoria","id_invitado",
+    const fieldsToValidate = ['id_evento',"nombre_evento","cupo","id_categoria","id_invitado",
                                 "fecha_evento_inicio","hora_evento_inicio","fecha_evento_fin","hora_evento_fin"];
     
     const configValid = configToValidate()
@@ -32,11 +32,16 @@ function configToValidate(){
     });
     validatorServerSide.validator.custom = function(el, event){
 
+        if (el.name != "id_evento"){
+            if($(el).is('[name='+el.name+']')){
+                let value= $(el).val()
+                if (!validateEmptyField(value)){
+                    return 'Este campo es obligatorio';
+                }
+            }
+        }
         if($(el).is('[name=nombre_evento]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validString(value)){
                 return 'El nombre '+value+' contiene numeros o caracteres especiales';
@@ -46,9 +51,6 @@ function configToValidate(){
 
         if($(el).is('[name=fecha_evento_inicio]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validateFecha(value)){
                 return 'La fecha '+value+' no es valida';
@@ -59,9 +61,6 @@ function configToValidate(){
         
         if($(el).is('[name=hora_evento_inicio]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validateHora(value)){
                 return 'La Hora '+value+' no es valida';
@@ -72,9 +71,6 @@ function configToValidate(){
 
         if($(el).is('[name=fecha_evento_fin]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validateFecha(value)){
                 return 'La fecha '+value+' no es valida';
@@ -84,33 +80,12 @@ function configToValidate(){
 
         if($(el).is('[name=hora_evento_fin]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validateHora(value)){
                 return 'La Hora '+value+' no es valida';
             }
             
         }
-
-        if($(el).is('[name=id_categoria]')){
-            let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
-            
-        }
-
-
-        if($(el).is('[name=id_invitado]')){
-            let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
-            
-        }
-
     }
 
     return validatorServerSide

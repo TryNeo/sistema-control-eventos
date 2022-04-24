@@ -23,6 +23,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text">
+                                <i class="fab fa-accusoft"></i>
+                                </span>
+                            </div>
+                            <input type="number" name="cupo" class="form-control" id="cupo"  placeholder="ingrese el cupo">
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-md-6">
                     <div class="form-group">
