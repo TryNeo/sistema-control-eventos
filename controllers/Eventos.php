@@ -31,6 +31,18 @@
                 $data = array("status" => false, "msg" => "Error no tiene permisos");
             }else{
                 $data = $this->model->selectEventos();
+                for ($i=0; $i < count($data); $i++) {
+                    
+                    if ($data[$i]['estado'] == 1){
+                        $data[$i]['estado']= '<span  class="btn btn-success btn-icon-split btn-custom-sm"><i class="icon fas fa-check-circle "></i><span class="label text-padding text-white-50">&nbsp;&nbsp;Activo</span></span>';
+                    }else{
+                         $data[$i]['estado']='<span  class="btn btn-danger btn-icon-split btn-custom-sm"><i class="icon fas fa-ban "></i><span class="label text-padding text-white-50">Inactivo</span></span>';
+                    }
+                   
+                    $data[$i]['nombre_invitado'] = $data[$i]['nombre_invitado'].' '.$data[$i]['apellido_invitado'];
+                    $data[$i]['fecha_inicio_hora_inicio'] = $data[$i]['fecha_evento_inicio'].' '.$data[$i]['hora_evento_inicio'];
+                    $data[$i]['fecha_fin_hora_fin'] = $data[$i]['fecha_evento_fin'].' '.$data[$i]['hora_evento_fin'];
+                }
             }
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();

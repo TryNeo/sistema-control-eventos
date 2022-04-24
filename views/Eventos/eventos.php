@@ -19,7 +19,14 @@
                                         <thead class="text-uppercase">
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">NOMBRE</th>
+                                            <th scope="col">NOMBRE EVENTO</th>
+                                            <th scope="col">CUPO</th>
+                                            <th scope="col">FECHA Y HORA | INICIO</th>
+                                            <th scope="col">FEHCA Y HORA | FIN</th>
+                                            <th scope="col">CATEGORIA</th>
+                                            <th scope="col">INVITADO</th>
+                                            <th scope="col">CLAVE EVENTO</th>
+                                            <th scope="col">ESTADO</th>
                                         </tr>
                                         </thead>
                                         <tbody>

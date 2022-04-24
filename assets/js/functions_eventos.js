@@ -3,7 +3,14 @@ $(function(){
     const columnData = [
         {"data":"id_evento"},
         {"data":"nombre_evento"},
-        ]
+        {"data":"cupo"},
+        {"data":"fecha_inicio_hora_inicio"},
+        {"data":"fecha_fin_hora_fin"},
+        {"data":"nombre_categoria"},
+        {"data":"nombre_invitado"},
+        {"data":"clave_evento"},
+        {"data":"estado"},
+    ]
 
 
     const tableInvitados =  configDataTables('.tableEvento',base_url+"eventos/getEventos",columnData)

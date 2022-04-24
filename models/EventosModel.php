@@ -22,7 +22,12 @@ class EventosModel extends Mysql
 
     public function selectEventos()
     {
-        $sql = "SELECT id_evento,nombre_evento FROM eventos where estado=1 ORDER BY id_evento DESC";
+        $sql = "SELECT ev.id_evento,ev.nombre_evento,ev.cupo,ev.fecha_evento_inicio,
+                    ev.hora_evento_inicio,ev.fecha_evento_fin,ev.hora_evento_fin,cate.nombre_categoria,inv.nombre_invitado,inv.apellido_invitado,ev.clave_evento,ev.estado
+                FROM eventos as ev
+                    INNER JOIN categoria_evento as cate ON ev.id_cat_evento = cate.id_categoria
+                    INNER JOIN invitados as inv ON ev.id_inv = inv.id_invitado
+                where ev.estado=1 ORDER BY ev.id_evento DESC";
         $request = $this->select_sql_all($sql);
         return $request;
     }
