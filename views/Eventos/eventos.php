@@ -27,6 +27,7 @@
                                             <th scope="col">INVITADO</th>
                                             <th scope="col">CLAVE EVENTO</th>
                                             <th scope="col">ESTADO</th>
+                                            <th scope="col">OPCIONES</th>
                                         </tr>
                                         </thead>
                                         <tbody>

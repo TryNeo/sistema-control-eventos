@@ -32,6 +32,14 @@ class EventosModel extends Mysql
         return $request;
     }
 
+    public function selectEvento(int $id_evento){
+        $this->intIdEvento = $id_evento;
+        $sql = "SELECT id_evento,nombre_evento,cupo,id_cat_evento as id_categoria ,id_inv as id_invitado,fecha_evento_inicio,hora_evento_inicio,fecha_evento_fin,hora_evento_fin,estado FROM eventos where id_evento =$this->intIdEvento";
+        $request = $this->select_sql($sql);
+        return $request;
+
+    }
+
 
     public function insertEvento(string $nombre_evento,int $cupo,string $fecha_inicio,string $hora_inicio, string $fecha_fin,string $hora_fin,int $id_categoria, int $id_invitado)
     {
@@ -61,16 +69,59 @@ class EventosModel extends Mysql
         return $return;
     }
 
+    public function updateEvento(int $id_evento,string $nombre_evento,int $cupo,string $fecha_inicio,string $hora_inicio, string $fecha_fin,string $hora_fin,int $id_categoria, int $id_invitado)
+    {
+        $this->intIdEvento = $id_evento;
+        $this->strNombreEvento = $nombre_evento;
+        $this->intCupo = $cupo;
+        $this->dateFechaInicio = $fecha_inicio;
+        $this->dateFechaFin = $fecha_fin;
+        $this->timeHoraInicio = $hora_inicio;
+        $this->timeHoraFin = $hora_fin;
+        $this->intIdCategoria = $id_categoria;
+        $this->intIdInvitado = $id_invitado;
+
+        $return = "";
+        $sql_insert = "UPDATE eventos SET nombre_evento = ?,cupo=?,fecha_evento_inicio = ?,hora_evento_inicio = ?,fecha_evento_fin = ?, hora_evento_fin = ?, id_cat_evento = ?, id_inv = ?, fecha_modifica = now() WHERE id_evento = $this->intIdEvento";
+        $data = array($this->strNombreEvento,$this->intCupo,$this->dateFechaInicio,$this->timeHoraInicio,$this->dateFechaFin,$this->timeHoraFin,$this->intIdCategoria,$this->intIdInvitado);
+        $request_update = $this->update_sql($sql_insert, $data);
+        if($this->updateEventoClave($this->intIdCategoria,$this->intIdEvento) == "success"){
+            $return = $request_update;
+            return $return;
+        }
+    }
+
+
     public function updateEventoClave(int $id_categoria,int $last_id_evento){
         $sql = "SELECT nombre_categoria FROM categoria_evento where id_categoria = $id_categoria and estado = 1";
         $request = $this->select_sql($sql);
-        $this->strclaveEvento = $request['nombre_categoria'].'_'.$last_id_evento;
+        $this->strclaveEvento = strtolower($request['nombre_categoria'].'_'.$last_id_evento);
         $sql_update = "UPDATE eventos SET clave_evento = ?,fecha_modifica = now()  WHERE id_evento = $last_id_evento";
         $data = array($this->strclaveEvento);
         $request_update = $this->update_sql($sql_update,$data);
         return "success";
     }
 
+    
+    public function deleteEvento(int $id_evento){
+        $this->intIdEvento = $id_evento;
+        /*$sql = "SELECT * FROM registrados WHERE id_categoria = $this->intCat";
+        $request_delete = $this->select_sql_all($sql);*/
+        $request_delete = "";
+        if(empty($request_delete)){
+            $sql = "UPDATE eventos set estado = ? , fecha_modifica = now() WHERE  id_evento = $this->intIdEvento";
+            $data = array(0);
+            $request_delete = $this->update_sql($sql,$data);
+            if ($request_delete){
+                $request_delete = 'ok';
+            }else{
+                $request_delete = 'error';
+            }
+        }else{
+            $request_delete = 'exist';
+        }
+        return $request_delete;
+    }
 }
 
 ?>

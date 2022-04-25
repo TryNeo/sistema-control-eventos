@@ -32,22 +32,66 @@
             }else{
                 $data = $this->model->selectEventos();
                 for ($i=0; $i < count($data); $i++) {
-                    
+                    $btnEditarEvento = '';
+                    $btnEliminarEvento = '';
+
                     if ($data[$i]['estado'] == 1){
                         $data[$i]['estado']= '<span  class="btn btn-success btn-icon-split btn-custom-sm"><i class="icon fas fa-check-circle "></i><span class="label text-padding text-white-50">&nbsp;&nbsp;Activo</span></span>';
                     }else{
                          $data[$i]['estado']='<span  class="btn btn-danger btn-icon-split btn-custom-sm"><i class="icon fas fa-ban "></i><span class="label text-padding text-white-50">Inactivo</span></span>';
                     }
+
+                    if ($_SESSION['permisos_modulo']['u']) {
+                        $btnEditarEvento = '<button class="btn btn-primary btnEditarEvento btn-circle " title="editar" 
+                        onClick="return clickModalEditing('."'getEvento/".$data[$i]['id_evento']."'".','."'Actualizacion | Evento'".','."'id_evento'".','."['id_evento','nombre_evento','cupo','fecha_evento_inicio','hora_evento_inicio','fecha_evento_fin','hora_evento_fin']".','."'#modalEvento'".','.'true'.','."['id_categoria','id_invitado']".');">
+                        <i class="fa fa-edit"></i></button>';
+                    }
+
+                    
+
+                    if ($_SESSION['permisos_modulo']['d']) {
+                        $btnEliminarEvento = '<button  class="btn btn-danger btn-circle btnEliminarEvento" 
+                        title="eliminar" onClick="return deleteServerSide('."'delEvento/'".','.$data[$i]['id_evento'].','."'¿Desea eliminar esta la categoria ".$data[$i]['nombre_evento']."?'".','."'.tableEvento'".');"><i class="far fa-thumbs-down"></i></button>';
+                    }
+
                    
                     $data[$i]['nombre_invitado'] = $data[$i]['nombre_invitado'].' '.$data[$i]['apellido_invitado'];
                     $data[$i]['fecha_inicio_hora_inicio'] = $data[$i]['fecha_evento_inicio'].' '.$data[$i]['hora_evento_inicio'];
                     $data[$i]['fecha_fin_hora_fin'] = $data[$i]['fecha_evento_fin'].' '.$data[$i]['hora_evento_fin'];
+                    $data[$i]['opciones'] = $btnEditarEvento.' '.$btnEliminarEvento;
                 }
             }
             echo json_encode($data,JSON_UNESCAPED_UNICODE);
             die();
         }
 
+        
+        public function getEvento(int $id_evento){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data_response = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $id_evento  = Intval(strclean($id_evento));
+                if(validateEmptyFields([$id_evento])){
+                    if(empty(preg_matchall([$id_evento],regex_numbers))){
+                        if ($id_evento > 0){
+                            $data = $this->model->selectEvento($id_evento);
+                            if (empty($data)){
+                                $data_response = array('status' => false,'msg'=> 'Datos no encontrados');
+                            }else{
+                                $data_response = array('status' => true,'msg'=> $data);
+                            }
+                        }
+                    }else{
+                        $data = array('status' => false,'msg' => 'El campo estan mal escrito , verifique y vuelva a ingresarlo');
+                    }
+                }else {
+                    $data = array('status' => false,'msg' => 'El campo se encuentra vacio , verifique y vuelva a ingresarlo');
+                }
+            }
+            echo json_encode($data_response,JSON_UNESCAPED_UNICODE);
+            die();
+        }
 
         public function setEvento(){
             if ($_POST) {
@@ -97,7 +141,15 @@
                             $option = 1;
                         }
                     }else{
-                        $option = 2;
+                        if (empty($_SESSION['permisos_modulo']['w'])){
+                            header('location:'.server_url.'Errors');
+                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            $response_eventos = 0;
+                        }else{
+                            $response_eventos = $this->model->UpdateEvento($id_evento,$nombre_evento,$cupo,$fecha_evento_inicio,
+                                $hora_evento_inicio,$fecha_evento_fin,$hora_evento_fin,$id_categoria,$id_invitado);
+                            $option = 2;
+                        }
                     }
                     
                     if ($response_eventos > 0){ 
@@ -127,5 +179,32 @@
             die();
         }
 
+
+        public function delEvento(){
+            if (empty($_SESSION['permisos_modulo']['d']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                if ($_POST){
+                    $id_evento = intval(strclean($_POST["id"]));
+                    if(validateEmptyFields([$id_evento])){
+                        if(empty(preg_matchall([$id_evento],regex_numbers))){
+                            $response_del = $this->model->deleteEvento($id_evento);
+                            if($response_del == "ok"){
+                                $data = array("status" => true, "msg" => "Se ha eliminado la categoria");
+                            }else if ($response_del == "exist"){
+                                $data = array("status" => false, "msg" => "No es posisible eliminar una categoria ya asociada");
+                            }else{
+                                $data = array("status" => false, "msg" => "Error al eliminar la categoria");
+                            }
+                        }
+                    }
+                }else{
+                    $data = array("status" => false, "msg" => "Error Hubo problemas");
+                }
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
 
     }

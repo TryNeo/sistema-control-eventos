@@ -10,6 +10,7 @@ $(function(){
         {"data":"nombre_invitado"},
         {"data":"clave_evento"},
         {"data":"estado"},
+        {"data":"opciones"},
     ]
 
 

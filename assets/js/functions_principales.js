@@ -35,7 +35,7 @@ function clickModal(nameSelector,modalName,listCamps){
     });
 }
 
-function clickModalEditing(urlData,modalName,nameSelectorId,listCamps,nameSelectorModal){
+function clickModalEditing(urlData,modalName,nameSelectorId,listCamps,nameSelectorModal,isSelect =false,listSelect = []) {
     $(nameSelectorModal).modal("show");
     document.querySelector('#modalTitle').innerHTML = modalName;
     document.querySelector('.changeText').innerHTML = " Actualizar registro ";
@@ -51,6 +51,21 @@ function clickModalEditing(urlData,modalName,nameSelectorId,listCamps,nameSelect
                     $('#'+element).removeClass('is-invalid');
                     $('#'+element).addClass('is-valid');
                 })
+
+                if(isSelect){
+                    listSelect.forEach(function(element,index){
+                        let a = document.querySelector("#"+element).getElementsByTagName('option');
+                        for (let item of a){
+                            if (item.value === data.msg[element]) {
+                                item.setAttribute("selected","");
+                            }else{
+                                item.removeAttribute("selected");
+                            }
+                        }
+                        $('#'+element).removeClass('is-invalid');
+                        $('#'+element).addClass('is-valid');
+                    })
+                }
             }else {
                 mensaje("error","Error | Peticion Ajax","Oops hubo un error al realizar la peticion")
             }
