@@ -21,6 +21,8 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/i18n/es.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
@@ -41,6 +43,9 @@
         <?php } ?>
         <?php if ($data['page'] == 'eventos') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_eventos.js"></script>
+        <?php } ?>
+        <?php if ($data['page'] == 'calendar') { ?>
+            <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_eventos_calendario.js"></script>
         <?php } ?>
     <?php }else {?>
     <?php } ?>

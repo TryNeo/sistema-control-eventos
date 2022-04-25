@@ -207,4 +207,29 @@
             die();
         }
 
+        
+        public function calendario(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+            }
+            $data["page_id"] = 9;
+            $data["tag_pag"] = "Eventos";
+            $data["page_title"] = "Eventos | Inicio";
+            $data["page_name"] = "Listado de Eventos";
+            $data['page'] = "calendar";
+            $this->views->getView($this,"calendario",$data);
+
+        }
+
+        public function getCalendario(){
+            if (empty($_SESSION['permisos_modulo']['r']) ) {
+                header('location:'.server_url.'Errors');
+                $data = array("status" => false, "msg" => "Error no tiene permisos");
+            }else{
+                $data = $this->model->selectCalendarioEventos();
+            }
+            echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            die();
+        }
+
     }

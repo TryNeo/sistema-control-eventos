@@ -32,6 +32,14 @@ class EventosModel extends Mysql
         return $request;
     }
 
+    public function selectCalendarioEventos()
+    {
+        $sql = "SELECT nombre_evento as title,fecha_evento_inicio as start, fecha_evento_fin as end FROM eventos WHERE estado = 1";
+        $request = $this->select_sql_all($sql);
+        return $request;
+    }
+
+
     public function selectEvento(int $id_evento){
         $this->intIdEvento = $id_evento;
         $sql = "SELECT id_evento,nombre_evento,cupo,id_cat_evento as id_categoria ,id_inv as id_invitado,fecha_evento_inicio,hora_evento_inicio,fecha_evento_fin,hora_evento_fin,estado FROM eventos where id_evento =$this->intIdEvento";
