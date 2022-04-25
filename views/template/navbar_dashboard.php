@@ -6,9 +6,13 @@
             </ul>
         </form>
         <ul class="navbar-nav navbar-right">
+            <li class="dropdown dropdown-list-toggle reloj" style="margin-right:20px;margin-top:6px;color:white;font-size:17px;">
+                <a class="nav-link reloj" href="#">
+                </a>
+            </li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hola></div></a>
+            <img alt="image" src="https://demo.getstisla.com/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <div class="d-sm-none d-lg-inline-block">Hola, <?= $_SESSION['user_data']['nombre'] ?> <?= $_SESSION['user_data']['apellido'] ?></div></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-divider"></div>
                         <a href="<?php echo server_url; ?>logout/" class="dropdown-item has-icon text-danger">
@@ -118,9 +122,9 @@
                   
                   <?php if (!empty($_SESSION['permisos'][4]['r'])) {?>
                     <?php if($data['page_id'] == 4 ){ ?>
-                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fa fa-database" ></i>Respaldos</a></li>                
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fas fa-database" ></i>Respaldos</a></li>                
                     <?php }else{ ?>
-                      <li><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fa fa-database"></i>Respaldos</a></li>                
+                      <li><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fas fa-database"></i>Respaldos</a></li>                
                     <?php } ?>
                   <?php } ?>
                 </ul>

@@ -22,7 +22,7 @@
             if($_SESSION['id_usuario'] = 1){
                 $where_admin = " and id_rol !=1";
             }
-            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado =1 ";
+            $sql = "SELECT id_rol,nombre_rol,descripcion,estado FROM roles WHERE estado =1 and id_rol !=1";
             $request = $this->select_sql_all($sql);
             return $request;
         }
