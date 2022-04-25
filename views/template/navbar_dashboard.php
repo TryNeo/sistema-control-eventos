@@ -115,6 +115,14 @@
                     <?php } ?>
                   <?php } ?>
 
+                  
+                  <?php if (!empty($_SESSION['permisos'][4]['r'])) {?>
+                    <?php if($data['page_id'] == 4 ){ ?>
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fa fa-database" ></i>Respaldos</a></li>                
+                    <?php }else{ ?>
+                      <li><a class="nav-link" href="<?php echo server_url; ?>respaldo/"><i class="fa fa-database"></i>Respaldos</a></li>                
+                    <?php } ?>
+                  <?php } ?>
                 </ul>
               </li>
             </ul>
