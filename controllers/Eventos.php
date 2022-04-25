@@ -43,7 +43,7 @@
 
                     if ($_SESSION['permisos_modulo']['u']) {
                         $btnEditarEvento = '<button class="btn btn-primary btnEditarEvento btn-circle " title="editar" 
-                        onClick="return clickModalEditing('."'getEvento/".$data[$i]['id_evento']."'".','."'Actualizacion | Evento'".','."'id_evento'".','."['id_evento','nombre_evento','cupo','fecha_evento_inicio','hora_evento_inicio','fecha_evento_fin','hora_evento_fin']".','."'#modalEvento'".','.'true'.','."['id_categoria','id_invitado']".');">
+                        onClick="return clickModalEditing('."'getEvento/".$data[$i]['id_evento']."'".','."'Actualizacion | Evento'".','."'id_evento'".','."['id_evento','nombre_evento','cupo','color_evento','fecha_evento_inicio','hora_evento_inicio','fecha_evento_fin','hora_evento_fin']".','."'#modalEvento'".','.'true'.','."['id_categoria','id_invitado']".');">
                         <i class="fa fa-edit"></i></button>';
                     }
 
@@ -99,6 +99,7 @@
                 $id_evento = Intval(strclean($_POST['id_evento']));
                 $nombre_evento = ucwords(strtolower(strclean($_POST["nombre_evento"])));
                 $cupo = Intval(strclean($_POST['cupo']));
+                $color_evento = strclean($_POST['color_evento']);
                 $fecha_evento_inicio = strclean($_POST["fecha_evento_inicio"]);
                 $hora_evento_inicio = strclean($_POST["hora_evento_inicio"]);
                 $fecha_evento_fin = strclean($_POST["fecha_evento_fin"]);
@@ -136,7 +137,7 @@
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
                             $response_eventos = 0;
                         }else{
-                            $response_eventos = $this->model->insertEvento($nombre_evento,$cupo,$fecha_evento_inicio,
+                            $response_eventos = $this->model->insertEvento($nombre_evento,$cupo,$color_evento,$fecha_evento_inicio,
                                 $hora_evento_inicio,$fecha_evento_fin,$hora_evento_fin,$id_categoria,$id_invitado);
                             $option = 1;
                         }
@@ -146,7 +147,7 @@
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
                             $response_eventos = 0;
                         }else{
-                            $response_eventos = $this->model->UpdateEvento($id_evento,$nombre_evento,$cupo,$fecha_evento_inicio,
+                            $response_eventos = $this->model->UpdateEvento($id_evento,$nombre_evento,$cupo,$color_evento,$fecha_evento_inicio,
                                 $hora_evento_inicio,$fecha_evento_fin,$hora_evento_fin,$id_categoria,$id_invitado);
                             $option = 2;
                         }

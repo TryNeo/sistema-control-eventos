@@ -8,10 +8,12 @@ document.addEventListener('DOMContentLoaded', function() {
         let calendarUI = document.getElementById("calendar");
         let calendar = new FullCalendar.Calendar(calendarUI,{
             locale: 'es',
+            timeZone: 'America/Guayaquil',
             height: 'auto',
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
+                right: 'prevYear,prev,next,nextYear'
             },
             events : objdata
         }) 

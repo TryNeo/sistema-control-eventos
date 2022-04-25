@@ -79,6 +79,7 @@ CREATE TABLE `eventos` (
   `id_evento` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_evento` varchar(60) DEFAULT NULL,
   `cupo` int(11) DEFAULT NULL,
+  `color_evento` varchar(40) DEFAULT NULL,
   `fecha_evento_inicio` date DEFAULT NULL,
   `hora_evento_inicio`  varchar(20) DEFAULT NULL,
   `fecha_evento_fin` date DEFAULT NULL,

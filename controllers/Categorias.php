@@ -96,34 +96,36 @@
 
                 if(validateEmptyFields($validate_data)){
                     if(empty(preg_matchall($validate_data,regex_string))){
+                        
                         if ($id_categoria == 0){
-                            $response_rol = $this->model->insertCategoria($nombre_categoria,$descripcion_categoria,$icono);
-                            $option = 1;
-                        }else{
-                            $response_rol = $this->model->updateCategoria($id_categoria,$nombre_categoria,$descripcion_categoria,$icono);
-                            $option = 2;
-                        }
-
-                        if ($response_rol > 0){
                             if (empty($_SESSION['permisos_modulo']['w'])){
                                 header('location:'.server_url.'Errors');
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
+                                $response_categoria = 0;
                             }else{
-                                if ($option == 1){
-                                    $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
-                                }
+                                $response_categoria = $this->model->insertCategoria($nombre_categoria,$descripcion_categoria,$icono);
+                                $option = 1;
                             }
-
-                            if (empty($_SESSION['permisos_modulo']['u'])) {
+                        }else{
+                            if (empty($_SESSION['permisos_modulo']['w'])){
                                 header('location:'.server_url.'Errors');
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
+                                $response_categoria = 0;
                             }else{
-                                if ($option == 2){
-                                    $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
-                                }
+                                $response_categoria = $this->model->updateCategoria($id_categoria,$nombre_categoria,$descripcion_categoria,$icono);
+                                $option = 2;
                             }
+                        }
 
-                        }else if ($response_rol == 'exist'){
+                        if ($response_categoria > 0){
+                            if ($option == 1){
+                                $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
+                            }
+    
+                            if ($option == 2){
+                                $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
+                            }
+                        }else if ($response_categoria == 'exist'){
                             $data = array('status' => false,'formErrors'=> array(
                                 'nombre_categoria' => "La categoria ".$nombre_categoria." ya existe, ingrese uno nuevo",
                             ));

@@ -176,14 +176,17 @@
                     $id_rol = Intval(strclean($_POST['id_rol']));
                     $validate_data = [$id_rol];
                     if(validateEmptyFields($validate_data)){
-                        $response_permiso = $this->model->insertPermiso($id_rol);
+
+                        if (empty($_SESSION['permisos_modulo']['w'])){
+                            header('location:'.server_url.'Errors');
+                            $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        }else{
+                            $response_permiso = $this->model->insertPermiso($id_rol);
+                        }
+
+
                         if ($response_permiso > 0){ 
-                            if (empty($_SESSION['permisos_modulo']['w'])){
-                                header('location:'.server_url.'Errors');
-                                $data= array("status" => false, "msg" => "Error no tiene permisos");
-                            }else{
-                                $data = array('status' => true, 'msg' => 'Permiso creado correctamente');
-                            }
+                            $data = array('status' => true, 'msg' => 'Permiso creado correctamente');
                         }else if ($response_permiso == 'exist'){
                             $data = array('status' => false,'msg' => 'Este permiso con rol , ya ha sido creado, escoga uno diferente');
                         }else{

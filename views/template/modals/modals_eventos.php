@@ -35,6 +35,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fas fa-palette"></i>            
+                            </span>
+                        </div>
+                        <input type="color" name="color_evento" class="form-control colorpickerinput colorpicker-element" id="color_evento" >
+                    </div>
+                </div>
+                </div>
 
                 <div class="col-md-6">
                     <div class="form-group">

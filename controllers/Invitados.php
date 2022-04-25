@@ -111,32 +111,33 @@
                     }
 
                     if ($id_invitado == 0){
-                        $response_invitado = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
-                        $option = 1;
-                    }else{
-                        $response_invitado = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
-                        $option = 2;
-                    }
-
-                    if ($response_invitado > 0){ 
                         if (empty($_SESSION['permisos_modulo']['w'])){
                             header('location:'.server_url.'Errors');
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            $response_invitado  = 0;
                         }else{
-                            if ($option == 1){
-                                $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
-                            }
+                            $response_invitado = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                            $option = 1;
                         }
-
-                        if (empty($_SESSION['permisos_modulo']['u'])) {
+                    }else{
+                        if (empty($_SESSION['permisos_modulo']['w'])){
                             header('location:'.server_url.'Errors');
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
+                            $response_invitado  = 0;
                         }else{
-                            if ($option == 2){
-                                $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
-                            }
+                            $response_invitado = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                            $option = 2;
                         }
-                    
+                    }
+
+                    if ($response_invitado > 0){ 
+                        if ($option == 1){
+                            $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
+                        }
+
+                        if ($option == 2){
+                            $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
+                        }
                     }else if ($response_invitado == 'exist'){
                         $data = array('status' => false,'formErrors'=> array(
                             'nombre_invitado' => "El invitado ".$nombre_invitado." ya existe, ingrese uno nuevo",

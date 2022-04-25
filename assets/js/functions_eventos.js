@@ -16,9 +16,9 @@ $(function(){
 
     const tableInvitados =  configDataTables('.tableEvento',base_url+"eventos/getEventos",columnData)
 
-    const listCamps =  ['#id_evento',"#nombre_evento","#cupo","#id_categoria","#id_invitado",
+    const listCamps =  ['#id_evento',"#nombre_evento","#cupo","#color_evento","#id_categoria","#id_invitado",
                             "#fecha_evento_inicio","#hora_evento_inicio","#fecha_evento_fin","#hora_evento_fin"];
-    const fieldsToValidate = ['id_evento',"nombre_evento","cupo","id_categoria","id_invitado",
+    const fieldsToValidate = ['id_evento',"nombre_evento","cupo","color_evento","id_categoria","id_invitado",
                                 "fecha_evento_inicio","hora_evento_inicio","fecha_evento_fin","hora_evento_fin"];
     
     const configValid = configToValidate()

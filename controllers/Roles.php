@@ -99,33 +99,35 @@
 
                 if(validateEmptyFields($validate_data)){
                     if(empty(preg_matchall($validate_data,regex_string))){
-                        if ($id_rol == 0){
-                            $response_rol = $this->model->insertRol($nombre_rol,$descripcion_rol);
-                            $option = 1;
-                        }else{
-                            $response_rol = $this->model->updateRol($id_rol,$nombre_rol,$descripcion_rol);
-                            $option = 2;
-                        }
 
-                        if ($response_rol > 0){ 
+                        if ($id_rol == 0){
                             if (empty($_SESSION['permisos_modulo']['w'])){
                                 header('location:'.server_url.'Errors');
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
+                                $response_rol = 0;
                             }else{
-                                if ($option == 1){
-                                    $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
-                                }
+                                $response_rol = $this->model->insertRol($nombre_rol,$descripcion_rol);
+                                $option = 1;
                             }
-
-                            if (empty($_SESSION['permisos_modulo']['u'])) {
+                        }else{
+                            if (empty($_SESSION['permisos_modulo']['w'])){
                                 header('location:'.server_url.'Errors');
                                 $data= array("status" => false, "msg" => "Error no tiene permisos");
+                                $response_rol = 0;
                             }else{
-                                if ($option == 2){
-                                    $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
-                                }
+                                $response_rol = $this->model->updateRol($id_rol,$nombre_rol,$descripcion_rol);
+                                $option = 2;
                             }
-                        
+                        }
+
+                        if ($response_rol > 0){ 
+                            if ($option == 1){
+                                $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
+                            }
+    
+                            if ($option == 2){
+                                $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
+                            }
                         }else if ($response_rol == 'exist'){
                             $data = array('status' => false,'formErrors'=> array(
                                 'nombre_rol' => "El rol ".$nombre_rol." ya existe, ingrese uno nuevo",
