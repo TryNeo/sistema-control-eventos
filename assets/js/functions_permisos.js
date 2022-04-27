@@ -25,6 +25,7 @@ $(function(){
 })
 
 
+
 function formatRepo (repo) {
     if (repo.loading) {
         return repo.text;
@@ -297,3 +298,7 @@ function checkInputPermisos(row,cboxtype,data,id_rol,typePerm){
         }
     })
 }
+
+setInterval(function(){
+    $(".tablePermisos").DataTable().ajax.reload();
+},2000);

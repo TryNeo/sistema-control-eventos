@@ -51,6 +51,11 @@
         <?php if ($data['page'] == 'respaldo') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_respaldo.js"></script>
         <?php } ?>
+
+        <?php if ($data['page'] == 'usuario') { ?>
+            <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_usuarios.js"></script>
+        <?php } ?>
+
     <?php }else {?>
     <?php } ?>
 

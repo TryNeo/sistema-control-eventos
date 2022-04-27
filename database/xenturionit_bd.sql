@@ -20,6 +20,7 @@ CREATE TABLE usuarios(
     foto varchar(1000),
     usuario  varchar(50),
     email  varchar(100),
+    ultimo_online boolean DEFAULT 0,
     id_rol int(11),
     password text,
     estado boolean,

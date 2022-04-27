@@ -101,8 +101,18 @@
               </li>
               <li class="menu-header">Seguridad</li>
               <li class="dropdown">
-                <a href="#" class="has-dropdown"><i class="fas fa-lock"></i><span>Configuracion</span></a>
-                <ul class="dropdown-menu" style="display: block;">
+              <a href="#" class="has-dropdown"><i class="fas fa-lock"></i><span>Configuracion</span></a>
+              <ul class="dropdown-menu" style="display: block;">
+
+                <?php if (!empty($_SESSION['permisos'][2]['r'])) {?>
+                    <?php if($data['page_id'] == 2){ ?>
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>usuarios/"><i class="fas fa-user-circle"></i>Usuarios</a></li>                
+                    <?php }else{ ?>
+                      <li><a class="nav-link" href="<?php echo server_url; ?>usuarios/"><i class="fas fa-user-circle"></i>Usuarios</a></li>                
+                    <?php } ?>
+                  <?php } ?>
+
+
                   <?php if (!empty($_SESSION['permisos'][3]['r'])) {?>
                     <?php if($data['page_id'] == 3 ){ ?>
                       <li class="active"><a class="nav-link" href="<?php echo server_url; ?>roles/"><i class="fas fa-users" aria-hidden="true"></i>Roles</a></li>

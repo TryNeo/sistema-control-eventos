@@ -23,7 +23,7 @@
                         <i  class="fa fa-database" aria-hidden="true"></i>&nbspListado de las copias de la base de datos
                         </div>
                         <div class="card-body">
-                            <table class="table tableRespaldo table-striped  first display responsive nowrap" cellspacing="0"  style="width:100%">
+                            <table class="table tableRespaldo table-striped table-bordered dt-responsive nowrap" cellspacing="0"  style="width:100%">
                                 <thead>
                                     <th>ID</th>
                                     <th>Nombre</th>
