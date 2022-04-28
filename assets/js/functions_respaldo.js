@@ -22,6 +22,7 @@ function fntSetBackups(rbd){
         cancelButtonText : 'No, restaurar',
     }).then((result) => {
         if (result.isConfirmed) {
+            $.LoadingOverlay("show");
             if (rbd === ""){
                 mensaje("error","Error","Opps! hubo un problema esta base de datos no existe");
             }else{
@@ -31,6 +32,7 @@ function fntSetBackups(rbd){
                 }).then(function (data) {
                     let objdata = JSON.parse(data); 
                     if (objdata.status){
+                        $.LoadingOverlay("hide");
                         mensaje("success","Exitoso",objdata.msg);
                         $('.tableRespaldo').DataTable().ajax.reload();
                     }else{

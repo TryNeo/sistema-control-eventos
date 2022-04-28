@@ -11,13 +11,21 @@
                 </a>
             </li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="https://demo.getstisla.com/assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <figure class="avatar mr-2 avatar-sm">
+              <img alt="image" src="<?php echo server_url_image; ?>default.png" class="rounded-circle mr-1">
+              <?php if($_SESSION['user_data']['ultimo_online'] > 0) {?>
+                <i class="avatar-presence online"></i>
+              <?php }else{ ?>
+                <i class="avatar-presence offline"></i>
+              <?php } ?>
+            </figure>
+            
             <div class="d-sm-none d-lg-inline-block">Hola, <?= $_SESSION['user_data']['nombre'] ?> <?= $_SESSION['user_data']['apellido'] ?></div></a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-divider"></div>
-                        <a href="<?php echo server_url; ?>logout/" class="dropdown-item has-icon text-danger">
-                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-                        </a>
+                    <a href="<?php echo server_url; ?>logout/" class="dropdown-item has-icon text-danger">
+                      <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </a>
                 </div>
             </li>
         </ul>

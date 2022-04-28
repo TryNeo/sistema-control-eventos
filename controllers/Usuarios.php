@@ -35,9 +35,9 @@
                 for ($i=0; $i < count($data); $i++) { 
                     
                     if ($data[$i]['foto'] == ''){
-                        $data[$i]['foto'] = '<div class="m-r-10"><img src="https://demo.getstisla.com/assets/img/avatar/avatar-1.png"  class="rounded" width="45"></div>';
+                        $data[$i]['foto'] = '<div class="m-r-10"><img src="'.server_url_image.'default.png" alt="avatar" width="40" class="mr-3 rounded-circle"></div>';
                     }else{
-                        $data[$i]['foto'] = '<div class="m-r-10"><img src="'.$data[$i]['foto'].'"  class="rounded" width="45"></div>';
+                        $data[$i]['foto'] = '<div class="m-r-10"><img src="'.$data[$i]['foto'].'"  alt="avatar" width="40" class="mr-3 rounded-circle"></div>';
                     }
 
                     if ($data[$i]['estado'] == 1){

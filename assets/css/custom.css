@@ -12,3 +12,8 @@
     flex: 1 1 auto;
 }
 
+.text-samll-custom{
+    font-size: 12px;
+    line-height: 12px;
+}
+
