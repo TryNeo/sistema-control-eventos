@@ -49,7 +49,7 @@
 
                     if ($_SESSION['permisos_modulo']['d']) {
                         $btnEliminarCategoria = '<button  class="btn btn-danger btn-circle btnEliminarCategoria" 
-                        title="eliminar" onClick="return deleteServerSide('."'delCategoria/'".','.$data[$i]['id_categoria'].','."'¿Desea eliminar esta la categoria ".$data[$i]['nombre_categoria']."?'".','."'.tableCategoria'".');"><i class="far fa-thumbs-down"></i></button>';
+                        title="eliminar" onClick="return deleteServerSide('."'delCategoria/'".','.$data[$i]['id_categoria'].','."'¿Desea eliminar la categoria ".$data[$i]['nombre_categoria']."?'".','."'.tableCategoria'".');"><i class="far fa-thumbs-down"></i></button>';
                     }
 
                     $data[$i]['opciones'] = $btnEditarCategoria.' '.$btnEliminarCategoria;

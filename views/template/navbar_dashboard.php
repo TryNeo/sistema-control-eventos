@@ -75,6 +75,18 @@
                       </li>
                   <?php } ?>
               <?php } ?>
+
+              <?php if (!empty($_SESSION['permisos'][9]['r'])) {?>
+                  <?php if($data['page_id'] == 9 ){ ?>
+                      <li class="active">
+                          <a href="<?php echo server_url; ?>bancarias/" class="nav-link"><i class="far fa-credit-card"  aria-hidden="true"></i><span>Cuentas Bancarias</span></a>
+                      </li>
+                  <?php }else{ ?>
+                      <li>
+                          <a href="<?php echo server_url; ?>bancarias/" class="nav-link"><i class="far fa-credit-card"  aria-hidden="true"></i><span>Cuentas Bancarias</span></a>
+                      </li>
+                  <?php } ?>
+              <?php } ?>
               <li class="menu-header">Eventos</li>
               <li class="dropdown">
                 <a href="#" class="has-dropdown"><i class="fas fa-calendar-day"></i><span>Configuracion</span></a>

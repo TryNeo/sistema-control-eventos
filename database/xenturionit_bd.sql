@@ -97,6 +97,21 @@ CREATE TABLE `eventos` (
   CONSTRAINT `rel_evento_categoria` FOREIGN KEY (`id_cat_evento`) REFERENCES `categoria_evento` (`id_categoria`),
   CONSTRAINT `rel_invitado_ev` FOREIGN KEY (`id_inv`) REFERENCES `invitados` (`id_invitado`)
 );
+DROP TABLE IF EXISTS `bancarias`;
+
+CREATE TABLE `bancarias` (
+                             `id_bancaria` tinyint(11) NOT NULL AUTO_INCREMENT,
+                             `nombre_banco` varchar(50) DEFAULT NULL,
+                             `tipo` varchar(15) DEFAULT NULL,
+                             `nro_cuenta` varchar(15) DEFAULT NULL,
+                             `ced_ruc` varchar(14) DEFAULT NULL,
+                             `email` varchar(50) DEFAULT NULL,
+                             `descripcion` varchar(250) DEFAULT NULL,
+                             `estado` tinyint(1) DEFAULT NULL,
+                             `fecha_crea` datetime DEFAULT NULL,
+                             `fecha_modifica` datetime DEFAULT NULL,
+                             PRIMARY KEY (`id_bancaria`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
@@ -111,6 +126,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Permisos','mo
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Categoria','modulo de categoria',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Invitados','modulo de invitados',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Eventos','modulo de eventos',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Cuentas Bancarias','modulo de cuentas bancarias',1,now());
 
 
 INSERT INTO roles (nombre_rol,descripcion,estado,fecha_crea) values ("Administrador","permisos de acceso a todo el sistema",1,now());
@@ -123,6 +139,7 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (5,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (6,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (8,1,1,1,1,1);
+INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (9,1,1,1,1,1);
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
 
