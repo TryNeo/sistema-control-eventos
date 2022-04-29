@@ -65,12 +65,13 @@ class Bancarias extends Controllers{
         }else{
             $id_bank  = Intval(strclean($id_bancaria));
             if(validateEmptyFields([$id_bank])){
-                if(empty(preg_matchall([$id_cat],regex_numbers))){
+                if(empty(preg_matchall([$id_bancaria],regex_numbers))){
                     if ($id_bank > 0){
                         $data = $this->model->selectBancaria($id_bank);
                         if (empty($data)){
                             $data_response = array('status' => false,'msg'=> 'Datos no encontrados');
                         }else{
+
                             $data_response = array('status' => true,'msg'=> $data);
                         }
                     }
@@ -97,63 +98,52 @@ class Bancarias extends Controllers{
             $validate_data = [$nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria];
 
             if(validateEmptyFields($validate_data)){
-                if(empty(preg_matchall($validate_data,regex_string))){
+                if(!empty(preg_matchall($validate_data,regex_string))){
+                    $data = array('status' => false,'formErrors' => array(
+                        'nombre_banco' => "El campo contiene numero o caracteres especiales"));
+                }
 
-                    if ($id_bancaria == 0){
-                        if (empty($_SESSION['permisos_modulo']['w'])){
-                            header('location:'.server_url.'Errors');
-                            $data= array("status" => false, "msg" => "Error no tiene permisos");
-                            $response_bancaria = 0;
-                        }else{
-                            $response_bancaria = $this->model->insertBancaria($nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria);
-                            $option = 1;
-                        }
+                if ($id_bancaria == 0){
+                    if (empty($_SESSION['permisos_modulo']['w'])){
+                        header('location:'.server_url.'Errors');
+                        $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        $response_bancaria   = 0;
                     }else{
-                        if (empty($_SESSION['permisos_modulo']['w'])){
-                            header('location:'.server_url.'Errors');
-                            $data= array("status" => false, "msg" => "Error no tiene permisos");
-                            $response_bancaria = 0;
-                        }else{
-                            $response_bancaria = $this->model->updateBancaria($id_bancaria,$nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria);
-                            $option = 2;
-                        }
+                        $response_bancaria = $this->model->insertBancaria($nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria);                        $option = 1;
                     }
-
-                    if ($response_bancaria > 0){
-                        if ($option == 1){
-                            $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
-                        }
-
-                        if ($option == 2){
-                            $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
-                        }
-                    }else if ($response_bancaria == 'exist'){
-                        $data = array('status' => false,'formErrors'=> array(
-                            'nombre_bancaria' => "La cuenta nro ".$nrocuenta_bancaria." ya existe, ingrese uno nuevo",
-                        ));
-
-                    }else{
-                        $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
-                    }
-
-
                 }else{
+                    if (empty($_SESSION['permisos_modulo']['w'])){
+                        header('location:'.server_url.'Errors');
+                        $data= array("status" => false, "msg" => "Error no tiene permisos");
+                        $response_bancaria   = 0;
+                    }else{
+                        $response_bancaria = $this->model->updateBancaria($id_bancaria,$nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria);                        $option = 2;
+                    }
+                }
+
+                if ($response_bancaria  > 0){
+                    if ($option == 1){
+                        $data = array('status' => true, 'msg' => 'Datos guardados correctamente');
+                    }
+
+                    if ($option == 2){
+                        $data = array('status' => true, 'msg' => 'Datos actualizados correctamente');
+                    }
+                }else if ($response_bancaria  == 'exist'){
                     $data = array('status' => false,'formErrors'=> array(
-                        'nombre_bancaria' => "El nombre contiene numero o caracteres especiales",
-                        'descripcion' => "La descripcion contiene numero o caracteres especiales",
+                        'nombre_bancaria' => "La cuenta nro ".$nrocuenta_bancaria." ya existe, ingrese uno nuevo",
                     ));
 
+                }else{
+                    $data = array('status' => false,'msg' => 'Hubo un error no se pudieron guardar los datos');
                 }
             }else{
                 $data = array('status' => false,'formErrors' => array(
-                    'nombre_bancaria' => "El campo nombre se encuentra vacio",
-                    'tipo_bancaria' => "El tipo de cuenta se encuentra vacio",
-                    'nrocuenta_bancaria' => "El campo numero de cuenta se encuentra vacio",
-                    'cedruc_bancaria' => "La cedula o ruc se encuentra vacio",
-                    'email_bancaria' => "El campo email se encuentra vacio",
-                    'descripcion_bancaria' => "La descripcion se encuentra vacio",
+                    'nombre_banco' => "El campo es obligatorio",
+                    'descripcion' => "El campo es obligatorio",
                 ));
             }
+
         }else{
             header('location:'.server_url.'Errors');
         }

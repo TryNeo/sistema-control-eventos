@@ -50,15 +50,6 @@ function configToValidate(){
             if (!validateEmptyField(value)){
                 return 'Este campo es obligatorio';
             }
-
-            if (!validateStringLength(value,20)){
-                return 'La descripcion '+value+' debe ser mas larga';
-            }
-            
-            if (!validString(value)){
-                return 'La descripcion '+value+' contiene numeros o caracteres especiales';
-            }
-            
         }
 
     }
