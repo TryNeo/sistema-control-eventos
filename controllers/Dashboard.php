@@ -20,6 +20,8 @@
             $data["page_title"] = "Dashboard | Inicio";
             $data["page_name"] = "dashboard";
             $data["page"] = "dashboard";
+            $data["total_usuarios"] = $this->model->getTotalUsuarios();
+            $data["total_usuarios_online"] = $this->model->getUsuariosOnline();
             $this->views->getView($this,"dashboard",$data);
 
         }
