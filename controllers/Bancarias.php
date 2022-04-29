@@ -40,6 +40,15 @@ class Bancarias extends Controllers{
                     $data[$i]['estado']='<span  class="btn btn-danger btn-icon-split btn-custom-sm"><i class="icon fas fa-ban "></i><span class="label text-padding text-white-50">Inactivo</span></span>';
                 }
 
+                if ($data[$i]['tipo'] == 1){
+                    $data[$i]['tipo']= 'Ahorro';
+                }
+
+                if ($data[$i]['tipo'] == 2){
+                    $data[$i]['tipo']= 'Corriente';
+                }
+
+
                 if ($_SESSION['permisos_modulo']['u']) {
                     $btnEditarBancaria = '<button class="btn btn-primary btnEditarBancaria btn-circle " title="editar" 
                         onClick="return clickModalEditing('."'getBancaria/".$data[$i]['id_bancaria']."'".','."'Actualizacion | Cuentas Bancarias'".','."'id_bancaria'".','."['nombre_banco','tipo','nro_cuenta','ced_ruc','email','descripcion']".','."'#modalBancaria'".');">
@@ -90,17 +99,23 @@ class Bancarias extends Controllers{
         if ($_POST) {
             $id_bancaria = Intval(strclean($_POST['id_bancaria']));
             $nombre_bancaria = ucwords(strtolower(strclean($_POST["nombre_banco"])));
-            $tipo_bancaria = ucwords(strtolower(strclean($_POST["tipo"])));
-            $nrocuenta_bancaria = ucwords(strtolower(strclean($_POST["nro_cuenta"])));
-            $cedruc_bancaria = ucwords(strtolower(strclean($_POST["ced_ruc"])));
-            $email_bancaria = ucwords(strtolower(strclean($_POST["email"])));
+            $tipo_bancaria = intval(strclean($_POST["tipo"]));
+            $nrocuenta_bancaria = intval(strclean($_POST["nro_cuenta"]));
+            $cedruc_bancaria = intval(strclean($_POST["ced_ruc"]));
+            $email_bancaria = strtolower(strclean($_POST["email"]));
             $descripcion_bancaria = ucwords(strtolower(strclean($_POST["descripcion"])));
             $validate_data = [$nombre_bancaria,$tipo_bancaria,$nrocuenta_bancaria,$cedruc_bancaria,$email_bancaria,$descripcion_bancaria];
-
             if(validateEmptyFields($validate_data)){
-                if(!empty(preg_matchall($validate_data,regex_string))){
+                if(!empty(preg_matchall(array($nombre_bancaria,$descripcion_bancaria),regex_string))){
                     $data = array('status' => false,'formErrors' => array(
-                        'nombre_banco' => "El campo contiene numero o caracteres especiales"));
+                        'nombre_banco' => "El campo contiene numero o caracteres especiales"),
+                        'descripcion' => "El campo contiene numero o caracteres especiales");
+                }
+
+                if(!empty(preg_matchall(array($nrocuenta_bancaria,$cedruc_bancaria),regex_string))){
+                    $data = array('status' => false,'formErrors' => array(
+                        'nro_cuenta' => "contiene caracteres , solo se permiten numeros"),
+                        'ced_ruc' =>  "contiene caracteres , solo se permiten numeros");
                 }
 
                 if ($id_bancaria == 0){
@@ -141,6 +156,11 @@ class Bancarias extends Controllers{
                 $data = array('status' => false,'formErrors' => array(
                     'nombre_banco' => "El campo es obligatorio",
                     'descripcion' => "El campo es obligatorio",
+                    'tipo' => "El campo es obligatorio",
+                    'ced_ruc' => "El campo es obligatorio",
+                    'email' => "El campo es obligatorio",
+                    'nro_cuenta' => "El campo es obligatorio",
+
                 ));
             }
 

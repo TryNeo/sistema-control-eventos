@@ -46,7 +46,6 @@
                         onClick="return clickModalEditing('."'getEvento/".$data[$i]['id_evento']."'".','."'Actualizacion | Evento'".','."'id_evento'".','."['id_evento','nombre_evento','cupo','color_evento','fecha_evento_inicio','hora_evento_inicio','fecha_evento_fin','hora_evento_fin']".','."'#modalEvento'".','.'true'.','."['id_categoria','id_invitado']".');">
                         <i class="fa fa-edit"></i></button>';
                     }
-
                     
 
                     if ($_SESSION['permisos_modulo']['d']) {
@@ -213,7 +212,7 @@
             if (empty($_SESSION['permisos_modulo']['r']) ) {
                 header('location:'.server_url.'Errors');
             }
-            $data["page_id"] = 9;
+            $data["page_id"] = 15;
             $data["tag_pag"] = "Eventos";
             $data["page_title"] = "Eventos | Inicio";
             $data["page_name"] = "Listado de Eventos";

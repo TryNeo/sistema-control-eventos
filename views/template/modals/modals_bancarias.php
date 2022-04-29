@@ -57,9 +57,9 @@
                                     </div>
                                     <!--                                    <input type="text" name="tipo" class="form-control" id="tipo"  placeholder="ingrese el tipo de cuenta">-->
                                     <select name="tipo" id="tipo" class="form-control">
-                                        <option value=""> Seleccione</option>
-                                        <option value="AHORRO">Ahorro</option>
-                                        <option value="CORRIENTE">Corriente</option>
+                                        <option  selected disabled='disabled' value=''>Seleccione tipo de cuenta</option>
+                                        <option value="1">Ahorro</option>
+                                        <option value="2">Corriente</option>
                                     </select>
                                 </div>
                             </div>

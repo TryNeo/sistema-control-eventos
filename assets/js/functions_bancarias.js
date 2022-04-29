@@ -32,11 +32,20 @@ function configToValidate(){
     });
     validatorServerSide.validator.custom = function(el, event){
 
+
+        if (el.name != "id_bancaria"){
+            if($(el).is('[name='+el.name+']')){
+                console.log(el.name)
+                let value= $(el).val()
+                if (!validateEmptyField(value)){
+                    return 'Este campo es obligatorio';
+                }
+            }
+        }
+
+
         if($(el).is('[name=nombre_banco]')){
             let value= $(el).val()
-            if (!validateEmptyField(value)){
-                return 'Este campo es obligatorio';
-            }
 
             if (!validString(value)){
                 return 'El nombre '+value+' contiene numeros o caracteres especiales';
@@ -44,11 +53,54 @@ function configToValidate(){
             
         }
 
-        if($(el).is('[name=descripcion]')){
+
+        if($(el).is('[name=tipo]')){
             let value= $(el).val()
 
             if (!validateEmptyField(value)){
                 return 'Este campo es obligatorio';
+            }
+            
+        }
+
+
+        if($(el).is('[name=descripcion]')){
+            let value= $(el).val()
+
+            if (!validateStringLength(value,5)){
+                return 'La descripcion '+value+' debe ser mas larga';
+            }
+
+            
+            if (!validString(value)){
+                return 'La descripcion '+value+' contiene numeros o caracteres especiales';
+            }
+
+        }
+
+        if($(el).is('[name=nro_cuenta]')){
+            let value= $(el).val()
+            
+            if (!validaNumber(value)){
+                return 'El Nro de cuenta '+value+' es invalido';
+            }
+
+        }
+
+        
+        if($(el).is('[name=ced_ruc]')){
+            let value= $(el).val()
+            
+            if (!validaNumber(value)){
+                return 'El Nro de cuenta '+value+' es invalido';
+            }
+        }
+
+        if($(el).is('[name=email]')){
+            let value= $(el).val()
+            
+            if (!validaEmail(value)){
+                return 'El email '+value+' es invalido';
             }
         }
 

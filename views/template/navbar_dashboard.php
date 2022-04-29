@@ -104,7 +104,7 @@
                   <?php } ?>
 
                   <?php if (!empty($_SESSION['permisos'][8]['r'])) {?>
-                      <?php if($data['page_id'] == 9 ){ ?>
+                      <?php if($data['page_id'] == 15 ){ ?>
                           <li class="active">
                               <a href="<?php echo server_url; ?>eventos/calendario" class="nav-link"><i class="fas fa-bell"></i><span>Calendario</span></a>
                           </li>

@@ -1,20 +1,7 @@
-/**
- * @const {string} base_url - contiene una la url definida , usada como el corazon para consultas y/o redireciones.
- * @const {string} base_url_image - contiene un url que direciona a un path /assets/images,usada para mostrar ciertas imaenes ya predefinidas.
- * @const {regex} regex_string  - contiene una exprecion regular que acepta letras y espacios.
- * @const {regex} regex_numbers - contiene una exprecion regular que acepta numeros solamente.
- * @const {regex} regex_username_password - contiene una exprecion regular que acepta letras y numeros y caracteres especiales.
- */
 const base_url = "http://localhost/sistema-control-eventos/";
 const base_url_assets = "http://localhost/sistema-control-eventos/assets/";
 const base_url_image = "http://localhost/sistema-control-eventos/assets/images/";
-const regex_string = '^[a-zA-ZáéíóñÁÉÍÓÚÑ ]+$';
-const regex_numbers = '^[0-9]+$';
-const regex_fechas = new RegExp("([0-9]{4}[-](0[1-9]|1[0-2])[-]([0-2]{1}[0-9]{1}|3[0-1]{1})|([0-2]{1}[0-9]{1}|3[0-1]{1})[-](0[1-9]|1[0-2])[-][0-9]{4})");
-const regex_username_password = '^[a-zA-Z0-9_-]{4,18}$';
-const regex_email = '^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$';
-const regex_image = '[^\\s]+(.*?)\\.(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$';
-const regex_hora = /^(0?[1-9]|1[0-2]):([0-5]\d)\s?((?:A|P)\.?M\.?)$/i;
+
 
 function clickModal(nameSelector,modalName,listCamps){
     $('#openModal').on('click',function (e) {
@@ -167,55 +154,6 @@ function validateCedula(cedula){
 
 
 
-function validateUser(value){
-    if(value.match(regex_username_password) === null){
-        return false;
-    }
-    return true;
-}
-
-function validString(value){
-    if (value.match(regex_string) === null){
-        return false;
-    }
-    return true;
-}
-
-function validateStringLength(value,MaxStringlength){
-    if(value.length >= MaxStringlength){
-        return true;
-    }
-    return false;
-}
-
-
-function validateEmptyField(value){
-    if(value === ""){
-        return false;
-    }
-    return true;
-}
-
-function validateImage(value){
-    if (value.match(regex_image) === null){
-        return false;
-    }
-    return true;
-}
-
-function validateFecha(value){
-    if (value.match(regex_fechas) === null){
-        return false;
-    }
-    return true;
-}
-
-function validateHora(value){
-    if (value.match(regex_hora) === null){
-        return false;
-    }
-    return true;
-}
 
 function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listCamps,configTable,urlMethod,modalNameSelector){
     $(idForm).on('submit',function (e) {

@@ -2,7 +2,7 @@
     const server_url = "http://localhost/sistema-control-eventos/";
     const server_url_image = "http://localhost/sistema-control-eventos/assets/img/";
     const regex_string = '/^[a-zA-ZáéíóñÁÉÍÓÚÑ, ]+$/';
-    const regex_email = '/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/';
+    const regex_email = '/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i';
     const regex_numbers = '/^[0-9]+$/';
     const regex_username = '/^[a-z0-9_-]{3,16}$/';
     const regex_password = '/^[a-zA-Z0-9_-]{4,18}$/';

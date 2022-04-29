@@ -26,6 +26,7 @@
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
+    <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/dashboard_reloj.js"></script>
 
