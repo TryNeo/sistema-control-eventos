@@ -1,5 +1,5 @@
 <?php getHeaderDashboard($data);
-    getModal('modals_roles',$data);
+    getModal('modals_usuarios',$data);
 
 ?>
     <section class="section">

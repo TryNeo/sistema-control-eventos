@@ -17,7 +17,7 @@ CREATE TABLE usuarios(
     id_usuario INT(11) auto_increment,
     nombre  varchar(50),
     apellido  varchar(50),
-    foto varchar(1000),
+    foto varchar(250) DEFAULT NULL,
     usuario  varchar(50),
     email  varchar(100),
     ultimo_online boolean DEFAULT 0,
@@ -158,5 +158,4 @@ INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha
 
 INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fas fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fas fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fas fa-code',1,NULL,'2022-04-18 23:38:01');
 
-INSERT  into `invitados`(`id_invitado`,`nombre_invitado`,`apellido_invitado`,`descripcion`,`url_imagen`,`estado`,`fecha_crea`,`fecha_modifica`) values (1,'Rafael','Bautista','Bautista','https://i.imgur.com/sohWhy9.png',1,'2022-04-20 22:50:54','2022-04-20 22:50:56');
 

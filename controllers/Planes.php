@@ -99,7 +99,7 @@
                             'descripcion' => "El campo contiene numero o caracteres especiales");
                     }
 
-                    if(!empty(preg_matchall(array($precio_plan),regex_string))){
+                    if(!empty(preg_matchall(array($precio_plan),regex_numbers))){
                         $data = array('status' => false,'formErrors' => array(
                             'precio_plan' =>  "contiene caracteres , solo se permiten numeros"));
                     }
