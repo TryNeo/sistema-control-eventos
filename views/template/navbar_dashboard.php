@@ -116,6 +116,17 @@
                           </li>
                       <?php } ?>
                   <?php } ?>
+                    <?php if (!empty($_SESSION['permisos'][10]['r'])) {?>
+                        <?php if($data['page_id'] == 10 ){ ?>
+                            <li class="active">
+                                <a href="<?php echo server_url; ?>planes" class="nav-link"><i class="fas fa-columns"></i><span>Planes</span></a>
+                            </li>
+                        <?php }else{ ?>
+                            <li>
+                                <a href="<?php echo server_url; ?>planes" class="nav-link"><i class="fas fa-columns"></i><span>Planes</span></a>
+                            </li>
+                        <?php } ?>
+                    <?php } ?>
                 </ul>
               </li>
 

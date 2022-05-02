@@ -22,6 +22,8 @@
             $data["page"] = "dashboard";
             $data["total_usuarios"] = $this->model->getTotalUsuarios();
             $data["total_usuarios_online"] = $this->model->getUsuariosOnline();
+            $data["total_invitados"] = $this->model->getTotalInvitados();
+            $data["total_eventos"] = $this->model->getTotalEventos();
             $this->views->getView($this,"dashboard",$data);
 
         }

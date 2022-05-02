@@ -20,8 +20,8 @@
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
                             <i class="fas fa-circle"></i>
@@ -35,7 +35,37 @@
                         </div>
                     </div>
                 </div>
-            </div>                  
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-danger">
+                        <i class="fas fa-person-booth"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Invitados</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php echo $data["total_invitados"]; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-dark">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="card-wrap">
+                        <div class="card-header">
+                            <h4>Eventos</h4>
+                        </div>
+                        <div class="card-body">
+                            <?php echo $data["total_eventos"]; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     <div class="section-body">
     </div>

@@ -113,6 +113,17 @@ CREATE TABLE `bancarias` (
                              PRIMARY KEY (`id_bancaria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+DROP TABLE IF EXISTS `planes`;
+
+CREATE TABLE `planes` (`id_plan` tinyint(11) NOT NULL AUTO_INCREMENT,
+                        `nombre_plan` varchar(75) NOT NULL,
+                        `precio_plan` float(10,2) NOT NULL,
+                        `descripcion` varchar(500) NOT NULL,
+                        `estado` tinyint(1) DEFAULT NULL,
+                        `fecha_crea` datetime DEFAULT NULL,
+                        `fecha_modifica` datetime DEFAULT NULL,
+                        PRIMARY KEY (`id_plan`)
+                        ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
 ALTER TABLE permisos ADD CONSTRAINT fk_modulo FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo);
@@ -127,6 +138,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Categoria','m
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Invitados','modulo de invitados',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Eventos','modulo de eventos',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Cuentas Bancarias','modulo de cuentas bancarias',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Planes','modulo de planes para eventos',1,now());
 
 
 INSERT INTO roles (nombre_rol,descripcion,estado,fecha_crea) values ("Administrador","permisos de acceso a todo el sistema",1,now());
@@ -140,6 +152,7 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (6,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (8,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (9,1,1,1,1,1);
+INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (10,1,1,1,1,1);
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
 

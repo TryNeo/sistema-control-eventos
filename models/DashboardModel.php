@@ -18,6 +18,18 @@
             return  $request_query;
         }
 
+        public function getTotalInvitados(){
+            $query = "SELECT * FROM invitados WHERE estado !=0";
+            $request_query = $this->select_count($query);
+            return $request_query;
+        }
+
+        public function getTotalEventos(){
+            $query = "SELECT * FROM eventos WHERE estado !=0";
+            $request_query = $this->select_count($query);
+            return $request_query;
+        }
+
     }
 
 ?>
