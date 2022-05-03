@@ -1,4 +1,6 @@
+
 $(function(){
+    
     const fieldsToValidate = ['username','password']
 
     let validatorServerSide = $('form.needs-validation').jbvalidator({
@@ -33,6 +35,9 @@ $(function(){
             }
         }
     }
+
+    $('#remember-me').on('change', function(){this.value = this.checked ? 1 : 0;}).change();
+
     sendingDataServerSideLogin('#fntLogin',validatorServerSide,fieldsToValidate);
 });
 
@@ -43,6 +48,7 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
         e.preventDefault();
         if(validatorServerSide.checkAll('.needs-validation') === 0){
             let formData = $(this).serializeArray();
+            console.log(formData)
             $.ajax({
                 url: url,
                 type: $(idForm).attr("method"),

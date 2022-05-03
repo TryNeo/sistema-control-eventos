@@ -41,7 +41,7 @@
                                         <i class="fas fa-user"></i>
                                     </div>
                                 </div>
-                                <input id="username" name="username" type="text" class="form-control" placeholder="ingrese el usuario">
+                                <input id="username" name="username" type="text" class="form-control" value="<?php if(isset($_COOKIE['uname'])) echo $_COOKIE['uname']; ?>" placeholder="ingrese el usuario">
                                 <div class="invalid-feedback">
                                     Porfavor ingrese su usuario
                                 </div>
@@ -58,13 +58,19 @@
                                     <i class="fas fa-lock"></i>
                                     </div>
                                 </div>
-                                <input id="password" type="password" class="form-control" name="password" placeholder="ingrese la contraseña">
+                                <input id="password" type="password" class="form-control" name="password" value="<?php if(isset($_COOKIE['upass'])) echo $_COOKIE['upass']; ?>" placeholder="ingrese la contraseña">
                                 <div class="invalid-feedback">
                                     Porfavor ingrese su contraseña
                                 </div>
                             </div>
                         </div>
     
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" name="remember"  class="custom-control-input" id="remember-me">
+                                <label class="custom-control-label" for="remember-me">Recordarme</label>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                             Login <i class="fas fa-sign-in"></i>

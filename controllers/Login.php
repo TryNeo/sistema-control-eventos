@@ -13,6 +13,7 @@
         public function login(){
             if (empty($_SESSION['token'])) {
                 $_SESSION['token'] = bin2hex(random_bytes(32));
+                $_SESSION['token-expire'] = time() + 30*60;
             }
             $token = $_SESSION['token'];
             $data["page_id"] = 4;
@@ -34,11 +35,27 @@
                             'username' => 'el campo usuario se encuentra vacio',
                             'password' => 'el campo password se encuentra vacio'
                         ));
-                    }else{
+                    }else{ 
+
                         if (empty($_POST['csrf'])) {
                             $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo','formErrors'=> array());
                         }else{
                             if (hash_equals($_SESSION['token'], $_POST['csrf'])) {
+                                
+                                if (time() >=  $_SESSION['token-expire']){
+                                    $data = array('status' => false,'msg' => 'Hubo un error, recargue la pagina porfavor');
+                                }
+
+
+                                if (isset($_POST['remember'])){
+                                    if(strclean($_POST['remember']) == 1){
+                                        setcookie('uname',$_POST['username'],time()+30 * 60,"/");
+                                        setcookie('upass',$_POST['password'],time()+30 * 60,"/");
+                                    }
+                                }
+                                
+                            
+
                                 $str_usuario = strtolower(strclean($_POST['username']));
                                 $str_password = strclean($_POST['password']);
                                 $request_user = $this->model->login_user($str_usuario);
@@ -53,7 +70,8 @@
                                             $_SESSION['login'] = true;
                                             $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
                                             $_SESSION['user_data'] = $arrResponse;
-                                            $_SESSION['token'] = '';
+                                            unset($_SESSION['token']);
+                                            unset($_SESSION['token-expire']);
                                             $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url.'dashboard');
                                         }else{
                                             $data = array('status' => false,'formErrors'=> array(
