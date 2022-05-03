@@ -12,7 +12,13 @@
             </li>
             <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <figure class="avatar mr-2 avatar-sm">
-              <img alt="image" src="<?php echo server_url_image; ?>default.png" class="rounded-circle mr-1">
+              
+              <?php if($_SESSION['user_data']['foto'] == '') {?>
+                <img alt="image" src="<?php echo server_url_image; ?>default.png" class="rounded-circle mr-1">
+              <?php }else{ ?>
+                <img alt="image" src="<?php echo $_SESSION['user_data']['foto']; ?>" class="rounded-circle mr-1">
+              <?php } ?>
+
               <?php if($_SESSION['user_data']['ultimo_online'] == 1) {?>
                 <i class="avatar-presence online"></i>
               <?php } ?>

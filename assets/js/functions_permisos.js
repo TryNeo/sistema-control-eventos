@@ -301,4 +301,4 @@ function checkInputPermisos(row,cboxtype,data,id_rol,typePerm){
 
 setInterval(function(){
     $(".tablePermisos").DataTable().ajax.reload();
-},2000);
+},5000);

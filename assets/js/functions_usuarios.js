@@ -10,6 +10,8 @@ $(function(){
         {"data":"estado"},
         ]
 
+
+
     const tableUsuarios =  configDataTables('.tableUsuarios',base_url+"usuarios/getUsuarios",columnData)
 
     const listCamps =  ["#id_usuario","#nombre","#apellido","#usuario","#password","#email","#id_rol","#foto"];
@@ -20,13 +22,15 @@ $(function(){
 
     clickModal("#modalUsuario","Crear | Usuario",listCamps);
     fetchSelect(base_url+"roles/getSelectRoles","#id_rol","Selecciona un rol")
+    sendingDataServerSide('#fntUsuario',configValid,fieldsToValidate,listCamps,tableUsuarios,"usuarios/setUsuario","#modalUsuario");
+
 })
 
 
 
 setInterval(function(){
     $(".tableUsuarios").DataTable().ajax.reload();
-},2000);
+},5000);
 
 
 function configToValidate(){
@@ -34,6 +38,7 @@ function configToValidate(){
     const validatorServerSide = $('form.needs-validation').jbvalidator({
         errorMessage: true,
         successClass: true,
+        language: base_url_assets+"js/jbvalidatorLangEs.json",
     });
     validatorServerSide.validator.custom = function(el, event){
 
@@ -85,8 +90,47 @@ function configToValidate(){
             }
 
             
-            if (!validatePassword(value)){
+            if (!validateUser(value)){
                 return 'La contraseña '+value+' no es valida';
+            }
+            
+            
+        }
+
+
+        if($(el).is('[name=email]')){
+            let value= $(el).val()
+
+            if (!validateEmptyField(value)){
+                return 'Este campo es obligatorio';
+            }
+
+
+            if (!validaEmail(value)){
+                return 'El email '+value+' es invalido';
+            }
+            
+        }
+
+        if($(el).is('[name=id_rol]')){
+            let value= $(el).val()
+
+            if (!validateEmptyField(value)){
+                return 'Este campo es obligatorio';
+            }
+            
+        }
+        
+        if($(el).is('[name=foto]')){
+            let value= $(el).val()
+
+            if (!validateEmptyField(value)){
+                return 'Este campo es obligatorio';
+            }
+
+
+            if (!validateImage(value)){
+                return 'La url '+value+' ingresada no es una imagen';
             }
             
         }

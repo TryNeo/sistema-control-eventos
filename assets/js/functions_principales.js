@@ -186,7 +186,6 @@ function sendingDataServerSide(idForm,validatorServerSide,fieldsToValidate,listC
     
                 }
             }).fail(function (error) {
-                console.log(error.responseText)
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }
