@@ -51,6 +51,11 @@
                         <div class="form-group">
                             <div class="d-block">
                                 <label for="password" class="control-label">Contraseña</label>
+                                <div class="float-right">
+                                    <a href="<?php echo server_url; ?>forgotpassword" class="text-small">
+                                    ¿Se te olvidó tu contraseña?
+                                    </a>
+                                </div>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
