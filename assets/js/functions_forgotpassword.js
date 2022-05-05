@@ -41,8 +41,17 @@ function sendingDataServerSideForgotpassword(idForm,validatorServerSide,fieldsTo
                 dataType: 'json'
             }).done(function (data) {
                 if(data.status){
-                    mensaje('success','Exitoso',data.msg);
+                    $.LoadingOverlay("show");
+                    setTimeout(function(){
+                        $.LoadingOverlay("hide");
+                        document.getElementById("fntForgotpassword").reset();
+                        mensaje('success','Exitoso',data.msg);
 
+                        setTimeout(function(){
+                            window.location = data.url;
+                        },4000)
+
+                    }, 4000);
                 }else{
                     if (!jQuery.isEmptyObject(data.formErrors)){
                         console.log(data.formErrors)
