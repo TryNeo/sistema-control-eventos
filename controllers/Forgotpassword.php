@@ -1,5 +1,12 @@
 <?php
     require_once ("./libraries/core/controllers.php");
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    require_once ("./phpmailer/Exception.php");
+    require_once ("./phpmailer/PHPMailer.php");
+    require_once ("./phpmailer/SMTP.php");
+
     class Forgotpassword extends Controllers{
         public function __construct(){
             session_start();
@@ -43,7 +50,33 @@
                                 $data = array('status' => false,'msg' => 'El email ingresado no existe, verifique que este escrito bien y vuelva a ingresarlo',
                                     'formErrors'=> array());
                             }else{
-                                $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente');
+                                $code = rand(999999, 111111);
+                                $request_email_code = $this->model->generateCodeEmail($code,$emaiL_user);
+                                if($request_email_code > 0){
+
+                                    $mail = new PHPMailer();
+                                    $mail->isSMTP();
+                                    $mail->Mailer = "smtp";
+                                    $mail->SMTPDebug  = 0;  
+                                    $mail->SMTPAuth   = TRUE;
+                                    $mail->SMTPSecure = "tls";
+                                    $mail->Port       = 587;
+                                    $mail->Host       = "smtp.gmail.com";
+                                    $mail->Username   = "correp";
+                                    $mail->Password   = "clave";
+
+                                    $mail->setFrom('correo', 'YfdsfsfsfName');
+                                    $mail->addReplyTo('correo', 'Yfsdfs');
+                                    $mail->addAddress($emaiL_user, 'Resdfsdfsdfsd Name');
+                                    $mail->Subject = 'Testing PHPMailer';
+                                    $mail->Body = 'Codigo  ->'.$code;
+                                    if (!$mail->send()) {
+                                        $data = array('status' => false,'msg' => 'Mailer Error: ' . $mail->ErrorInfo);
+                                    } else {
+                                        $data = array('status' => true, 'msg' => 'Hemos restablecimiento de contraseña a tu email '.$emaiL_user);
+                                    }
+
+                                }
                             }
                         } else {
                             $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');
