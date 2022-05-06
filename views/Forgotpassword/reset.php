@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
 </head>
 
-<body>
+<body oncontextmenu="return false;">
     <div id="app">
         <section class="section">
         <div class="container mt-5">

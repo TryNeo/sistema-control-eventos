@@ -72,3 +72,46 @@ function validaEmail(value){
     }
     return true;
 }
+
+
+
+
+/**
+ * Funcion validateCedula - valida que la cedula ingresa sea valida.
+ * @param  {string} cedula -recibe  un string con una cantidad de numeros de 10 digitos
+ * @return {boolean} - retornara true o false , si algo esta correcto o incorrecto . 
+ */
+ function validateCedula(cedula){
+    const validRegEx = /[0-9]{0,10}/;
+    if (cedula.match(validRegEx) === null){
+        return false;
+    }else{
+        let validado = [...cedula].map( x => x == 0 ? 0 : (parseInt(x) || x));
+        let ultimo_numero = parseInt(validado.splice(9,1));
+        let cedula_impar = validado.filter((x,c)=> {if (c%2==1){return validado[c]}});
+        let cedula_pares = validado.filter((x,c)=> {if (c%2==0){return validado[c]}}).map((x)=>x+=x);
+
+        let totales = cedula_pares.filter(
+            (x,c) => {if (cedula_pares[c] <= 9){return cedula_pares[c]
+            }}).concat(cedula_pares.filter((x,c) => {if (cedula_pares[c] >= 9){ 
+                return cedula_pares[c]
+                }
+            }
+            ).map(x => x-9))
+
+        let total_a = totales.reduce((acum,total)=> acum+total)+cedula_impar.reduce((acum,total)=> acum+total);
+    
+        let total = (parseInt(String(total_a).charAt(0))+1)*10
+        if (total == 10){
+            total = 0
+        }
+
+        if((total - (total_a)) == ultimo_numero  ){
+            return true
+        }else{
+            mensaje("error","Error","La cedula Ingresada no fue valida")
+            return false
+        }
+    
+        }
+}

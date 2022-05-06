@@ -7,6 +7,8 @@
     require_once ("./phpmailer/PHPMailer.php");
     require_once ("./phpmailer/SMTP.php");
 
+    require_once ("./config/secretinfo.php");
+
     class Forgotpassword extends Controllers{
         public function __construct(){
             session_start();
@@ -36,49 +38,61 @@
         public function sendEmailCode(){
             if ($_POST) {
                 $emaiL_user = strtolower(strclean($_POST["emailuser"]));
+                $recaptcha_response = strclean($_POST["g-recaptcha-response"]);
                 if(validateEmptyFields(array($emaiL_user))){
-                    if (empty($_POST['csrf'])) {
-                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo','formErrors'=> array());
-                    }else{
-                        if (hash_equals($_SESSION['token'], $_POST['csrf'])) {
 
+                    if (empty($_POST['csrf']) != 0) {
+                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo','formErrors'=> array());
+                    }
+                    if (hash_equals($_SESSION['token'], $_POST['csrf'])) {
+                        $cu = curl_init();
+                        curl_setopt($cu, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+                        curl_setopt($cu, CURLOPT_POST, 1);
+                        curl_setopt($cu, CURLOPT_POSTFIELDS, http_build_query(array('secret' => GOOGLE_KEY, 'response' => $recaptcha_response)));
+                        curl_setopt($cu, CURLOPT_RETURNTRANSFER, true);
+                        $response = curl_exec($cu);
+                        curl_close($cu);
+                        $datos = json_decode($response, true);
+
+                        if($datos['success'] == 1 && $datos['score'] >= 0.5){
                             $request_email = $this->model->searchEmail($emaiL_user);
-                            if (empty($request_email)) {
+                            if (empty($request_email) != 0) {
                                 $data = array('status' => false,'msg' => 'El email ingresado no existe, verifique que este escrito bien y vuelva a ingresarlo',
                                     'formErrors'=> array());
-                            }else{}
-                                $code = bin2hex(random_bytes(32));
-                                $request_email_code = $this->model->generateCodeEmail($code,$emaiL_user);
-                                if($request_email_code > 0){
-                                    $mail = new PHPMailer();
-                                    $mail->isSMTP();
-                                    $mail->Mailer = "smtp";
-                                    $mail->SMTPDebug  = 0;  
-                                    $mail->SMTPAuth   = TRUE;
-                                    $mail->SMTPSecure = "tls";
-                                    $mail->Port       = 587;
-                                    $mail->Host       = "smtp.gmail.com";
-                                    $mail->Username   = "correo";
-                                    $mail->Password   = "clave";
-
-                                    $mail->setFrom('correo', 'YfdsfsfsfName');
-                                    $mail->addReplyTo('correo', 'Yfsdfs');
-                                    $mail->addAddress($emaiL_user, 'Resdfsdfsdfsd Name');
-                                    $mail->Subject = 'Testing PHPMailer';
-
-                                    $mail->Body = 'linkcode  ->'.server_url.'forgotpassword/reset?token='.$code;
-                                    $_SESSION['emailtemp'] = $emaiL_user;
-                                    $_SESSION['token-expire'] = time() + 5*60;
-                                    
-                                    if (!$mail->send()) {
-                                        $data = array('status' => false,'msg' => 'Mailer Error: ' . $mail->ErrorInfo);
-                                    } else {
-                                        $data = array('status' => true, 'msg' => 'Hemos enviado un enlance restablecimiento de contraseña a tu email '.$emaiL_user, 'url' => server_url.'login');
-                                    }
                             }
-                        } else {
-                            $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');
-                        }
+                            $code = bin2hex(random_bytes(32));
+                            $request_email_code = $this->model->generateCodeEmail($code,$emaiL_user);
+                            if($request_email_code > 0){
+                                $mail = new PHPMailer();
+                                $mail->isSMTP();
+                                $mail->Mailer = "smtp";
+                                $mail->SMTPDebug  = 0;  
+                                $mail->SMTPAuth   = TRUE;
+                                $mail->SMTPSecure = "tls";
+                                $mail->Port       = 587;
+                                $mail->Host       = "smtp.gmail.com";
+                                $mail->Username   = CORREO;
+                                $mail->Password   = CONTRASEÑA;
+                                $mail->setFrom(CORREO, 'YfdsfsfsfName');
+                                $mail->addReplyTo(CORREO, 'Yfsdfs');
+                                $mail->addAddress($emaiL_user, 'Resdfsdfsdfsd Name');
+                                $mail->Subject = 'Testing PHPMailer';
+                                $mail->Body = 'linkcode  ->'.server_url.'forgotpassword/reset?token='.$code;
+                                $_SESSION['emailtemp'] = $emaiL_user;
+                                $_SESSION['token-expire'] = time() + 5*60;
+                                            
+                                if (!$mail->send()) {
+                                    $data = array('status' => false,'msg' => 'Mailer Error: ' . $mail->ErrorInfo);
+                                } else {
+                                    $data = array('status' => true, 'msg' => 'Hemos enviado un enlance de restablecimiento de contraseña a tu email '.$emaiL_user, 'url' => server_url.'login');
+                                }
+                            }
+                        }else{
+                            $data = array('status' => false,'msg' => 'El  reCAPTCHA ha sido invalido, intentelo nuevamente');
+
+                        }	
+                    }else{
+                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');
                     }
                 }else{
                     $data = array('status' => false,'formErrors'=> array(
@@ -93,7 +107,11 @@
 
         public function reset(){
             if(isset($_GET['token'])){
-                $data['csrf'] = bin2hex(random_bytes(32));
+                if (empty($_SESSION['token'])) {
+                    $_SESSION['token'] = bin2hex(random_bytes(32));
+                }
+                $token = $_SESSION['token'];
+                $data['csrf'] = $token;
                 $request_email_code = $this->model->verifyCodeEmail(strclean($_GET['token']));
                 if($request_email_code > 0){
                     if (time() >=  $_SESSION['token-expire']){
@@ -103,7 +121,7 @@
                         $data_res = array("status" => true);
                     }
                 }else{
-                    $data_res = array("status" => false, "msg" => "El token a expirado o no existe , porfavor verifique este escrito bien");
+                    $data_res = array("status" => false, "msg" => "El token a expirado, porfavor reenvie el enlace para restablecer su contraseña nuevamente");
                 }
             }else{
                 header('location:'.server_url.'login');
@@ -133,6 +151,7 @@
                                 if($response > 0){
                                     $this->model->resetCodeEmail($_SESSION['emailtemp']);
                                     $data = array("status" => true,"msg" => "La contraseña ha sido cambiado con exito",'url' => server_url.'login');
+                                    unset($_SESSION['token']);
                                     unset($_SESSION['emailtemp']);
                                     unset($_SESSION['token-expire']);
                                 }else{
@@ -144,8 +163,9 @@
                                         'password_confirm' => 'el campo se encuentra vacio',
                                     ));
                             }
+                        }else{
+                            $data = array('status' => false,'msg' => 'Oops hubo un errors, intentelo de nuevo');
                         }
-                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');
                     }
                 }
 

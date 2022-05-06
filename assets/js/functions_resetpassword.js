@@ -63,6 +63,7 @@ function sendingDataServerSideResetpasword(idForm,validatorServerSide,fieldsToVa
                             mensaje('success','Exitoso',data.msg);
                             setTimeout(function(){
                                 window.location = data.url;
+                                document.getElementById("fntResetpassword").reset();
                             },5000);
                         }else{
                             if (!jQuery.isEmptyObject(data.formErrors)){
@@ -88,15 +89,20 @@ function sendingDataServerSideResetpasword(idForm,validatorServerSide,fieldsToVa
         })
     }else{
         Swal.fire({
-            icon: "error",
+            icon: 'warning',
             title: "Error",
             text: data.msg,
-            showConfirmButton: false,
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok',
             allowOutsideClick: false,
             allowEscapeKey: false
-        })
-        setTimeout(function(){
-            window.close();
-        },5000)
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.close();
+            }
+        });
+
     }
 }

@@ -26,9 +26,8 @@
                 <div class="card card-primary">
                 <br>
                 <div class=""><h4 class="text-center">Restablecer contraseña</h4></div>
-
                 <div class="card-body">
-                    <p class="text-muted">Le enviaremos un enlace para restablecer su contraseña</p>
+                    <p class="text-muted">Ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña.</p>
                     <form  id="fntForgotpassword" name="fntForgotpassword" method="POST" 
                         action="<?php echo server_url; ?>forgotpassword/sendEmailCode" class="needs-validation" novalidate="">
                         <input id="csrf" name="csrf" type="hidden" value="<?php echo $data["csrf"]; ?>">
@@ -43,12 +42,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                            Restablecer contraseña
-                            </button>
+                        <button class="g-recaptcha btn btn-primary btn-lg btn-block" 
+                                data-sitekey="6LdBGc0fAAAAAIm_M6A2kzJcpbB6dS-AqBf9HCnL" 
+                                data-callback='onSubmit' 
+                                data-action='submit' id="enviarEnlance">Enviar enlance</button>
                         </div>
                     </form>
                 </div>
+                </div>
+                <div class="mt-5 text-muted text-center">
+                    ¿Ya tienes una cuenta?, Ingresa aqui <a href="<?php echo server_url; ?>login">Login</a>
                 </div>
                 <div class="simple-footer">
                 Copyright &copy; XenturionIT 2022
@@ -70,6 +73,16 @@
     <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
 
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdBGc0fAAAAAIm_M6A2kzJcpbB6dS-AqBf9HCnL"></script>
+    <script>
+            $('#enviarEnlance').click(function(){
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LdBGc0fAAAAAIm_M6A2kzJcpbB6dS-AqBf9HCnL', {action: 'submit'}).then(function(token) {
+                        $('#fntForgotpassword').submit();
+                    });
+                });
+            })
+    </script>
 
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
     <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
@@ -77,5 +90,7 @@
     <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
     <script src="<?php echo server_url; ?>/assets/js/functions_forgotpassword.js"></script>
+
+    
 </body>
 </html>

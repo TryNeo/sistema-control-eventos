@@ -33,8 +33,8 @@ function sendingDataServerSideForgotpassword(idForm,validatorServerSide,fieldsTo
     $(idForm).on('submit',function (e) {
         e.preventDefault();
         if(validatorServerSide.checkAll('.needs-validation') === 0){
-            $.LoadingOverlay("show");
             let formData = $(this).serializeArray();
+            $.LoadingOverlay("show");
             $.ajax({
                 url: url,
                 type: $(idForm).attr("method"),
@@ -46,7 +46,7 @@ function sendingDataServerSideForgotpassword(idForm,validatorServerSide,fieldsTo
                         $.LoadingOverlay("hide");
                         document.getElementById("fntForgotpassword").reset();
                         mensaje('success','Exitoso',data.msg);
-                    }, 4000);
+                    }, 1000);
                 }else{
                     if (!jQuery.isEmptyObject(data.formErrors)){
                         console.log(data.formErrors)
@@ -56,6 +56,7 @@ function sendingDataServerSideForgotpassword(idForm,validatorServerSide,fieldsTo
                             }
                         });
                     }else{
+                        $.LoadingOverlay("hide");
                         mensaje("error","Error",data.msg);
                     }
     
