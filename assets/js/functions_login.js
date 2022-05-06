@@ -36,7 +36,9 @@ $(function(){
         }
     }
 
-    $('#remember-me').on('change', function(){this.value = this.checked ? 1 : 0;}).change();
+    $('#remember-me').on('change', function(){
+        $('#remember-me').removeClass('is-valid');
+        this.value = this.checked ? 1 : 0;}).change();
 
     sendingDataServerSideLogin('#fntLogin',validatorServerSide,fieldsToValidate);
 });
@@ -46,9 +48,9 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     let url = $(idForm).attr("action");
     $(idForm).on('submit',function (e) {
         e.preventDefault();
+        $('#remember-me').removeClass('is-valid');
         if(validatorServerSide.checkAll('.needs-validation') === 0){
             let formData = $(this).serializeArray();
-            console.log(formData)
             $.ajax({
                 url: url,
                 type: $(idForm).attr("method"),
@@ -57,7 +59,6 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
             }).done(function (data) {
                 if(data.status){
                     mensaje('success','Exitoso',data.msg);
-                    
                     setTimeout(function(){
                         $.LoadingOverlay("show");
                     }, 1500);
@@ -80,6 +81,7 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     
                 }
             }).fail(function (error) {
+                console.log(error);
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }else{

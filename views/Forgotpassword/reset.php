@@ -24,20 +24,8 @@
                 <div class="card card-primary">
                 <div class="card-body">
                 <form  id="fntResetpassword" name="fntResetpassword" method="POST" 
-                        action="<?php echo server_url; ?>forgotpassword/reset?token=<?php echo $data['token']; ?>" class="needs-validation" novalidate="">
+                        action="<?php echo server_url; ?>forgotpassword/resetPassword" class="needs-validation" novalidate="">
                     <input id="csrf" name="csrf" type="hidden" value="<?php echo $data["csrf"]; ?>">
-
-                    <div class="form-group">
-                            <label for="email">Email</label>
-                            <div class="input-group">
-                                    <div class="input-group-append">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-envelope"></i>
-                                    </span>
-                                </div>
-                                <input type="email" name="emailuser" class="form-control" id="emailuser" required >
-                            </div>
-                    </div>
 
                     <div class="form-group">
                         <label for="password">Contraseña</label>
@@ -47,7 +35,7 @@
                                     <i class="fas fa-lock"></i>
                                 </span>
                             </div>
-                            <input type="password" name="password" class="form-control" id="password" >
+                            <input type="password" name="password" class="form-control" id="password" placeholder="ingrese la contraseña">
                         </div>
                     </div>
 
@@ -59,7 +47,7 @@
                                     <i class="fas fa-lock"></i>
                                 </span>
                             </div>
-                            <input type="password" name="password_confirm" class="form-control" id="password_confirm"  >
+                            <input type="password" name="password_confirm" class="form-control" id="password_confirm" placeholder="ingrese nuevamente la contraseña">
                         </div>
                     </div>
 

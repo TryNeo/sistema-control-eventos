@@ -59,7 +59,7 @@
                                     $mail->Port       = 587;
                                     $mail->Host       = "smtp.gmail.com";
                                     $mail->Username   = "correo";
-                                    $mail->Password   = "clve";
+                                    $mail->Password   = "clave";
 
                                     $mail->setFrom('correo', 'YfdsfsfsfName');
                                     $mail->addReplyTo('correo', 'Yfsdfs');
@@ -93,7 +93,6 @@
 
         public function reset(){
             if(isset($_GET['token'])){
-                $data["token"] = strclean($_GET['token']);
                 $data['csrf'] = bin2hex(random_bytes(32));
                 $request_email_code = $this->model->verifyCodeEmail(strclean($_GET['token']));
                 if($request_email_code > 0){
@@ -104,13 +103,56 @@
                         $data_res = array("status" => true);
                     }
                 }else{
-                    $data_res = array("status" => false, "msg" => "El token no existe o expiro , porfavor verifique este escrito bien");
+                    $data_res = array("status" => false, "msg" => "El token a expirado o no existe , porfavor verifique este escrito bien");
                 }
             }else{
                 header('location:'.server_url.'login');
             }
             $data["error"] = json_encode($data_res,JSON_UNESCAPED_UNICODE);
             $this->views->getView($this,"reset",$data);
+            die();
+        }
+
+        public function resetPassword(){
+            if($_POST){
+                if (time() >=  $_SESSION['token-expire']){
+                    $data = array("status" => false, "msg" => "El token a expirado, porfavor reenvie el enlace para restablecer su contraseña nuevamente");
+                }else{
+                    if (empty($_POST['csrf'])) {
+                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo','formErrors'=> array());
+                    }else{
+                        if (hash_equals($_SESSION['token'], $_POST['csrf'])) {
+                            $password = strclean($_POST['password']);
+                            $password_confirm = strclean($_POST['password_confirm']);
+                            if(validateEmptyFields(array($password,$password_confirm))){
+                                if($password != $password_confirm){
+                                    $data= array("status" => false, "msg" => "Las contraseñas no coinciden, verifique que estén escritas bien");
+                                }
+                                $str_password = password_hash(strclean($_POST['password']),PASSWORD_DEFAULT,['cost' => 10]);
+                                $response = $this->model->updatePassword($str_password,$_SESSION['emailtemp']);
+                                if($response > 0){
+                                    $this->model->resetCodeEmail($_SESSION['emailtemp']);
+                                    $data = array("status" => true,"msg" => "La contraseña ha sido cambiado con exito",'url' => server_url.'login');
+                                    unset($_SESSION['emailtemp']);
+                                    unset($_SESSION['token-expire']);
+                                }else{
+                                    $data = array("status" => false,"msg" => "La contraseña no ha sido cambia con exito, intentelo nuevamente");
+                                }
+                            }else{
+                                $data = array('status' => false,'formErrors'=> array(
+                                        'password' => 'el campo se encuentra vacio',
+                                        'password_confirm' => 'el campo se encuentra vacio',
+                                    ));
+                            }
+                        }
+                        $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');
+                    }
+                }
+
+                echo json_encode($data,JSON_UNESCAPED_UNICODE);
+            }else{
+                header('location:'.server_url.'login');
+            }
             die();
         }
     }

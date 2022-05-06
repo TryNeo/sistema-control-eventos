@@ -3,7 +3,8 @@
     class ForgotpasswordModel extends Mysql{
         public $str_email;
         public $str_code;
-        
+        public $str_password;
+
         public function __construct(){
             parent::__construct();
         }
@@ -39,6 +40,16 @@
             return $request_update;
 
         }
+
+        public function updatePassword(string $str_password,string $str_email){
+            $this->str_password = $str_password;
+            $this->str_email = $str_email;
+            $sql_udpate  = "UPDATE usuarios SET password = ? ,fecha_modifica = now() WHERE email =  '$this->str_email' ";
+            $data = array($this->str_password);
+            $request_update = $this->update_sql($sql_udpate,$data);
+            return $request_update;
+        }
+
 
 
     }
