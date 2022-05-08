@@ -8,7 +8,7 @@
     require_once ("./phpmailer/SMTP.php");
 
     require_once ("./config/secretinfo.php");
-
+    require_once ("./helpers/mailsender.php");
     class Forgotpassword extends Controllers{
         public function __construct(){
             session_start();
@@ -63,32 +63,21 @@
                             $code = bin2hex(random_bytes(32));
                             $request_email_code = $this->model->generateCodeEmail($code,$emaiL_user);
                             if($request_email_code > 0){
-                                $mail = new PHPMailer();
-                                $mail->isSMTP();
-                                $mail->Mailer = "smtp";
-                                $mail->SMTPDebug  = 0;  
-                                $mail->SMTPAuth   = TRUE;
-                                $mail->SMTPSecure = "tls";
-                                $mail->Port       = 587;
-                                $mail->Host       = "smtp.gmail.com";
-                                $mail->Username   = CORREO;
-                                $mail->Password   = CONTRASEÑA;
-                                $mail->setFrom(CORREO, 'YfdsfsfsfName');
-                                $mail->addReplyTo(CORREO, 'Yfsdfs');
-                                $mail->addAddress($emaiL_user, 'Resdfsdfsdfsd Name');
-                                $mail->Subject = 'Testing PHPMailer';
-                                $mail->Body = 'linkcode  ->'.server_url.'forgotpassword/reset?token='.$code;
+                                $mail = new MailSender('smtp.gmail.com', CORREO, CONTRASEÑA,true);
+                                $mail->setTemplateURL('./views/template/mail/mail_forgotpassword.html');
+                                $mail->compose(array(
+                                    'link' => "'".server_url.'forgotpassword/reset?token='.$code."'",
+                                ));
                                 $_SESSION['emailtemp'] = $emaiL_user;
                                 $_SESSION['token-expire'] = time() + 5*60;
-                                            
-                                if (!$mail->send()) {
-                                    $data = array('status' => false,'msg' => 'Mailer Error: ' . $mail->ErrorInfo);
-                                } else {
-                                    $data = array('status' => true, 'msg' => 'Hemos enviado un enlance de restablecimiento de contraseña a tu email '.$emaiL_user, 'url' => server_url.'login');
-                                }
+                                $data = $mail->sendEmail(array(
+                                    CORREO,'xenturionit'
+                                ),array(
+                                    $emaiL_user,$request_email['nombre'].' '.$request_email['apellido']
+                                ),'Restablece tu contraseña de XenturionIT');
                             }
                         }else{
-                            $data = array('status' => false,'msg' => 'El  reCAPTCHA ha sido invalido, intentelo nuevamente');
+                            $data = array('status' => false,'msg' => 'El  reCAPTCHA ha sido invalido, recargue la pagiina e  intentelo nuevamente');
 
                         }	
                     }else{

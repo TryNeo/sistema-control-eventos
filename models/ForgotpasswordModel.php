@@ -11,7 +11,7 @@
 
         public function searchEmail(string $str_email){
             $this->str_email = $str_email;
-            $sql = "SELECT * FROM usuarios WHERE email = '$this->str_email' and estado = 1";
+            $sql = "SELECT nombre,apellido FROM usuarios WHERE email = '$this->str_email' and estado = 1";
             $request = $this->select_sql($sql);
             return $request;
         } 
