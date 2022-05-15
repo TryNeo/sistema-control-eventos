@@ -39,7 +39,6 @@ $(function(){
     $('#remember-me').on('change', function(){
         $('#remember-me').removeClass('is-valid');
         this.value = this.checked ? 1 : 0;}).change();
-
     sendingDataServerSideLogin('#fntLogin',validatorServerSide,fieldsToValidate);
 });
 
@@ -81,10 +80,10 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     
                 }
             }).fail(function (error) {
-                console.log(error);
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }else{
+            $('#remember-me').removeClass('is-valid');
             console.log("error")
         }
     })
