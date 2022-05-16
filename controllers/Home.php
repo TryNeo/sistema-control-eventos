@@ -11,6 +11,7 @@
             $data["page_id"] = 1;
             $data["page_title"] = "Inicio";
             $data["page"] = "home";
+			$data["home_usuarios"] = $this->model->selectInvitadosHome();
 			$this->views->getView($this,"home",$data); 
 		}
 

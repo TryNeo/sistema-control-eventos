@@ -22,6 +22,7 @@ CREATE TABLE usuarios(
     email  varchar(100),
     ultimo_online boolean DEFAULT 0,
     code text default NULL,
+    type_user varchar(50) default NULL,
     id_rol int(11),
     password text,
     estado boolean,
@@ -155,7 +156,7 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (8,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (9,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (10,1,1,1,1,1);
 
-INSERT INTO usuarios (nombre,apellido,usuario,email,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
+INSERT INTO usuarios (nombre,apellido,usuario,email,type_user,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec","dashboard",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
 
 INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fas fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fas fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fas fa-code',1,NULL,'2022-04-18 23:38:01');
 
