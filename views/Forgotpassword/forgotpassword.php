@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/components.css">
 
 </head>
 
@@ -84,12 +84,12 @@
             })
     </script>
 
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_forgotpassword.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/stisla.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/scripts.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/custom.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/dashboard_validate.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_principales.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_forgotpassword.js"></script>
 
     
 </body>

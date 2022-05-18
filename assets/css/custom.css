@@ -17,3 +17,10 @@
     line-height: 12px;
 }
 
+.no-valid{
+    color: black !important;
+}
+
+.no-valid::before{
+    color:black !important;
+}

@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/components.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/css/custom.css">
 </head>
 
 <body>
@@ -63,7 +63,7 @@
                                     <i class="fas fa-lock"></i>
                                     </div>
                                 </div>
-                                <input id="password" type="password" class="form-control" name="password" value="<?php if(isset($_COOKIE['upass'])) echo $_COOKIE['upass']; ?>" placeholder="ingrese la contraseña">
+                                <input  autocomplete="on" id="password" type="password" class="form-control" name="password" value="<?php if(isset($_COOKIE['upass'])) echo $_COOKIE['upass']; ?>" placeholder="ingrese la contraseña">
                                 <div class="invalid-feedback">
                                     Porfavor ingrese su contraseña
                                 </div>
@@ -73,7 +73,7 @@
                         <div class="form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" name="remember"  class="custom-control-input" id="remember-me">
-                                <label class="custom-control-label" for="remember-me">Recordarme</label>
+                                <label class="custom-control-label no-valid" for="remember-me" >Recordarme</label>
                             </div>
                         </div>
                         <div class="form-group">
@@ -105,12 +105,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
 
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_login.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/stisla.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/scripts.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/custom.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/dashboard_validate.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_principales.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_login.js"></script>
     
 </body>
 </html>

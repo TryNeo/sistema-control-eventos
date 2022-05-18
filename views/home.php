@@ -57,23 +57,23 @@ https://templatemo.com/tm-575-leadership-event
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Speakers</a>
+                            <a class="nav-link click-scroll" href="#section_3">Invitados</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Schedules</a>
+                            <a class="nav-link click-scroll" href="#section_4">Horarios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Pricing</a>
+                            <a class="nav-link click-scroll" href="#section_5">Precios</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_6">Venue</a>
+                            <a class="nav-link click-scroll" href="#section_6">Lugar de Eventos</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_7">Contact</a>
+                            <a class="nav-link click-scroll" href="#section_7">Contáctanos</a>
                         </li>
 
                         <li class="nav-item">
@@ -156,15 +156,16 @@ https://templatemo.com/tm-575-leadership-event
                     <div class="row">
 
                         <div class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
-                            <div class="speakers-text-info">
-                                <h2 class="mb-4">Our <u class="text-info">Speakers</u></h2>
+                            <div class="speakers-text-info text-center">
+                                <h2 class="mb-4">Nuestos <u class="text-info">Invitados</u></h2>
 
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</p>
+                                <a class="custom-btn custom-border-btn btn custom-link mt-3 me-3" href="#">Mas informacion</a>
                             </div>
                         </div>
 
                         <div class="col-lg-6 col-12">
-                            <div class="speakers-thumb">
+                            <div class="speakers-thumb speakers-thumb-small">
                                 <img src="<?php echo server_url; ?>/assets/page/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg" class="img-fluid speakers-image" alt="">
 
                                 <small class="speakers-featured-text">Featured</small>
@@ -184,6 +185,7 @@ https://templatemo.com/tm-575-leadership-event
                                     </ul>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="col-lg-12 col-12">
@@ -711,37 +713,43 @@ https://templatemo.com/tm-575-leadership-event
                     <div class="row">
 
                         <div class="col-lg-12 col-12">
-                            <h2 class="mb-5">Here you go <u class="text-info">Venue</u></h2>
+                            <h2 class="mb-5">Aquí tienes el lugar de <u class="text-info">eventos</u></h2>
                         </div>
-
                         <div class="col-lg-6 col-12">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511.091461689997!2d-73.9866630916883!3d40.758001294831736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855a96da09d%3A0x860bf5a5e1a00a68!2sTimes%20Square%2C%20New%20York%2C%20NY%2010036%2C%20USA!5e0!3m2!1sen!2ssg!4v1643035529098!5m2!1sen!2ssg" width="100%" height="371.59" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.892465499303!2d-79.88043951482211!3d-2.1943909423167733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6e794905a719%3A0x6126426f7b709143!2sDecevale%20S.%20A.%20(Edificio%20Del%20Comercio)!5e0!3m2!1ses!2sec!4v1652914803405!5m2!1ses!2sec" width="600" height="415" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="371.59" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
                         <div class="col-lg-6 col-12 mt-5 mt-lg-0">
                             <div class="venue-thumb bg-white shadow-lg">
                                 
                                 <div class="venue-info-title">
-                                    <h2 class="text-white mb-0">Times Square</h2>
+                                    <h2 class="text-white mb-0">Guayaquil </h2>
                                 </div>
 
                                 <div class="venue-info-body">
-                                    <h4 class="d-flex">
+                                    <h5 class="d-flex">
                                         <i class="bi-geo-alt me-2"></i> 
-                                        <span>102 South. 7th Street, New York, NY 10036, USA</span>
-                                    </h4>
+                                        <span>Pichincha 334 y Elizalde Edificio El Comercio, Piso 6 – Oficina 601, Guayaquil – Ecuador</span>
+                                    </h5>
 
                                     <h5 class="mt-4 mb-3">
-                                        <a href="mailto:hello@yourgmail.com">
+                                        <a href="mailto:solucionesit@xenturionit.com">
                                             <i class="bi-envelope me-2"></i>
-                                            hi@company.com
+                                            solucionesit@xenturionit.com
                                         </a>
                                     </h5>
 
                                     <h5 class="mb-0">
                                         <a href="tel: 305-240-9671">
                                             <i class="bi-telephone me-2"></i>
-                                            010-020-0340
+                                            (04) 232-8580
+                                        </a>
+                                    </h5>
+
+                                    <h5 class="mt-4">
+                                        <a href="#">
+                                            <i class="bi-watch me-2"></i>
+                                            Lunes – Viernes 09:00 – 18:00
                                         </a>
                                     </h5>
                                 </div>
@@ -758,7 +766,7 @@ https://templatemo.com/tm-575-leadership-event
 
                         <div class="col-lg-8 col-12 mx-auto">
                             <form class="custom-form contact-form bg-white shadow-lg" action="#" method="post" role="form">
-                                <h2>Please Say Hi</h2>
+                                <h2>Ponte en contacto con nosotros</h2>
 
                                 <div class="row">
                                     <div class="col-lg-4 col-md-4 col-12">                                    

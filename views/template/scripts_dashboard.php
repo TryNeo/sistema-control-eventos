@@ -23,12 +23,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-colorpicker@3.4.0/dist/js/bootstrap-colorpicker.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
 
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/dashboard_reloj.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/stisla.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/scripts.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/custom.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/dashboard_validate.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_principales.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/dashboard_reloj.js"></script>
 
     <?php if(isset($data['page'])) {?>
         <?php if ($data['page'] == 'roles') { ?>
@@ -69,7 +69,7 @@
     <?php }else {?>
     <?php } ?>
 
-    <script src="<?php echo server_url; ?>/assets/libs/datatables/datatables.min.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/datatables/datatables.min.js"></script>
     <!--<script src="/assets/libs/datatables/DataTables-1.10.16/js/dataTables.boostrap4.min.js"></script>-->
     
 </body>

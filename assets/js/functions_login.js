@@ -47,7 +47,6 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     let url = $(idForm).attr("action");
     $(idForm).on('submit',function (e) {
         e.preventDefault();
-        $('#remember-me').removeClass('is-valid');
         if(validatorServerSide.checkAll('.needs-validation') === 0){
             let formData = $(this).serializeArray();
             $.ajax({
@@ -68,7 +67,6 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
                     }, 4000);
                 }else{
                     if (!jQuery.isEmptyObject(data.formErrors)){
-                        console.log(data.formErrors)
                         fieldsToValidate.forEach((value,index) => {
                             if (data.formErrors.hasOwnProperty(fieldsToValidate[index])){
                                 validatorServerSide.errorTrigger($('[name='+fieldsToValidate[index]+']'), data.formErrors[''+fieldsToValidate[index]+'']);
@@ -83,7 +81,6 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }else{
-            $('#remember-me').removeClass('is-valid');
             console.log("error")
         }
     })

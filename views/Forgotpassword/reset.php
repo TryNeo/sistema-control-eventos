@@ -7,8 +7,8 @@
     <link rel="icon" type="image/png" href="https://i.imgur.com/x0pRK7B.png" sizes="16x16" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo server_url; ?>/assets/libs/stisla/assets/css/components.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo server_url; ?>assets/libs/stisla/assets/css/components.css">
 </head>
 
 <body oncontextmenu="return false;">
@@ -80,12 +80,12 @@
         let data = <?php echo $data['error']; ?>;
     </script>
 
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/stisla.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/scripts.js"></script>
-    <script src="<?php echo server_url; ?>/assets/libs/stisla/assets/js/custom.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/dashboard_validate.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_principales.js"></script>
-    <script src="<?php echo server_url; ?>/assets/js/functions_resetpassword.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/stisla.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/scripts.js"></script>
+    <script src="<?php echo server_url; ?>assets/libs/stisla/assets/js/custom.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/dashboard_validate.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_principales.js"></script>
+    <script src="<?php echo server_url; ?>assets/js/functions_resetpassword.js"></script>
 
 </body>
 </html>
