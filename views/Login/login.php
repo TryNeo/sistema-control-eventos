@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="simple-footer">
-                Copyright &copy; XenturionIT 2022
+                Copyright &copy; XenturionIT  <?php echo date("Y");?>
             </div>
             </div>
         </div>

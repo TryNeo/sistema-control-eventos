@@ -93,7 +93,7 @@ https://templatemo.com/tm-575-leadership-event
 
                         <div class="col-lg-5 col-12 m-auto">
                             <div class="hero-text">
-                                <h1 class="text-white mb-4"><u class="text-info">XenturionIT</u> Eventos 2022</h1>
+                                <h1 class="text-white mb-4"><u class="text-info">XenturionIT</u> Eventos <?php echo date("Y");?></h1>
                                 <a href="#section_2" class="custom-link bi-arrow-down arrow-icon"></a>
                             </div>
                         </div>
@@ -716,7 +716,9 @@ https://templatemo.com/tm-575-leadership-event
                             <h2 class="mb-5">Aquí tienes el lugar de <u class="text-info">eventos</u></h2>
                         </div>
                         <div class="col-lg-6 col-12">
-                            <iframe class="google-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.892465499303!2d-79.88043951482211!3d-2.1943909423167733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6e794905a719%3A0x6126426f7b709143!2sDecevale%20S.%20A.%20(Edificio%20Del%20Comercio)!5e0!3m2!1ses!2sec!4v1652914803405!5m2!1ses!2sec" width="600" height="415" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="100%" height="371.59" allowfullscreen="" loading="lazy"></iframe>
+                            <iframe class="google-map" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.892465499303!2d-79.88043951482211!3d-2.1943909423167733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6e794905a719%3A0x6126426f7b709143!2sDecevale%20S.%20A.%20(Edificio%20Del%20Comercio)!5e0!3m2!1ses!2sec!4v1652914803405!5m2!1ses!2sec" 
+                            width="100%" height="420" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
                         <div class="col-lg-6 col-12 mt-5 mt-lg-0">
@@ -817,7 +819,7 @@ https://templatemo.com/tm-575-leadership-event
 
                     <div class="col-lg-7 col-12">
                         <ul class="footer-menu d-flex flex-wrap">
-                            <p class="copyright-text">Copyright © 2022 XenturionIT
+                            <p class="copyright-text">Copyright ©  <?php echo date("Y");?> XenturionIT
                         </ul>
                     </div>
 
