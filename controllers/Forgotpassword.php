@@ -1,12 +1,5 @@
 <?php
     require_once ("./libraries/core/controllers.php");
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require_once ("./phpmailer/Exception.php");
-    require_once ("./phpmailer/PHPMailer.php");
-    require_once ("./phpmailer/SMTP.php");
-
     require_once ("./config/secretinfo.php");
     require_once ("./helpers/mailsender.php");
     class Forgotpassword extends Controllers{
@@ -73,7 +66,7 @@
                                 $data = $mail->sendEmail(array(
                                     CORREO,'xenturionit'
                                 ),array(
-                                    $emaiL_user,$request_email['nombre'].' '.$request_email['apellido']
+                                    $emaiL_user
                                 ),'Restablece tu contraseña de XenturionIT');
                             }
                         }else{

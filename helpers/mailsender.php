@@ -47,20 +47,20 @@ class MailSender {
 		}
 	}
 
-    public function sendEmail($from,$to,$subject){
+    public function sendEmail($from,$to,$subject,$errors = array('Hubo un error al enviar el enlance al correo, intentelo nuevamente ','Hemos enviado un enlance de restablecimiento de contraseña')){
 
         if(is_array($from) and is_array($to)){
             $this->mailer->setFrom($from[0], $from[1]);
-            $this->mailer->addAddress($to[0],$to[1]);
+            $this->mailer->addAddress($to[0]);
         } 
 		$this->mailer->Subject = $subject;
         $this->mailer->MsgHTML($this->body);
         $this->mailer->AltBody = strip_tags($this->body);
 
         if (!$this->mailer->send()) {
-            $data = array('status' => false,'msg' => 'Hubo un error al enviar el enlance al correo, intentelo nuevamente '.$this->mailer->ErrorInfo);
+            $data = array('status' => false,'msg' => $errors[0].$this->mailer->ErrorInfo);
         } else {
-            $data = array('status' => true, 'msg' => 'Hemos enviado un enlance de restablecimiento de contraseña a tu email '.$to[0], 'url' => server_url.'login');
+            $data = array('status' => true, 'msg' => $errors[1], 'url' => server_url.'login');
         }
         return $data;
     }

@@ -16,19 +16,12 @@
         
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-        <link href="<?php echo server_url; ?>/assets/page/css/bootstrap.min.css" rel="stylesheet">
+        <link href="<?php echo server_url; ?>assets/page/css/bootstrap.min.css" rel="stylesheet">
 
-        <link href="<?php echo server_url; ?>/assets/page/css/bootstrap-icons.css" rel="stylesheet">
+        <link href="<?php echo server_url; ?>assets/page/css/bootstrap-icons.css" rel="stylesheet">
 
-        <link href="<?php echo server_url; ?>/assets/page/css/templatemo-leadership-event.css" rel="stylesheet">
-        
-<!--
+        <link href="<?php echo server_url; ?>assets/page/css/templatemo-leadership-event.css" rel="stylesheet">
 
-TemplateMo 575 Leadership Event
-
-https://templatemo.com/tm-575-leadership-event
-
--->
     </head>
     
     <body>
@@ -765,28 +758,31 @@ https://templatemo.com/tm-575-leadership-event
             <section class="contact section-padding" id="section_7">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-lg-8 col-12 mx-auto">
-                            <form class="custom-form contact-form bg-white shadow-lg" action="#" method="post" role="form">
+                            <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                            <form class="custom-form contact-form bg-white shadow-lg needs-validation" id="fntSendEmail" name="fntSendEmail" method="POST" action="<?php echo server_url; ?>Home/sendEmail" class="needs-validation" novalidate="">
                                 <h2>Ponte en contacto con nosotros</h2>
-
+                                <input id="csrf" name="csrf" type="hidden" value="<?php echo $data["csrf"]; ?>">
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-4 col-12">                                    
-                                        <input type="text" name="name" id="name" class="form-control" placeholder="Name" required="">
+                                    <div class="col-lg-6 col-md-6 col-12 py-1">                                    
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="Nombre" required="">
                                     </div>
-
-                                    <div class="col-lg-4 col-md-4 col-12">         
-                                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email" required="">
+                                    <div class="col-lg-6 col-md-6 col-12 py-1">         
+                                        <input type="text" name="email" id="email"  class="form-control" placeholder="Correo electronico" required="">
                                     </div>
-
-                                    <div class="col-lg-4 col-md-4 col-12">                                    
-                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject">
+                                    <div class="col-12 py-1">                                    
+                                        <input type="text" name="subject" id="subject" class="form-control" placeholder="Asunto">
+                                    </div>
+                                    <div class="col-12 py-1">                                    
+                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Mensaje"></textarea>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-12 py-3">                                    
+                                        <div class="g-recaptcha" data-sitekey="6LeJTQMgAAAAACpK9IvkRN6GCTrbx_2CQJFY-rvP"></div>
+                                        <br>
                                     </div>
 
                                     <div class="col-12">
-                                        <textarea class="form-control" rows="5" id="message" name="message" placeholder="Message"></textarea>
-
-                                        <button type="submit" class="form-control">Submit</button>
+                                        <button type="submit" class="form-control">Enviar</button>
                                     </div>
 
                                 </div>
@@ -835,11 +831,19 @@ https://templatemo.com/tm-575-leadership-event
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="<?php echo server_url; ?>/assets/page/js/jquery.min.js"></script>
-        <script src="<?php echo server_url; ?>/assets/page/js/bootstrap.min.js"></script>
-        <script src="<?php echo server_url; ?>/assets/page/js/jquery.sticky.js"></script>
-        <script src="<?php echo server_url; ?>/assets/page/js/click-scroll.js"></script>
-        <script src="<?php echo server_url; ?>/assets/page/js/custom.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/jquery.min.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/bootstrap.min.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/jquery.sticky.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/click-scroll.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/custom.js"></script>
+        <script src="<?php echo server_url; ?>assets/page/js/custom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@emretulek/jbvalidator"></script>
+        <script src="<?php echo server_url; ?>assets/js/dashboard_validate.js"></script>
+        <script src="<?php echo server_url; ?>assets/js/functions_principales.js"></script>
+        <script src="<?php echo server_url; ?>assets/js/functions_home.js"></script>
+
 
     </body>
 </html>
