@@ -22,6 +22,7 @@
 
         <link href="<?php echo server_url; ?>assets/page/css/templatemo-leadership-event.css" rel="stylesheet">
 
+        <link href="<?php echo server_url; ?>assets/page/css/styles.css" rel="stylesheet">
     </head>
     
     <body>
@@ -122,9 +123,24 @@
                             <a class="custom-btn btn custom-link mt-3" href="#section_4">Ve nuestros Horarios</a>
                         </div>
 
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut dolore</h4>
-
+                        <div class="col-lg-6 col-12 mt-5 mt-lg-0 contador">
+                            <ul>
+                                <li data-count="8">
+                                    <i class="fa fa-code"></i>
+                                    <span>0</span>
+                                    <p>Años de Experiencia</p>
+                                </li>
+                                <li data-count="30">
+                                    <i class="fa fa-code"></i>
+                                    <span>0</span>
+                                    <p>Clientes Satisfechos</p>
+                                </li>
+                                <li data-count="300">
+                                    <i class="fa fa-code"></i>
+                                    <span>0</span>
+                                    <p>Proyectos Exitosos</p>
+                                </li>
+                            </ul>
                             <div class="avatar-group border-top py-5 mt-5">
                                 <?php if(count($data['home_usuarios']) > 0) {?>
                                     <?php foreach($data['home_usuarios'] as $key=>$value){ ?>
