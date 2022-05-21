@@ -71,6 +71,24 @@ $(function(){
 
     sendingDataServerSideEmail('#fntSendEmail',validatorServerSide,fieldsToValidate);
 
+    //Animación de números
+    $('ul li span').each(function () {
+        const This = $(this);
+        $({Count: This.text()}).animate(
+            {Count:  This.parent().attr("data-count")},
+            {
+                duration: 2000,
+                easing: "linear",
+                step: function(){
+                    This.text(Math.floor(this.Count))
+                },
+                complete: function(){
+                    This.text(this.Count).css({color:"#ffffff"})
+                }
+            }
+        )
+    })
+
 });
 
 
