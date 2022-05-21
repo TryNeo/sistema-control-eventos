@@ -794,7 +794,11 @@
             </section>
 
         </main>
-
+        <div class="col-lg-5 col-12 ms-lg-auto button-up">
+                <div class="copyright-text-wrap d-flex align-items-center">
+                    <a href="#section_1" class="bi-arrow-up arrow-icon custom-link"></a>
+                </div>
+            </div>
         <footer class="site-footer">
             <div class="container">
                 <div class="row align-items-center">
@@ -818,14 +822,6 @@
                             <p class="copyright-text">Copyright ©  <?php echo date("Y");?> XenturionIT
                         </ul>
                     </div>
-
-                    <!----    
-                    <div class="col-lg-5 col-12 ms-lg-auto">
-                        <div class="copyright-text-wrap d-flex align-items-center">
-                            <a href="#section_1" class="bi-arrow-up arrow-icon custom-link"></a>
-                        </div>
-                    </div>-->
-
                 </div>
             </div>
         </footer>

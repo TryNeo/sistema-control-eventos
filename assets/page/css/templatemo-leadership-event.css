@@ -928,17 +928,35 @@ strong {
   color: var(--white-color);
 }
 
+.button-up{
+  position: fixed;
+  right: -330px;
+  bottom: 50px;
+}
+
 
 /*---------------------------------------
   RESPONSIVE STYLES               
 -----------------------------------------*/
-@media screen and (max-width: 1500px) {
+@media screen and (max-width: 1600px ) {
    .speakers-text-info {
     padding: 50px;
   }
+
+  .button-up{
+    right: -255px;
+    bottom: 50px;
+  }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (min-width: 1200px ){
+  .button-up{
+    right: -240px;
+    bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
   h1 {
     font-size: 48px;
   }
@@ -995,7 +1013,16 @@ strong {
   .imgxen{
     display:none;
   }
+
+  
+  .button-up{
+    right: -315px;
+    bottom: 50px;
+  }
 }
+
+
+
 
 @media screen and (max-width: 480px) {
   h1 {

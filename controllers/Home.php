@@ -47,16 +47,18 @@
                         curl_close($cu);
                         $dataGoogle = json_decode($response, true);
 						if($dataGoogle['success'] == 1){
-							$mail = new MailSender('smtp.gmail.com', CORREO, CONTRASEÑA,false);
-							
+							$mail = new MailSender('smtp.gmail.com', CORREO, CONTRASEÑA,true);
+							$mail->setTemplateURL('./views/template/mail/mail_contact.html');
 							$mail->compose(array(
-								'link' => $message,
+								'name'=> $name,
+								'email'=> $emaiL,
+								'subject' => $subject,
+								'message' => $message,
 							));
-
 							$data = $mail->sendEmail(array(
-								CORREO,'SOPORTE XENTURIONIT'
+								CORREO,'Soporte | XenturionIT'
 							),array(
-								$emaiL
+								CORREO
 							),$subject,array('Hubo un error al enviar el correo, intentelo nuevamente ', 'Hemos enviado el email correctamente'));
 						}else{
 							$data = array('status' => false,'msg' => 'El  reCAPTCHA ha sido invalido, recargue la pagiina e  intentelo nuevamente');
