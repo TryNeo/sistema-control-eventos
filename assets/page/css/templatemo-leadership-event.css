@@ -928,35 +928,31 @@ strong {
   color: var(--white-color);
 }
 
-.button-up{
+#button-up{
   position: fixed;
   right: -330px;
   bottom: 50px;
+  transform: scale(0);
+  transition: all 300ms ease;
 }
 
 
 /*---------------------------------------
   RESPONSIVE STYLES               
 -----------------------------------------*/
-@media screen and (max-width: 1600px ) {
+@media screen and (max-width: 1820px ) {
    .speakers-text-info {
     padding: 50px;
   }
 
-  .button-up{
+  #button-up{
     right: -255px;
     bottom: 50px;
   }
 }
 
-@media screen and (min-width: 1200px ){
-  .button-up{
-    right: -240px;
-    bottom: 50px;
-  }
-}
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 989px) {
   h1 {
     font-size: 48px;
   }
@@ -1015,10 +1011,18 @@ strong {
   }
 
   
-  .button-up{
-    right: -315px;
+  #button-up{
+    right: -402px;
     bottom: 50px;
   }
+}
+
+@media only screen and (max-width: 750px ){
+
+ #button-up{
+   right: -292px;
+   bottom: 50px;
+ }
 }
 
 

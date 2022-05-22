@@ -21,7 +21,7 @@ $.each(sectionArray, function(index, value){
      });
     
     $('.click-scroll').eq(index).click(function(e){
-        var offsetClick = $('#' + 'section_' + value).offset().top - 84;
+        var offsetClick = $('#' + 'section_' + value).offset().top - 86;
         e.preventDefault();
         $('html, body').animate({
             'scrollTop':offsetClick
@@ -35,3 +35,14 @@ $(document).ready(function(){
     $('.navbar-nav .nav-item .nav-link').eq(0).addClass('active');
     $('.navbar-nav .nav-item .nav-link:link').eq(0).removeClass('inactive');
 });
+
+
+buttonUp = document.getElementById("button-up");
+window.onscroll = function() {
+    let scroll = document.documentElement.scrollTop;
+    if (scroll > 200) {
+        buttonUp.style.transform = "scale(1)";
+    }else if(scroll < 100){
+        buttonUp.style.transform = "scale(0)";
+    }
+}

@@ -126,21 +126,25 @@
                         <div class="col-lg-6 col-12 mt-5 mt-lg-0 contador">
                             <ul>
                                 <li data-count="8">
+                                    <i class="bi bi-calendar"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
                                     <p>Años de Experiencia</p>
                                 </li>
                                 <li data-count="30">
+                                    <i class="bi bi-people-fill"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
                                     <p>Clientes Satisfechos</p>
                                 </li>
                                 <li data-count="300">
+                                    <i class="bi bi-boxes"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
                                     <p>Proyectos Exitosos</p>
                                 </li>
                             </ul>
+
                             <div class="avatar-group border-top py-5 mt-5">
                                 <?php if(count($data['home_usuarios']) > 0) {?>
                                     <?php foreach($data['home_usuarios'] as $key=>$value){ ?>
@@ -810,7 +814,7 @@
             </section>
 
         </main>
-        <div class="col-lg-5 col-12 ms-lg-auto button-up">
+        <div class="col-lg-5 col-12 ms-lg-auto" id="button-up">
                 <div class="copyright-text-wrap d-flex align-items-center">
                     <a href="#section_1" class="bi-arrow-up arrow-icon custom-link"></a>
                 </div>
