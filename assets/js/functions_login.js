@@ -78,6 +78,7 @@ function sendingDataServerSideLogin(idForm,validatorServerSide,fieldsToValidate)
     
                 }
             }).fail(function (error) {
+                console.log(error)
                 mensaje("error","Error",'Hubo problemas con el servidor, intentelo nuevamente')
             })
         }else{

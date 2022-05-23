@@ -52,7 +52,7 @@
                 <?php if (!empty($_SESSION['permisos'][1]['r'])) {?>
                   <?php if($data['page_id'] == 1 ){ ?>
                     <li class="active">
-                      <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                      <a href="<?php echo server_url; ?>dashboard/" class="nav-link"><i class="fas fa-home"></i><span>Dashboard</span></a>
                     </li>
                   <?php }else{ ?>
                     <li>
@@ -178,6 +178,21 @@
                   <?php } ?>
                 </ul>
               </li>
+              <?php if ($_SESSION['user_data']['id_usuario'] == 1) {?>
+                <li class="dropdown">
+                  <a href="#" class="has-dropdown"><i class="fas fa-cog"></i><span>Configuracion web</span></a>
+                  <ul class="dropdown-menu" style="display: block;">
+                    <?php if($data['page_id'] == 11 ){ ?>
+                      <li class="active"><a class="nav-link" href="<?php echo server_url; ?>websitesetting/"><i class="fas fa-window-restore"></i>Website</a></li>                
+                    <?php }else{ ?>
+                      <li><a class="nav-link" href="<?php echo server_url; ?>websitesetting/"><i class="fas fa-window-restore"></i>Website</a></li>                
+                    <?php } ?>
+
+
+                    </ul>
+                </li>
+              <?php } ?>
+
             </ul>
 
             <!-- /.nav-

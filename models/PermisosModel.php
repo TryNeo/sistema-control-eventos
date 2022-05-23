@@ -18,7 +18,7 @@
         public function selectModulos(string $str_search_modulo){
             $this->str_search_modulo = $str_search_modulo;
             $sql = "SELECT id_modulo,nombre,descripcion FROM modulos 
-            WHERE estado = 1 and nombre not in('Usuarios','Respaldo','Permisos','Roles') and nombre like '%".$this->str_search_modulo."%' ";
+            WHERE estado = 1 and nombre not in('Usuarios','Respaldo','Permisos','Roles','Website') and nombre like '%".$this->str_search_modulo."%' ";
             $request = $this->select_sql_all($sql);
             return $request;
         }
@@ -26,7 +26,7 @@
         public function selectSearchModulo(int $intModulo){
             $this->int_id_modulo = $intModulo;
             $sql = "SELECT id_modulo,nombre,descripcion FROM modulos 
-            WHERE estado = 1 and id_modulo = $this->int_id_modulo and nombre not in('Usuarios','Respaldo','Permisos','Roles')";
+            WHERE estado = 1 and id_modulo = $this->int_id_modulo and nombre not in('Usuarios','Respaldo','Permisos','Roles','Website')";
             $request = $this->select_sql($sql);
             return $request;
         }

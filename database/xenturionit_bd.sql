@@ -127,6 +127,24 @@ CREATE TABLE `planes` (`id_plan` tinyint(11) NOT NULL AUTO_INCREMENT,
                         PRIMARY KEY (`id_plan`)
                         ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
+
+
+DROP TABLE IF EXISTS website_setting;
+CREATE TABLE website_setting(
+    id_website_setting INT NOT NULL AUTO_INCREMENT,
+    website_title VARCHAR(45) NOT NULL,
+    website_about text DEFAULT NULL,
+    website_image VARCHAR(250) DEFAULT NULL,
+    website_favicon VARCHAR(250) DEFAULT NULL,
+    website_clients varchar(45) DEFAULT NULL,
+    website_expirience varchar(45) DEFAULT NULL,
+    website_proyects varchar(45) DEFAULT NULL,
+    fecha_crea DATETIME,
+    fecha_modifica DATETIME default now(),
+    PRIMARY KEY (id_website_setting)
+);
+
+
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
 ALTER TABLE permisos ADD CONSTRAINT fk_modulo FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo);
 ALTER TABLE permisos ADD CONSTRAINT fk_rol FOREIGN KEY (id_rol) REFERENCES roles(id_rol);
@@ -141,6 +159,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Invitados','m
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Eventos','modulo de eventos',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Cuentas Bancarias','modulo de cuentas bancarias',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Planes','modulo de planes para eventos',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Website','modulo para configuracion de la web',1,now());
 
 
 INSERT INTO roles (nombre_rol,descripcion,estado,fecha_crea) values ("Administrador","permisos de acceso a todo el sistema",1,now());
@@ -155,9 +174,11 @@ INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (7,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (8,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (9,1,1,1,1,1);
 INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (10,1,1,1,1,1);
+INSERT INTO permisos (id_modulo,id_rol,r,w,u,d) VALUES (11,1,1,1,1,1);
 
 INSERT INTO usuarios (nombre,apellido,usuario,email,type_user,id_rol,password,estado,fecha_crea) VALUES ("joel josue","huacon lopez","josu3","jjhuacon@est.itsgg.edu.ec","dashboard",1,"$2y$10$nLtnKbUrAQnMMfWi9bqsEuQ53U5k1pKCRsKYWEw0x/R5hgKNcHiYK",1,now());
 
 INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fas fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fas fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fas fa-code',1,NULL,'2022-04-18 23:38:01');
 
+INSERT INTO website_setting (website_title) VALUES ('XenturiontIT eventos');
 
