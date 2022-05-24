@@ -136,13 +136,13 @@ CREATE TABLE website_setting(
     website_about text DEFAULT NULL,
     website_image VARCHAR(250) DEFAULT NULL,
     website_favicon VARCHAR(250) DEFAULT NULL,
-    website_clients varchar(45) DEFAULT NULL,
-    website_expirience varchar(45) DEFAULT NULL,
-    website_proyects varchar(45) DEFAULT NULL,
+    website_clients INT(11) DEFAULT NULL,
+    website_expirience INT(11) DEFAULT NULL,
+    website_proyects INT(11) DEFAULT NULL,
     fecha_crea DATETIME,
     fecha_modifica DATETIME default now(),
     PRIMARY KEY (id_website_setting)
-);
+) ENGINE=InnoDB DEFAULT  CHARSET=utf8mb4;
 
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
@@ -180,5 +180,6 @@ INSERT INTO usuarios (nombre,apellido,usuario,email,type_user,id_rol,password,es
 
 INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,`icono`,`estado`,`fecha_crea`,`fecha_modifica`) VALUES (1,'Seminarios','Seminarios','fas fa-university',1,NULL,'0000-00-00 00:00:00'),(2,'Conferencias','Conferencias','fas fa-comment',1,NULL,'0000-00-00 00:00:00'),(3,'Talleres','Talleres','fas fa-code',1,NULL,'2022-04-18 23:38:01');
 
-INSERT INTO website_setting (website_title) VALUES ('XenturiontIT eventos');
+INSERT INTO website_setting (website_title,website_about,website_image,website_favicon,website_clients,website_expirience,website_proyects,fecha_crea) 
+    VALUES ('XenturiontIT eventos','XenturionIT está conformado por un equipo de profesionales especializados en diferentes campos de TI cuyo propósito es generar valor agregado a nuestros socios estratégicos poniendo a su disposición toda la experiencia adquirida durante la dilatada trayectoria profesional de sus colaboradores y la constante capacitación del personal interno.​','https://i.imgur.com/bjl5fx4.png','https://i.imgur.com/2m15ruv.png',30,8,300,now());
 
