@@ -730,7 +730,7 @@
                         </div>
                         <div class="col-lg-6 col-12">
                             <iframe class="google-map" 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.892465499303!2d-79.88043951482211!3d-2.1943909423167733!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x902d6e794905a719%3A0x6126426f7b709143!2sDecevale%20S.%20A.%20(Edificio%20Del%20Comercio)!5e0!3m2!1ses!2sec!4v1652914803405!5m2!1ses!2sec" 
+                            src="https://maps.google.com/maps?q=Pichincha%20%23%20y%20Elizalde&t=m&z=18&output=embed&iwloc=near"
                             width="100%" height="420" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
