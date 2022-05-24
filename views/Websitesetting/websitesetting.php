@@ -11,6 +11,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-body">
+
                         <form class="needs-validation" id="fntWebsitesetting" method="post" role="form" novalidate="">
                             <input type="hidden" id="id_website_setting" name="id_website_setting" value="">
                             <div class="col-md-12">
@@ -100,6 +101,9 @@
                                         style="margin-top: 0px; margin-bottom: 0px; height: 100px;" id="website_about"></textarea>
                                 </div>
                             </div>
+                            <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4 is-valid">
+                                <span class="changeText">Guardar </span><i class="fa fa-plus"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
