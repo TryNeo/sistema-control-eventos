@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-body">
                         <form class="needs-validation" id="fntWebsitesetting" method="post" role="form" novalidate="">
-                            <input type="hidden" id="id_website_setting" name="id_website_setting" value="<?php echo !empty($data['data_website']['id_website_setting'])?$data['data_website']['id_website_setting']:'' ?>">
+                            <input type="hidden" id="id_website_setting" name="id_website_setting" value="">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Titulo del sitio web</label>
@@ -22,21 +22,15 @@
                                                 <i class="fas fa-address-book"></i>
                                             </span>
                                         </div>
-                                        <input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo !empty($data['data_website']['website_title'])?$data['data_website']['website_title']:'' ?>" >
+                                        <input type="text" name="website_name" class="form-control" id="website_name" value="" >
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Descripcion  del sitio web</label>
-                                    <div class="input-group">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">
-                                                <i class="fas fa-address-book"></i>
-                                            </span>
-                                        </div>
-                                        <input type="text" name="nombre" class="form-control" id="nombre" value="<?php echo !empty($data['data_website']['website_about'])?$data['data_website']['website_about']:'' ?>" >
-                                    </div>
+                                    <textarea name="website_about" cols="40" rows="2" maxlength="250" class="form-control" 
+                                        style="margin-top: 0px; margin-bottom: 0px; height: 100px;" id="website_about"></textarea>
                                 </div>
                             </div>
                         </form>
