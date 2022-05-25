@@ -35,7 +35,7 @@
                 </button>
 
                 <a href="<?php echo server_url; ?>" class="navbar-brand mx-auto mx-lg-0">
-                    <img src="https://i.imgur.com/bJl5fX4.png" alt="logo" width="200" class="shadow-light imgxen">
+                    <img src="<?php echo $data['page_info']['website_image'] ?>" alt="logo" width="200" class="shadow-light imgxen">
                 </a>
 
                 <a class="nav-link custom-btn btn d-lg-none" href="#">Buy Tickets</a>
@@ -826,7 +826,7 @@
                     <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
                         <div class="d-flex">
                             <a href="<?php echo server_url; ?>" class="navbar-brand">
-                                <img src="https://i.imgur.com/bJl5fX4.png" alt="logo" width="200" class="shadow-light imgxen">
+                                <img src="<?php echo $data['page_info']['website_image'] ?>" alt="logo" width="200" class="shadow-light imgxen">
                             </a>
 
                             <ul class="social-icon ms-auto">

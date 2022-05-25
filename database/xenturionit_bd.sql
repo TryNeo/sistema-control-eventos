@@ -144,6 +144,24 @@ CREATE TABLE website_setting(
     PRIMARY KEY (id_website_setting)
 ) ENGINE=InnoDB DEFAULT  CHARSET=utf8mb4;
 
+DROP TABLE IF EXISTS contact_setting;
+CREATE TABLE contact_setting(
+    id_contact_setting INT NOT NULL AUTO_INCREMENT,
+    contact_title VARCHAR(45) DEFAULT NULL,
+    contact_address VARCHAR(45) DEFAULT NULL,
+    contact_phone VARCHAR(45) DEFAULT NULL,
+    contact_email VARCHAR(45) DEFAULT NULL,
+    contact_schedule VARCHAR(45) DEFAULT NULL,
+    google_map VARCHAR(350) DEFAULT NULL,
+    facebook VARCHAR(250) DEFAULT NULL,
+    twitter VARCHAR(250) DEFAULT NULL,
+    linkedin VARCHAR(250) DEFAULT NULL,
+    instagram VARCHAR(250) DEFAULT NULL,
+    fecha_crea DATETIME,
+    fecha_modifica DATETIME default now(),
+    PRIMARY KEY (id_contact_setting)
+) ENGINE=InnoDB DEFAULT  CHARSET=utf8mb4;
+
 
 ALTER TABLE usuarios ADD CONSTRAINT fk_roles FOREIGN KEY (id_rol)  REFERENCES roles(id_rol);
 ALTER TABLE permisos ADD CONSTRAINT fk_modulo FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo);
@@ -183,3 +201,6 @@ INSERT  INTO `categoria_evento`(`id_categoria`,`nombre_categoria`,`descripcion`,
 INSERT INTO website_setting (website_title,website_about,website_image,website_favicon,website_clients,website_expirience,website_proyects,fecha_crea) 
     VALUES ('XenturiontIT eventos','XenturionIT está conformado por un equipo de profesionales especializados en diferentes campos de TI cuyo propósito es generar valor agregado a nuestros socios estratégicos poniendo a su disposición toda la experiencia adquirida durante la dilatada trayectoria profesional de sus colaboradores y la constante capacitación del personal interno.​','https://i.imgur.com/bjl5fx4.png','https://i.imgur.com/2m15ruv.png',30,8,300,now());
 
+INSERT INTO contact_setting (contact_title,contact_address,contact_phone,contact_email,contact_schedule,google_map,fecha_crea)
+    VALUES ('Guayaquil','Pichincha 334 y Elizalde Edificio El Comercio, Piso 6 – Oficina 601, Guayaquil – Ecuador','(04) 232-8580',
+    'solucionesit@xenturionit.com','Lunes – Viernes 09:00 – 18:00','https://maps.google.com/maps?q=Pichincha%20%23%20y%20Elizalde&t=m&z=18&output=embed&iwloc=near',now())

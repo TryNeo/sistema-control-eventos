@@ -2,7 +2,6 @@
 
 	require_once ("./config/secretinfo.php");
 	require_once ("./helpers/mailsender.php");
-
 	class Home extends Controllers{
 		public function __construct()
 		{
@@ -20,6 +19,7 @@
             $data["page_id"] = 1;
             $data["page_title"] = "Inicio";
             $data["page"] = "home";
+			$data['page_info'] =  $this->model->selectWebsite();
 			$data["home_usuarios"] = $this->model->selectInvitadosHome();
 			$this->views->getView($this,"home",$data); 
 		}

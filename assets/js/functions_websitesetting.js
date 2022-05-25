@@ -6,6 +6,7 @@ $(function(){
     const configValid = configToValidate()
 
     get_website_setting();
+    get_contact_setting();
     sendingDataServerSideWebsite('#fntWebsitesetting',configValid,fieldsToValidate,'websitesetting/setWebsite');
 });
 
@@ -28,6 +29,17 @@ function get_website_setting(){
     });
 }
 
+
+function get_contact_setting(){
+    $.ajax({
+        type: 'GET',
+        url: base_url+"websitesetting/getContact",
+    }).then(function (data) {
+        let objdata = JSON.parse(data);
+        $('#id_contact_setting').val(objdata.id_contact_setting ? objdata.id_contact_setting : "");
+        $('#contact_title').val(objdata.contact_title ? objdata.contact_title : "");
+    });
+}
 
 
 function configToValidate() {

@@ -7,31 +7,6 @@
     <div class="section-body">
         <h2 class="section-title">Sitio web</h2>
         <p class="section-lead">Aqui se realizara la configuracion basica en la pagina web <a href="<?php echo server_url; ?>" target="_blank">XenturionIT</a>, como el titulo de la web , informacion, imagenes etc</p>
-        
-        <div class="row">
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Previsualizacion del logo | favicon </h4>
-                    </div>
-                    <div class="card-body">
-                        d
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h4>Previsualizacion del google maps </h4>
-                    </div>
-                    <div class="card-body">
-                        d
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <div class="row">
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
@@ -113,7 +88,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Sobre Nosotros sito web</label>
@@ -138,7 +112,25 @@
                     </div>
                     <div class="collapse" id="contact-collapse">
                         <div class="card-body">
-                            example
+                        <form class="needs-validation" id="fntContactsetting" method="post" role="form" novalidate="">
+                                <input type="hidden" id="id_contact_setting" name="id_contact_setting" value="">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Titulo del Contacto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-address-book"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" name="contact_title" class="form-control" id="contact_title" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4 is-valid">
+                                    <span class="changeText">Guardar </span><i class="fa fa-plus"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

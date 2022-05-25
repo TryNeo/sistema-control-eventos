@@ -15,6 +15,15 @@ class HomeModel extends Mysql
         return $request;
     }
 
+
+    public function selectWebsite()
+    {
+        $sql = "SELECT * FROM website_setting WHERE id_website_setting = 1";
+        $request_website = $this->select_sql($sql);
+        return $request_website;
+    }
+
+    
 }
 
 ?>

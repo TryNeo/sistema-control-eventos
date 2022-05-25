@@ -24,6 +24,14 @@ class WebsitesettingModel extends Mysql
         return $request_website;
     }
 
+    public function selectContact()
+    {
+        $sql = "SELECT * FROM contact_setting WHERE id_contact_setting = 1";
+        $request_website = $this->select_sql($sql);
+        return $request_website;
+    }
+
+
     public function updateWebsiteSetting(int $intWebsite, string $website_title, string $website_about, $website_image, $website_favicon, int $website_clients, int $website_expirience, int $website_proyects)
     {
         $this->intWebsite = $intWebsite;

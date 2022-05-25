@@ -40,6 +40,17 @@ class Websitesetting extends Controllers
         die();
     }
 
+    public function getContact()
+    {
+        if (empty($_SESSION['permisos_modulo']['r'])) {
+            header('location:' . server_url . 'Errors');
+            $data = array("status" => false, "msg" => "Error no tiene permisos");
+        } else {
+            $data = $this->model->selectContact();
+        }
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 
 
     public function setWebsite()
