@@ -12,6 +12,18 @@ class WebsitesettingModel extends Mysql
     public $intExpierence;
     public $intProyects;
 
+    public $intContact;
+    public $strContactTitle;
+    public $strContactAddress;
+    public $strContactPhone;
+    public $strContactEmail;
+    public $strContactSchedule;
+    public $strContactGooglemap;
+    public $strContactFacebook;
+    public $strContactTwitter;
+    public $strContactLinkedin;
+    public $strContactInstagram;
+
     public function __construct()
     {
         parent::__construct();
@@ -48,4 +60,24 @@ class WebsitesettingModel extends Mysql
         $request_update = $this->update_sql($sql, $data);
         return $request_update;
     }
+
+    public function updateContactSetting(int $intContact, string $contact_title, string $contact_address, string $contact_phone, string $contact_email, string $contact_schedule, string $contact_googlemap, string $contact_facebook, string $contact_twitter, string $contact_linkedin, string $contact_instagram)
+    {
+        $this->intContact = $intContact;
+        $this->strContactTitle = $contact_title;
+        $this->strContactAddress = $contact_address;
+        $this->strContactPhone = $contact_phone;
+        $this->strContactEmail = $contact_email;
+        $this->strContactSchedule = $contact_schedule;
+        $this->strContactGooglemap = $contact_googlemap;
+        $this->strContactFacebook = $contact_facebook;
+        $this->strContactTwitter = $contact_twitter;
+        $this->strContactLinkedin = $contact_linkedin;
+        $this->strContactInstagram = $contact_instagram;
+        $sql = "UPDATE contact_setting SET contact_title = ?, contact_address = ?, contact_phone = ?, contact_email = ?, contact_schedule = ?, google_map = ?, facebook = ?, twitter = ?, linkedin = ?, instagram = ?, fecha_modifica = now() WHERE id_contact_setting = $this->intContact";
+        $data = array($this->strContactTitle, $this->strContactAddress, $this->strContactPhone, $this->strContactEmail, $this->strContactSchedule, $this->strContactGooglemap, $this->strContactFacebook, $this->strContactTwitter, $this->strContactLinkedin, $this->strContactInstagram);
+        $request_update = $this->update_sql($sql, $data);
+        return $request_update;
+    }
+    
 }

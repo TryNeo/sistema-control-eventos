@@ -7,7 +7,9 @@ $(function(){
 
     get_website_setting();
     get_contact_setting();
-    sendingDataServerSideWebsite('#fntWebsitesetting',configValid,fieldsToValidate,'websitesetting/setWebsite');
+    sendingDataServerSideWebsite('#fntWebsitesetting',configValid,fieldsToValidate,'websitesetting/setWebsite','.needs-validation',get_website_setting());
+    sendingDataServerSideWebsite('#fntContactsetting',configValid,fieldsToValidate,'websitesetting/setContact','.needs-validations',get_contact_setting());
+
 });
 
 
@@ -85,10 +87,10 @@ function configToValidate() {
 
 
 
-function sendingDataServerSideWebsite(idForm,validatorServerSide,fieldsToValidate,urlMethod){
+function sendingDataServerSideWebsite(idForm,validatorServerSide,fieldsToValidate,urlMethod,classValidate,refreshData){
     $(idForm).on('submit',function (e) {
         e.preventDefault();
-        if(validatorServerSide.checkAll('.needs-validation') === 0){
+        if(validatorServerSide.checkAll(classValidate) === 0){
             let formData = $(this).serializeArray();
             $.ajax({
                 url: base_url+urlMethod,
@@ -98,7 +100,7 @@ function sendingDataServerSideWebsite(idForm,validatorServerSide,fieldsToValidat
             }).done(function (data) {
                 if(data.status){
                     mensaje('success','Exitoso',data.msg);
-                    get_website_setting();
+                    refreshData();
                 }else{
                     if (!jQuery.isEmptyObject(data.formErrors)){
                         fieldsToValidate.forEach((value,index) => {

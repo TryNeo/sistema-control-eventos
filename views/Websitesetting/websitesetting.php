@@ -102,6 +102,8 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-header">
@@ -112,7 +114,7 @@
                     </div>
                     <div class="collapse" id="contact-collapse">
                         <div class="card-body">
-                        <form class="needs-validation" id="fntContactsetting" method="post" role="form" novalidate="">
+                        <form class="needs-validations" id="fntContactsetting" method="post" role="form" novalidate="">
                                 <input type="hidden" id="id_contact_setting" name="id_contact_setting" value="">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -253,7 +255,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </section>
 <?php
