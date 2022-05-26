@@ -127,6 +127,123 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Dirección de Contacto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-map"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" name="contact_address" class="form-control" id="contact_address" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Teléfono de Contacto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-phone"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" name="contact_phone" class="form-control" id="contact_phone" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Email de Contacto</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="fas fa-at"></i>
+                                                    </span>
+                                            </div>
+                                            <input type="text" name="contact_email" class="form-control" id="contact_email" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Horario de Atención</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-calendar"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" name="contact_schedule" class="form-control" id="contact_schedule" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Google Map</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                        <span class="input-group-text">
+                                                            <i class="fas fa-map-marker-alt"></i>
+                                                        </span>
+                                            </div>
+                                            <input type="text" name="google_map" class="form-control" id="google_map" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Facebook</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fab fa-facebook"></i>
+                                                            </span>
+                                            </div>
+                                            <input type="text" name="facebook" class="form-control" id="facebook" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Twitter</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="fab fa-twitter"></i>
+                                                                </span>
+                                            </div>
+                                            <input type="text" name="twitter" class="form-control" id="twitter" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Linkedin</label>
+                                        <div class="input-group">
+                                            <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fab fa-linkedin"></i>
+                                                            </span>
+                                            </div>
+                                            <input type="text" name="linkedin" class="form-control" id="linkedin" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Instagram</label>
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                                            <span class="input-group-text">
+                                                                <i class="fab fa-instagram"></i>
+                                                            </span>
+                                        </div>
+                                        <input type="text" name="instagram" class="form-control" id="instagram" value="">
+                                    </div>
+                                </div>
+                            </div>
                                 <button type="submit" class="btn btn-danger mt-4 pr-4 pl-4 is-valid">
                                     <span class="changeText">Guardar </span><i class="fa fa-plus"></i>
                                 </button>

@@ -38,6 +38,15 @@ function get_contact_setting(){
         let objdata = JSON.parse(data);
         $('#id_contact_setting').val(objdata.id_contact_setting ? objdata.id_contact_setting : "");
         $('#contact_title').val(objdata.contact_title ? objdata.contact_title : "");
+        $('#contact_address').val(objdata.contact_address ? objdata.contact_address : "");
+        $('#contact_phone').val(objdata.contact_phone ? objdata.contact_phone : "");
+        $('#contact_email').val(objdata.contact_email ? objdata.contact_email : "");
+        $('#contact_schedule').val(objdata.contact_schedule ? objdata.contact_schedule : "");
+        $('#google_map').val(objdata.google_map ? objdata.google_map : "");
+        $('#facebook').val(objdata.facebook ? objdata.facebook : "");
+        $('#twitter').val(objdata.twitter ? objdata.twitter : "");
+        $('#linkedin').val(objdata.linkedin ? objdata.linkedin : "");
+        $('#instagram').val(objdata.instagram ? objdata.instagram : "");
     });
 }
 
