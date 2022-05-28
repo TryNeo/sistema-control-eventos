@@ -20,7 +20,8 @@
             $data["page_title"] = "Inicio";
             $data["page"] = "home";
 			$data['page_info'] =  $this->model->selectWebsite();
-			$data["home_usuarios"] = $this->model->selectInvitadosHome();
+			$data["home_usuarios"] = $this->model->selectUsersHome();
+			$data['home_invitados'] = $this->model->selectInvitadosHome();
 			$this->views->getView($this,"home",$data); 
 		}
 

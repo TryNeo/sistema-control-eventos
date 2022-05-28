@@ -167,8 +167,7 @@
             <section class="speakers section-padding" id="section_3">
                 <div class="container">
                     <div class="row">
-
-                        <div class="col-lg-6 col-12 d-flex flex-column justify-content-center align-items-center">
+                        <div class="col-lg-12 col-12 d-flex flex-column justify-content-center align-items-center">
                             <div class="speakers-text-info text-center">
                                 <h2 class="mb-4">Nuestos <u class="text-info">Invitados</u></h2>
 
@@ -177,105 +176,35 @@
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-12">
-                            <div class="speakers-thumb speakers-thumb-small">
-                                <img src="<?php echo server_url; ?>/assets/page/images/avatar/happy-asian-man-standing-with-arms-crossed-grey-wall.jpg" class="img-fluid speakers-image" alt="">
-
-                                <small class="speakers-featured-text">Featured</small>
-
-                                <div class="speakers-info">
-
-                                    <h5 class="speakers-title mb-0">Logan Wilson</h5>
-
-                                    <p class="speakers-text mb-0">CEO / Founder</p>
-
-                                    <ul class="social-icon">
-                                        <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                        <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                        <li><a href="#" class="social-icon-link bi-google"></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-
                         <div class="col-lg-12 col-12">
                             <div class="row">
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="<?php echo server_url; ?>/assets/page/images/avatar/portrait-good-looking-brunette-young-asian-woman.jpg" class="img-fluid speakers-image" alt="">
+                                <?php foreach($data['home_invitados'] as $key=>$value){ ?>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="speakers-thumb speakers-thumb-small">
+                                            <img src="<?php echo $value['url_imagen']; ?>" class="img-fluid speakers-image" alt="imagen">
+                                            <div class="speakers-info">
+                                                <h5 class="speakers-title mb-0"><?php echo $value['nombre_invitado']; ?> <?php echo $value['apellido_invitado']; ?></h5>
+                                                <p class="speakers-text mb-0">Event Planner</p>
+                                                <ul class="social-icon">
+                                                    <?php if (!empty($value['facebook'])) { ?>
+                                                        <li><a href="<?php echo $value['facebook'] ? $value['facebook'] : '#' ?>" target="_blank" class="social-icon-link bi-facebook"></a></li>
+                                                    <?php } ?>
+                                                    <?php if (!empty($value['twitter'])) { ?>
+                                                        <li><a href="<?php echo $value['twitter'] ? $value['twitter'] : '#' ?>" target="_blank" class="social-icon-link bi-twitter"></a></li>
+                                                    <?php } ?>
+                                                    <?php if (!empty($value['linkedin'])) { ?>
+                                                        <li><a href="<?php echo $value['linkedin'] ? $value['linkedin'] : '#' ?>" target="_blank" class="social-icon-link bi-linkedin"></a></li>
 
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Natalie</h5>
-
-                                            <p class="speakers-text mb-0">Event Planner</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-                                            </ul>
+                                                    <?php } ?>
+                                                    <?php if (!empty($value['instagram'])) { ?>
+                                                        <li><a href="<?php echo $value['instagram'] ? $value['instagram'] : '#' ?>" target="_blank" class="social-icon-link bi-instagram"></a></li>
+                                                    <?php } ?>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="<?php echo server_url; ?>/assets/page/images/avatar/senior-man-white-sweater-eyeglasses.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Thomas</h5>
-
-                                            <p class="speakers-text mb-0">Startup Coach</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="<?php echo server_url; ?>/assets/page/images/avatar/pretty-smiling-joyfully-female-with-fair-hair-dressed-casually-looking-with-satisfaction.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Isabella</h5>
-
-                                            <p class="speakers-text mb-0">Event Manager</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-facebook"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-6 col-12">
-                                    <div class="speakers-thumb speakers-thumb-small">
-                                        <img src="<?php echo server_url; ?>/assets/page/images/avatar/indoor-shot-beautiful-happy-african-american-woman-smiling-cheerfully-keeping-her-arms-folded-relaxing-indoors-after-morning-lectures-university.jpg" class="img-fluid speakers-image" alt="">
-
-                                        <div class="speakers-info">
-                                            <h5 class="speakers-title mb-0">Samantha</h5>
-
-                                            <p class="speakers-text mb-0">Top Level Speaker</p>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-
-                                                <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                    
+                                <?php } ?>
                             </div>
                         </div>
 
