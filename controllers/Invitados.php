@@ -42,7 +42,7 @@
 
                     if ($_SESSION['permisos_modulo']['u']) {
                         $btnEditarInvitados = '<button class="btn btn-primary btnEditarInvitado btn-circle " title="editar" 
-                        onClick="return clickModalEditing('."'getInvitado/".$data[$i]['id_invitado']."'".','."'Actualizacion | Invitado'".','."'id_invitado'".','."['nombre_invitado','apellido_invitado','descripcion', 'url_imagen']".','."'#modalInvitado'".');">
+                        onClick="return clickModalEditing('."'getInvitado/".$data[$i]['id_invitado']."'".','."'Actualizacion | Invitado'".','."'id_invitado'".','."['nombre_invitado','apellido_invitado','descripcion', 'url_imagen','facebook','twitter','linkedin','instagram']".','."'#modalInvitado'".');">
                         <i class="fa fa-edit"></i></button>';
                     }
 
@@ -94,6 +94,12 @@
                 $apellido_invitado = ucwords(strtolower(strclean($_POST["apellido_invitado"])));
                 $descripcion_invitado = ucwords(strtolower(strclean($_POST["descripcion"])));
                 $url_imagen = strtolower(strclean($_POST["url_imagen"]));
+                
+                $facebook = strtolower(strclean($_POST["facebook"]));
+                $twitter = strtolower(strclean($_POST["twitter"]));
+                $linkedin = strtolower(strclean($_POST["linkedin"]));
+                $instagram = strtolower(strclean($_POST["instagram"]));
+
                 $validate_data = [$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen];
                 $validate_data_string = [$nombre_invitado,$apellido_invitado,$descripcion_invitado];
                 if(validateEmptyFields($validate_data)){
@@ -116,7 +122,7 @@
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
                             $response_invitado  = 0;
                         }else{
-                            $response_invitado = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                            $response_invitado = $this->model->insertInvitado($nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen,$facebook, $twitter, $linkedin, $instagram);
                             $option = 1;
                         }
                     }else{
@@ -125,7 +131,7 @@
                             $data= array("status" => false, "msg" => "Error no tiene permisos");
                             $response_invitado  = 0;
                         }else{
-                            $response_invitado = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen);
+                            $response_invitado = $this->model->updateInvitado($id_invitado,$nombre_invitado,$apellido_invitado,$descripcion_invitado,$url_imagen,$facebook, $twitter, $linkedin, $instagram);
                             $option = 2;
                         }
                     }

@@ -65,15 +65,20 @@ CREATE TABLE categoria_evento(id_categoria int(11) NOT NULL AUTO_INCREMENT,
 );
 
 DROP TABLE IF EXISTS `invitados`;
-CREATE TABLE `invitados` (   `id_invitado` int(11) NOT NULL AUTO_INCREMENT,
-                             `nombre_invitado` varchar(50) DEFAULT NULL,
-                             `apellido_invitado` varchar(50) DEFAULT NULL,
-                             `descripcion` varchar(150) DEFAULT NULL,
-                             `url_imagen` varchar(250) DEFAULT NULL,
-                             `estado` tinyint(1) DEFAULT NULL,
-                             `fecha_crea` datetime DEFAULT NULL,
-                             `fecha_modifica` datetime DEFAULT NULL,
-                             PRIMARY KEY (`id_invitado`)
+CREATE TABLE `invitados` (   
+    `id_invitado` int(11) NOT NULL AUTO_INCREMENT,
+    `nombre_invitado` varchar(50) DEFAULT NULL,
+    `apellido_invitado` varchar(50) DEFAULT NULL,
+    `descripcion` varchar(150) DEFAULT NULL,
+    `url_imagen` varchar(250) DEFAULT NULL,
+    `facebook` varchar(250) DEFAULT NULL,
+    `twitter` varchar(250) DEFAULT NULL,
+    `linkedin` varchar(250) DEFAULT NULL,
+    `instagram` varchar(250) DEFAULT NULL,
+    `estado` tinyint(1) DEFAULT NULL,
+    `fecha_crea` datetime DEFAULT NULL,
+    `fecha_modifica` datetime DEFAULT NULL,
+    PRIMARY KEY (`id_invitado`)
 );
 
 

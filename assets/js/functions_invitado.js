@@ -1,16 +1,16 @@
 $(function(){
     const columnData = [
         {"data":"id_invitado"},
+        {"data":"url_imagen"},
         {"data":"nombre_invitado"},
         {"data":"apellido_invitado"},
         {"data":"descripcion"},
-        {"data":"url_imagen"},
         {"data":"estado"},
         {"data":"opciones"}]
 
     const columnDefs = [
         {
-            targets:[4],
+            targets:[1],
             orderable:false,
             render:function(data,type,row){
                 return '<img src="'+row.url_imagen+'" alt="avatar" width="40" class="mr-3 rounded-circle">'
@@ -20,7 +20,7 @@ $(function(){
 
     const tableInvitados =  configDataTables('.tableInvitado',base_url+"invitados/getInvitados",columnData,columnDefs)
 
-    const listCamps =  ["#id_invitado","#nombre_invitado","#apellido_invitado","#url_imagen","#descripcion"];
+    const listCamps =  ["#id_invitado","#nombre_invitado","#apellido_invitado","#url_imagen","#descripcion",'#facebook','#twitter','#instagram','#linkedin'];
     
     
     const fieldsToValidate = ['nombre_invitado','apellido_invitado','url_imagen','descripcion']

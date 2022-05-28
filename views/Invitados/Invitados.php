@@ -22,10 +22,10 @@ getModal('modals_invitados', $data);
                                         <thead class="text-uppercase">
                                         <tr>
                                             <th scope="col">ID</th>
-                                            <th scope="col">NOMBREs</th>
+                                            <th scope="col">FOTO</th>
+                                            <th scope="col">NOMBRES</th>
                                             <th scope="col">APELLIDOS</th>
                                             <th scope="col">DESCRIPCION</th>
-                                            <th scope="col">IMAGEN</th>
                                             <th scope="col">ESTADO</th>
                                             <th scope="col">OPCIONES</th>
                                         </tr>
