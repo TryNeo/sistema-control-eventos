@@ -18,7 +18,7 @@ $(function(){
         }
     ];
 
-    const tableInvitados =  configDataTables('.tableInvitado',base_url+"invitados/getInvitados",columnData,columnDefs)
+    const tableInvitados =  configDataTables('.tableInvitado',base_url+"anfitrion/getInvitados",columnData,columnDefs)
 
     const listCamps =  ["#id_invitado","#nombre_invitado","#apellido_invitado","#url_imagen","#descripcion",'#facebook','#twitter','#instagram','#linkedin'];
     
@@ -29,7 +29,7 @@ $(function(){
     clickModal("#modalInvitado","Crear | Invitado",listCamps);
 
     
-    sendingDataServerSide('#fntInvitado',configValid,fieldsToValidate,listCamps,tableInvitados,"invitados/setInvitado","#modalInvitado");
+    sendingDataServerSide('#fntInvitado',configValid,fieldsToValidate,listCamps,tableInvitados,"anfitrion/setInvitado","#modalInvitado");
 })
 
 

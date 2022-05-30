@@ -1,7 +1,7 @@
 <?php
     require_once ("./libraries/core/controllers.php");
 
-    class Invitados extends Controllers{
+    class Anfitrion extends Controllers{
         public function __construct(){
             parent::__construct();
             session_start();
@@ -11,16 +11,16 @@
             getPermisos(7);
         }
 
-        public function invitados(){
+        public function anfitrion(){
             if (empty($_SESSION['permisos_modulo']['r']) ) {
                 header('location:'.server_url.'Errors');
             }
             $data["page_id"] = 7;
-            $data["tag_pag"] = "Invitados";
-            $data["page_title"] = "Invitados | Inicio";
-            $data["page_name"] = "Listado de Invitados";
-            $data['page'] = "invitados";
-            $this->views->getView($this,"invitados",$data);
+            $data["tag_pag"] = "Anfitrion";
+            $data["page_title"] = "Anfitriones | Inicio";
+            $data["page_name"] = "Listado de Anfitriones";
+            $data['page'] = "anfitrion";
+            $this->views->getView($this,"anfitrion",$data);
 
         }
 

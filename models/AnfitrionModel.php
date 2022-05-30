@@ -1,7 +1,7 @@
 <?php
 require_once("./libraries/core/mysql.php");
 
-class InvitadosModel extends Mysql
+class AnfitrionModel extends Mysql
 {
     public $intInvitado;
     public $strNombre;

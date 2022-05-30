@@ -40,7 +40,7 @@
         <?php if ($data['page'] == 'categorias') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_categoria.js"></script>
         <?php } ?>
-        <?php if ($data['page'] == 'invitados') { ?>
+        <?php if ($data['page'] == 'anfitrion') { ?>
             <script type="text/javascript" src="<?php echo server_url; ?>assets/js/functions_invitado.js"></script>
         <?php } ?>
         <?php if ($data['page'] == 'eventos') { ?>

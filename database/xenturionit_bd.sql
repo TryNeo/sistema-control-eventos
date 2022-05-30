@@ -178,7 +178,7 @@ INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Roles','modul
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Respaldo','modulo de respaldo',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Permisos','modulo de permisos',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Categoria','modulo de categoria',1,now());
-INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Invitados','modulo de invitados',1,now());
+INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Anfitriones','modulo de anfitriones',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Eventos','modulo de eventos',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Cuentas Bancarias','modulo de cuentas bancarias',1,now());
 INSERT INTO modulos (nombre,descripcion,estado,fecha_crea) values('Planes','modulo de planes para eventos',1,now());

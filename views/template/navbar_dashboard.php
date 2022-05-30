@@ -75,11 +75,11 @@
               <?php if (!empty($_SESSION['permisos'][7]['r'])) {?>
                   <?php if($data['page_id'] == 7 ){ ?>
                       <li class="active">
-                          <a href="<?php echo server_url; ?>invitados/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Invitados</span></a>
+                          <a href="<?php echo server_url; ?>anfitrion/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Anfitriones</span></a>
                       </li>
                   <?php }else{ ?>
                       <li>
-                          <a href="<?php echo server_url; ?>invitados/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Invitados</span></a>
+                          <a href="<?php echo server_url; ?>anfitrion/" class="nav-link"><i class="fas fa-user"  aria-hidden="true"></i><span>Anfitriones</span></a>
                       </li>
                   <?php } ?>
               <?php } ?>
