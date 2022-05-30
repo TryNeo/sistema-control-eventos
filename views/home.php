@@ -179,7 +179,7 @@
                         <div class="col-lg-12 col-12">
                             <div class="row">
                                 <?php foreach($data['home_invitados'] as $key=>$value){ ?>
-                                    <div class="col-lg-3 col-md-6 col-12">
+                                    <div class="col-lg-4 col-md-6 col-12">
                                         <div class="speakers-thumb speakers-thumb-small">
                                             <img src="<?php echo $value['url_imagen']; ?>" class="img-fluid speakers-image" alt="imagen">
                                             <div class="speakers-info">

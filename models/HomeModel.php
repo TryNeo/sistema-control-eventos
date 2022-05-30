@@ -17,7 +17,7 @@ class HomeModel extends Mysql
 
     public function selectInvitadosHome()
     {
-        $sql = "SELECT  * FROM invitados where estado=1  LIMIT 4";
+        $sql = "SELECT  * FROM invitados where estado=1  ORDER BY id_invitado  DESC LIMIT 3";
         $request = $this->select_sql_all($sql);
         return $request;
     }
