@@ -16,7 +16,7 @@
                             <a data-collapse="#mycard-collapse" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                         </div>
                     </div>
-                    <div class="collapse" id="mycard-collapse">
+                    <div class="collapse show" id="mycard-collapse">
                         <div class="card-body">
                             <form class="needs-validation" id="fntWebsitesetting" method="post" role="form" novalidate="">
                                 <input type="hidden" id="id_website_setting" name="id_website_setting" value="">
@@ -102,8 +102,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                     <div class="card-header">
@@ -112,7 +110,7 @@
                             <a data-collapse="#contact-collapse" class="btn btn-icon btn-info" href="#"><i class="fas fa-minus"></i></a>
                         </div>
                     </div>
-                    <div class="collapse" id="contact-collapse">
+                    <div class="collapse show" id="contact-collapse">
                         <div class="card-body">
                         <form class="needs-validations" id="fntContactsetting" method="post" role="form" novalidate="">
                                 <input type="hidden" id="id_contact_setting" name="id_contact_setting" value="">
