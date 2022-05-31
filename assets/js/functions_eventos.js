@@ -25,7 +25,7 @@ $(function(){
 
     clickModal("#modalEvento","Crear | Evento",listCamps);
     fetchSelect(base_url+"categorias/getSelectCategorias","#id_categoria","Selecciona una categoria")
-    fetchSelect(base_url+"invitados/getSelectInvitados","#id_invitado","Selecciona un invitado")
+    fetchSelect(base_url+"anfitrion/getSelectInvitados","#id_invitado","Selecciona un invitado")
     
     sendingDataServerSide('#fntEvento',configValid,fieldsToValidate,listCamps,tableInvitados,"eventos/setEvento","#modalEvento");
 
