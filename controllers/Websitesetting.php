@@ -59,8 +59,8 @@ class Websitesetting extends Controllers
             $id_website_setting = Intval(strclean($_POST['id_website_setting']));
             $website_title = strclean($_POST["website_title"]);
             $website_about = utf8_decode(strclean($_POST["website_about"]));
-            $website_image = strtolower(strclean($_POST["website_image"]));
-            $website_favicon = strtolower(strclean($_POST["website_favicon"]));
+            $website_image =  strclean($_POST["website_image"]);
+            $website_favicon = strclean($_POST["website_favicon"]);
             $website_clients = Intval(strclean($_POST['website_clients']));
             $website_expirience = Intval(strclean($_POST['website_expirience']));
             $website_proyects = Intval(strclean($_POST['website_proyects']));

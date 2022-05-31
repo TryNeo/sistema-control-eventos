@@ -30,6 +30,12 @@ class HomeModel extends Mysql
         return $request_website;
     }
 
+    public function selectContactSetting()
+    {
+        $sql = "SELECT * FROM contact_setting WHERE id_contact_setting = 1";
+        $request_website = $this->select_sql($sql);
+        return $request_website;
+    }
     
 }
 

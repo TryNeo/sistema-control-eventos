@@ -9,7 +9,7 @@
 
         <title>XenturionIT | Eventos </title>
 
-        <link rel="icon" type="image/png" href="https://i.imgur.com/2M15ruV.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="<?php echo $data['page_info']['website_favicon'] ? $data['page_info']['website_favicon'] : '#'  ?>" sizes="16x16" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,7 @@
                 </button>
 
                 <a href="<?php echo server_url; ?>" class="navbar-brand mx-auto mx-lg-0">
-                    <img src="<?php echo $data['page_info']['website_image'] ?>" alt="logo" width="200" class="shadow-light imgxen">
+                    <img src="<?php echo $data['page_info']['website_image'] ? $data['page_info']['website_image'] : '#'  ?>" alt="logo" width="200" class="shadow-light imgxen">
                 </a>
 
                 <a class="nav-link custom-btn btn d-lg-none" href="#">Buy Tickets</a>
@@ -87,7 +87,7 @@
 
                         <div class="col-lg-5 col-12 m-auto">
                             <div class="hero-text">
-                                <h1 class="text-white mb-4"><u class="text-info">XenturionIT</u> Eventos <?php echo date("Y");?></h1>
+                                <h1 class="text-white mb-4"><u class="text-info"><?php echo $data['page_info']['website_title'] ? $data['page_info']['website_title'] : ''  ?></u> <?php echo date("Y");?></h1>
                                 <a href="#section_2" class="custom-link bi-arrow-down arrow-icon"></a>
                             </div>
                         </div>
@@ -114,9 +114,9 @@
                         <div class="col-lg-6 col-12">
                             <h3 class="mb-3">La importancia de la Empresa XenturionIT</h3>
 
-                            <p>XenturionIT está conformado por un equipo de profesionales especializados en diferentes campos de TI cuyo propósito
-                                es generar valor agregado a nuestros socios estratégicos poniendo a su disposición toda la experiencia adquirida durante 
-                                la dilatada trayectoria profesional de sus colaboradores y la constante capacitación del personal interno.​</p>
+                            <p>
+                                <?php echo $data['page_info']['website_about'] ? $data['page_info']['website_about'] : 'No hay informacion disponible aun'  ?>
+                            ​</p>
 
                             <a class="custom-btn custom-border-btn btn custom-link mt-3 me-3" href="#section_3">Invitados</a>
 
@@ -125,19 +125,19 @@
 
                         <div class="col-lg-6 col-12 mt-5 mt-lg-0 contador">
                             <ul>
-                                <li data-count="8">
+                                <li data-count="<?php echo $data['page_info']['website_expirience'] ? $data['page_info']['website_expirience'] : '0'  ?>">
                                     <i class="bi bi-calendar"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
                                     <p>Años de Experiencia</p>
                                 </li>
-                                <li data-count="30">
+                                <li data-count="<?php echo $data['page_info']['website_clients'] ? $data['page_info']['website_clients'] : '0'  ?>">
                                     <i class="bi bi-people-fill"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
                                     <p>Clientes Satisfechos</p>
                                 </li>
-                                <li data-count="300">
+                                <li data-count="<?php echo $data['page_info']['website_proyects'] ? $data['page_info']['website_proyects'] : '0'  ?>">
                                     <i class="bi bi-boxes"></i>
                                     <i class="fa fa-code"></i>
                                     <span>0</span>
@@ -659,7 +659,7 @@
                         </div>
                         <div class="col-lg-6 col-12">
                             <iframe class="google-map" 
-                            src="https://maps.google.com/maps?q=Pichincha%20%23%20y%20Elizalde&t=m&z=18&output=embed&iwloc=near"
+                            src="<?php echo $data['page_info_contact']['google_map'] ? $data['page_info_contact']['google_map'] : '#'  ?>"
                             width="100%" height="420" allowfullscreen="" loading="lazy"></iframe>
                         </div>
 
@@ -667,33 +667,33 @@
                             <div class="venue-thumb bg-white shadow-lg">
                                 
                                 <div class="venue-info-title">
-                                    <h2 class="text-white mb-0">Guayaquil </h2>
+                                    <h2 class="text-white mb-0"><?php echo $data['page_info_contact']['contact_title'] ? $data['page_info_contact']['contact_title'] : ''  ?></h2>
                                 </div>
 
                                 <div class="venue-info-body">
                                     <h5 class="d-flex">
                                         <i class="bi-geo-alt me-2"></i> 
-                                        <span>Pichincha 334 y Elizalde Edificio El Comercio, Piso 6 – Oficina 601, Guayaquil – Ecuador</span>
+                                        <span><?php echo $data['page_info_contact']['contact_address'] ? $data['page_info_contact']['contact_address'] : ''  ?></span>
                                     </h5>
 
                                     <h5 class="mt-4 mb-3">
-                                        <a href="mailto:solucionesit@xenturionit.com">
+                                        <a href="mailto:<?php echo $data['page_info_contact']['contact_email'] ? $data['page_info_contact']['contact_email'] : ''  ?>">
                                             <i class="bi-envelope me-2"></i>
-                                            solucionesit@xenturionit.com
+                                            <?php echo $data['page_info_contact']['contact_email'] ? $data['page_info_contact']['contact_email'] : ''  ?>
                                         </a>
                                     </h5>
 
                                     <h5 class="mb-0">
-                                        <a href="tel: 305-240-9671">
+                                        <a href="#">
                                             <i class="bi-telephone me-2"></i>
-                                            (04) 232-8580
+                                            <?php echo $data['page_info_contact']['contact_phone'] ? $data['page_info_contact']['contact_phone'] : ''  ?>
                                         </a>
                                     </h5>
 
                                     <h5 class="mt-4">
                                         <a href="#">
                                             <i class="bi-watch me-2"></i>
-                                            Lunes – Viernes 09:00 – 18:00
+                                            <?php echo $data['page_info_contact']['contact_schedule'] ? $data['page_info_contact']['contact_schedule'] : ''  ?>
                                         </a>
                                     </h5>
                                 </div>
@@ -768,7 +768,7 @@
 
                     <div class="col-lg-7 col-12">
                         <ul class="footer-menu d-flex flex-wrap">
-                            <p class="copyright-text">Copyright ©  <?php echo date("Y");?> XenturionIT
+                            <p class="copyright-text">Copyright ©  <?php echo date("Y");?> <?php echo $data['page_info']['website_title'] ? $data['page_info']['website_title'] : ''  ?>
                         </ul>
                     </div>
                 </div>
