@@ -47,12 +47,11 @@
             $this->str_email =  $str_email;
             $this->int_id_rol = $int_id_rol;
             $this->str_password = $str_password;
-
             $sql = "SELECT * FROM usuarios WHERE usuario = '{$this->str_usuario}' or  email = '{$this->str_email}' ";
             $request = $this->select_sql_all($sql);
             if (empty($request)){
-                $sql_insert = "INSERT INTO usuarios (nombre,apellido,foto,usuario,email,type_user,id_rol,password,estado,fecha_crea) values (?,?,?,?,?,?,?,'dashboard',1,now())";
-                $data = array($this->str_nombre,$this->str_apellido,$this->str_imagen,$this->str_usuario,$this->str_email, $this->int_id_rol,$this->str_password);
+                $sql_insert = "INSERT INTO usuarios (nombre,apellido,foto,usuario,email,type_user,id_rol,password,estado,fecha_crea) values (?,?,?,?,?,?,?,?,1,now())";
+                $data = array($this->str_nombre,$this->str_apellido,$this->str_imagen,$this->str_usuario,$this->str_email,'dashboard',$this->int_id_rol,$this->str_password);
                 $request_insert = $this->insert_sql($sql_insert,$data);
                 $return = $request_insert;
             }else{

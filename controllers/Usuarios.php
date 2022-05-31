@@ -70,7 +70,7 @@
                 $usuario_name = strclean($_POST['usuario']);
                 $email_usuario = strtolower(strclean($_POST['email']));
                 $id_rol_usuario = intval(strclean($_POST['id_rol']));
-                $url_imagen = strtolower(strclean($_POST["foto"]));
+                $url_imagen = strclean($_POST["foto"]);
                 $validate_data = array($id_usuario,$nombre_usuario,$apellido_usuario,$usuario_name,
                     $email_usuario,$id_rol_usuario);
 

@@ -10,7 +10,7 @@
 
         public function login_user(string $str_username){
             $this->str_username = $str_username;
-            $sql = "SELECT id_usuario,password,estado FROM usuarios WHERE usuario = '$this->str_username'";
+            $sql = "SELECT id_usuario,password,estado,type_user FROM usuarios WHERE usuario = '$this->str_username'";
             $request = $this->select_sql($sql);
             return $request;
         }        

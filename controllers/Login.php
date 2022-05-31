@@ -64,26 +64,39 @@
                                         'formErrors'=> array());
                                 }else{
                                     $data = $request_user;
-                                    if ($data['estado'] == 1) {
-                                        if(password_verify($str_password,$data['password'])){
-                                            $_SESSION['id_usuario'] = $data['id_usuario'];
-                                            $_SESSION['login'] = true;
-                                            $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
-                                            $_SESSION['user_data'] = $arrResponse;
-                                            unset($_SESSION['token']);
-                                            unset($_SESSION['token-expire']);
-                                            $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url.'dashboard');
-                                        }else{
-                                            $data = array('status' => false,'formErrors'=> array(
-                                                'password' => 'la contraseña es incorrecta'
-                                            ));
+                                    if($data['type_user'] == 'dashboard'){
+                                        if ($data['estado'] == 1) {
+                                            if(password_verify($str_password,$data['password'])){
+                                                $_SESSION['id_usuario'] = $data['id_usuario'];
+                                                $_SESSION['login'] = true;
+                                                $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
+                                                $_SESSION['user_data'] = $arrResponse;
+                                                unset($_SESSION['token']);
+                                                unset($_SESSION['token-expire']);
+                                                $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url.'dashboard');
+                                            }else{
+                                                $data = array('status' => false,'formErrors'=> array(
+                                                    'password' => 'la contraseña es incorrecta'
+                                                ));
+                                            }
+                                        }
+                                    }else{
+                                        if ($data['estado'] == 1) {
+                                            if(password_verify($str_password,$data['password'])){
+                                                $_SESSION['id_usuario'] = $data['id_usuario'];
+                                                $_SESSION['login'] = true;
+                                                $arrResponse = $this->model->sessionLogin($_SESSION['id_usuario']);
+                                                $_SESSION['user_data'] = $arrResponse;
+                                                unset($_SESSION['token']);
+                                                unset($_SESSION['token-expire']);
+                                                $data = array('status' => true,'msg' => 'Ha iniciado sesión correctamente','url' => server_url);
+                                            }else{
+                                                $data = array('status' => false,'formErrors'=> array(
+                                                    'password' => 'la contraseña es incorrecta'
+                                                ));
+                                            }
                                         }
                                     }
-                                    /*
-                                    else{
-                                        $data = array('status' => false,'msg' => 'Este usuario no existe en la base de datos','formErrors'=> array());
-                                    }
-                                    */
                                 }
                             } else {
                                 $data = array('status' => false,'msg' => 'Oops hubo un error, intentelo de nuevo');

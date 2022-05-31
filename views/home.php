@@ -775,7 +775,7 @@
 
                     <div class="col-lg-7 col-12">
                         <ul class="footer-menu d-flex flex-wrap">
-                            <p class="copyright-text">Copyright ©  <?php echo date("Y");?> <?php echo $data['page_info']['website_title'] ? $data['page_info']['website_title'] : ''  ?>
+                            <p class="copyright-text">Copyright ©   <?php echo date("Y");?> <?php echo $data['page_info']['website_title'] ? $data['page_info']['website_title'] : ''  ?>
                         </ul>
                     </div>
                 </div>
