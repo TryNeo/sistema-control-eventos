@@ -194,7 +194,6 @@
                                                     <?php } ?>
                                                     <?php if (!empty($value['linkedin'])) { ?>
                                                         <li><a href="<?php echo $value['linkedin'] ? $value['linkedin'] : '#' ?>" target="_blank" class="social-icon-link bi-linkedin"></a></li>
-
                                                     <?php } ?>
                                                     <?php if (!empty($value['instagram'])) { ?>
                                                         <li><a href="<?php echo $value['instagram'] ? $value['instagram'] : '#' ?>" target="_blank" class="social-icon-link bi-instagram"></a></li>
@@ -755,13 +754,21 @@
                     <div class="col-lg-12 col-12 border-bottom pb-5 mb-5">
                         <div class="d-flex">
                             <a href="<?php echo server_url; ?>" class="navbar-brand">
-                                <img src="<?php echo $data['page_info']['website_image'] ?>" alt="logo" width="200" class="shadow-light imgxen">
+                                <img src="<?php echo $data['page_info']['website_image'] ? $data['page_info']['website_image'] : '#'  ?>" alt="logo" width="200" class="shadow-light imgxen">
                             </a>
-
                             <ul class="social-icon ms-auto">
-                                <li><a href="https://www.facebook.com/XenturionIT" class="social-icon-link bi-facebook" target="_blank"></a></li>
-                                <li><a href="https://www.linkedin.com/company/xenturionit/" class="social-icon-link bi-instagram" target="_blank"></a></li>
-                                <li><a href="https://www.instagram.com/XenOfficeEcuador/" class="social-icon-link bi-linkedin" target="_blank"></a></li>
+                                <?php if (!empty($data['page_info_contact']['facebook'])) { ?>
+                                    <li><a href="<?php echo $data['page_info_contact']['facebook'] ? $data['page_info_contact']['facebook'] : '#'  ?>" class="social-icon-link bi-facebook" target="_blank"></a></li>
+                                <?php } ?>
+                                <?php if (!empty($data['page_info_contact']['instagram'])) { ?>
+                                    <li><a href="<?php echo $data['page_info_contact']['instagram'] ? $data['page_info_contact']['instagram'] : '#'  ?>" class="social-icon-link bi-instagram" target="_blank"></a></li>
+                                <?php } ?>
+                                <?php if (!empty($data['page_info_contact']['linkedin'])) { ?>
+                                    <li><a href="<?php echo $data['page_info_contact']['linkedin'] ? $data['page_info_contact']['linkedin'] : '#'  ?>" class="social-icon-link bi-linkedin" target="_blank"></a></li>
+                                <?php } ?>
+                                <?php if (!empty($data['page_info_contact']['twitter'])) { ?>
+                                    <li><a href="<?php echo $data['page_info_contact']['twitter'] ? $data['page_info_contact']['twitter'] : '#'  ?>" class="social-icon-link bi-twitter" target="_blank"></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
